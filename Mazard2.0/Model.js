@@ -1,5 +1,6 @@
 
 // Details on all images used as tiles
+// *** Note: Add to bottom of list to not change order
 var tileObjects = {
     "blankTile" : {
         image: "Media/blankTile.png",
@@ -119,6 +120,9 @@ var tileObjects = {
         east: false,
         south: false,
         west: true
+    },
+    "human" : {
+        image: "Media/human.png"
     }
 };
 
@@ -127,6 +131,43 @@ var gameBoardSize = {
     row: 6,
     col: 6
 };
+
+/* List of Race Options */
+// TODO
+// Change elf and dwarf pic once we have those images
+var playerObjects = {
+    "Human" : {
+        image: "Media/human.png",
+        hp: 15,
+        attack: 0,
+        armor: 1
+    },
+    "Dwarf" : {
+        image: "Media/human.png",
+        hp: 18,
+        attack: 0,
+        armor: 0
+    },
+    "Elf" : {
+        image: "Media/human.png",
+        hp: 15,
+        attack: 1,
+        defense: 0
+    }
+};
+
+
+/* Current Player Object */
+var currentPlayer = {
+    image: "",
+    race: "",
+    hp: 0,
+    attack: 0,
+    defense: 0,
+    rowLocation: 0,
+    colLocation: 0
+};
+
 
 /* This is our global game board
     Data Members

@@ -10,7 +10,8 @@ function genGameBoard() {
             if (i === gameBoardSize.row-1 && j === randNum) {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects.startTile.image + ")' ></td>";
                 temp_array[j] = {hasPlayer: false, hasFoe: false, passable: true, t_object: {image: tileObjects.startTile.image, north: true, east: true, south: false, west: true}};
-
+                currentPlayer.rowLocation = i;
+                currentPlayer.colLocation = j;
             }
             else {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects.blankTile.image + ")' ></td>";
@@ -29,4 +30,9 @@ function genTile(){
     document.getElementById("deck").style.backgroundImage = "url(" + currentTile.image + ")";
     document.getElementById("deck").onclick = "";
     document.getElementById("deck").innerHTML = "";
+    genPlacementOptions();
+}
+
+function genPlacementOptions() {
+
 }
