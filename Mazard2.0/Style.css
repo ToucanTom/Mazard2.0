@@ -1,3 +1,6 @@
+body{
+    align-content: flex-start;
+}
 #gameBoard{
     border: solid black thin;
 }
@@ -5,6 +8,10 @@ td{
     border: solid black thin;
     height: 100px;
     width: 100px;
+}
+div.img{
+    height:inherit;
+    width:inherit;
 }
 #deck{
     border: dashed black medium;
@@ -16,4 +23,21 @@ td{
     left: 725px;
 
     text-align: center;
+}
+#playerSelect{
+    position:absolute;
+    top: 25px;
+    left: 850px;
+    width: 645px;
+    height: 445px;
+    border: thick black solid;
+    display: inline-flex;
+
+}
+.playerOptions{
+    width: 200px;
+    height: 200px;
+    border:thin black solid;
+    margin-top: 10px;
+    margin-left: 10px;
 }

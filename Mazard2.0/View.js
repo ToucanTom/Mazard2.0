@@ -28,8 +28,10 @@ function selectRace(){
 var playerOptions = Object.keys(playerObjects);
 for(var i = 0; i< playerObjects.length; i++){
     var option = document.getElementsByClassName("playerOptions");
-    option.style.backgroundImage = "url("+ playerObjects[playerOptions[i]] +")";
+    option.style.backgroundImage = "url("+ playerObjects[playerOptions[i]].image +")";
 }
+
+
 }
 
 function genTile(){
