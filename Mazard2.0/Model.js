@@ -159,7 +159,6 @@ var currentTile =  {
 };
 
 function selectRandomTile(){
-    console.log("genTile was called");
     var randNum = Math.floor(Math.random() * 15) + 2;
     var tileKeys = Object.keys(tileObjects);
     return tileObjects[tileKeys[randNum]];
