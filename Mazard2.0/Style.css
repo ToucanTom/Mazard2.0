@@ -6,3 +6,14 @@ td{
     height: 100px;
     width: 100px;
 }
+#deck{
+    border: dashed black medium;
+    width: 100px;
+    height: 100px;
+
+    position: absolute;
+    top: 325px;
+    left: 725px;
+
+    text-align: center;
+}
