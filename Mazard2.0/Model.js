@@ -122,3 +122,10 @@ var currentGameBoard = [
         {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}]
 ];
 
+function updateGameBoardTileObject(target , template){
+    target.image = template.image;
+    target.north = template.north;
+    target.east = template.east;
+    target.south = template.south;
+    target.west = template.west;
+}
