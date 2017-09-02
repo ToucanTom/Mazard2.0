@@ -38,9 +38,23 @@ var gameBoardSize = {
 var currentGameBoard = [];
 
 function updateGameBoardTileObject(target , template){
+    console.log("updateGameBoardTileObject was called");
     target.image = template.image;
     target.north = template.north;
     target.east = template.east;
     target.south = template.south;
     target.west = template.west;
+}
+var currentTile =  {
+  image: "",
+  north: false,
+  east: false,
+  south:false,
+  west: false
+};
+
+function genTile(){
+    console.log("genTile was called");
+    var randNum = Math.floor(Math.random() * 2) + 1;
+
 }

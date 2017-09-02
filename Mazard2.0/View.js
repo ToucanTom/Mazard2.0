@@ -22,3 +22,9 @@ function genGameBoard() {
     }
     gameBoard.innerHTML = html;
 }
+
+
+    function name(){
+    updateGameBoardTileObject(currentTile, genTile());
+    document.getElementById("deck").style.backgroundImage = "url(currentTile.image)";
+}
