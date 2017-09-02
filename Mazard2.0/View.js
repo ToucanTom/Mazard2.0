@@ -31,6 +31,7 @@ function selectRace(){
 for(var i = 0; i< option.length; i++){
 
     option[i].innerHTML = "<img src ="+ playerObjects[playerOptions[i]].image +">";
+    option[i].onclick =
 }
 
 

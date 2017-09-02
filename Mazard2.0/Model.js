@@ -144,19 +144,22 @@ var playerObjects = {
         image: "Media/human.png",
         hp: 15,
         attack: 0,
-        armor: 1
+        armor: 1,
+        race : "human"
     },
     "Dwarf" : {
         image: "Media/Dwarf.png",
         hp: 18,
         attack: 0,
-        armor: 0
+        armor: 0,
+        race: "dwarf"
     },
     "Elf" : {
         image: "Media/Elf.png",
         hp: 15,
         attack: 1,
-        defense: 0
+        defense: 0,
+        race:"elf"
     }
 };
 
