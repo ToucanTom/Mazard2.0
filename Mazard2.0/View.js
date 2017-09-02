@@ -24,7 +24,9 @@ function genGameBoard() {
 }
 
 
-    function name(){
-    updateGameBoardTileObject(currentTile, genTile());
-    document.getElementById("deck").style.backgroundImage = "url(currentTile.image)";
+function genTile(){
+    updateGameBoardTileObject(currentTile, selectRandomTile());
+    document.getElementById("deck").style.backgroundImage = "url(" + currentTile.image + ")";
+    document.getElementById("deck").onclick = "";
+    document.getElementById("deck").innerHTML = "";
 }

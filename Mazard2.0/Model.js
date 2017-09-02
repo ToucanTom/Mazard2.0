@@ -14,6 +14,111 @@ var tileObjects = {
         east: true,
         south: false,
         west: true
+    },
+    "east" : {
+        image: "Media/east.png",
+        north: false,
+        east: true,
+        south: false,
+        west: false
+    },
+    "eastSouth" : {
+        image: "Media/eastSouth.png",
+        north: false,
+        east: true,
+        south: true,
+        west: false
+    },
+    "eastSouthWest" : {
+        image: "Media/eastSouthWest.png",
+        north: false,
+        east: true,
+        south: true,
+        west: true
+    },
+    "eastWest" : {
+        image: "Media/eastWest.png",
+        north: false,
+        east: true,
+        south: false,
+        west: true
+    },
+    "north" : {
+        image: "Media/north.png",
+        north: true,
+        east: false,
+        south: false,
+        west: false
+    },
+    "northEast" : {
+        image: "Media/northEast.png",
+        north: true,
+        east: true,
+        south: false,
+        west: false
+    },
+    "northEastSouth" : {
+        image: "Media/northEastSouth.png",
+        north: true,
+        east: true,
+        south: true,
+        west: false
+    },
+    "northEastSouthWest" : {
+        image: "Media/northEastSouthWest.png",
+        north: true,
+        east: true,
+        south: true,
+        west: true
+    },
+    "northEastWest" : {
+        image: "Media/northEastWest.png",
+        north: true,
+        east: true,
+        south: false,
+        west: true
+    },
+    "northSouth" : {
+        image: "Media/northSouth.png",
+        north: true,
+        east: false,
+        south: true,
+        west: false
+    },
+    "northSouthWest" : {
+        image: "Media/northSouthWest.png",
+        north: true,
+        east: false,
+        south: true,
+        west: true
+    },
+    "northWest" : {
+        image: "Media/northWest.png",
+        north: true,
+        east: false,
+        south: false,
+        west: true
+    },
+    "south" : {
+        image: "Media/south.png",
+        north: false,
+        east: false,
+        south: true,
+        west: false
+    },
+    "southWest" : {
+        image: "Media/southWest.png",
+        north: false,
+        east: false,
+        south: true,
+        west: true
+    },
+    "west" : {
+        image: "Media/west.png",
+        north: false,
+        east: false,
+        south: false,
+        west: true
     }
 };
 
@@ -53,8 +158,9 @@ var currentTile =  {
   west: false
 };
 
-function genTile(){
+function selectRandomTile(){
     console.log("genTile was called");
-    var randNum = Math.floor(Math.random() * 2) + 1;
-
+    var randNum = Math.floor(Math.random() * 15) + 2;
+    var tileKeys = Object.keys(tileObjects);
+    return tileObjects[tileKeys[randNum]];
 }
