@@ -25,14 +25,12 @@ function genGameBoard() {
     selectRace();
 }
 function selectRace(){
+    console.log("select race was called");
     var playerOptions = Object.keys(playerObjects);
     var option = document.getElementsByClassName("playerOptions");
-    console.log(option);
-    for(var i = 0; i< option.length; i++) {
-        console.log("hmmm");
-        console.log(playerObjects[playerOptions[i]].image);
-        document.getElementsByClassName("playerOptions")[i].style.backgroundImage = "url("+ playerObjects[playerOptions[i]].image +")";
-        //option[i].style.backgroundImage = "url("+ playerObjects[playerOptions[i]].image +")";
+for(var i = 0; i< option.length; i++){
+
+    option[i].innerHTML = "<img src ="+ playerObjects[playerOptions[i]].image +">";
 }
 
 

@@ -9,10 +9,7 @@ td{
     height: 100px;
     width: 100px;
 }
-div.img{
-    height:inherit;
-    width:inherit;
-}
+
 #deck{
     border: dashed black medium;
     width: 103px;
@@ -28,16 +25,20 @@ div.img{
     position:absolute;
     top: 25px;
     left: 850px;
-    width: 645px;
+    width: 535px;
     height: 445px;
     border: thick black solid;
     display: inline-flex;
 
 }
 .playerOptions{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     border:thin black solid;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
+    background-repeat: no-repeat;
+    align-content: center;
+    padding-left: 50px;
+    padding-top: 50px;
 }
