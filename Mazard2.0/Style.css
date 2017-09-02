@@ -1,3 +1,8 @@
 #gameBoard{
-    
+    border: solid black thin;
+}
+td{
+    border: solid black thin;
+    height: 100px;
+    width: 100px;
 }
