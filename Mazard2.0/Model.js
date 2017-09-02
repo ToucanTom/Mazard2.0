@@ -123,6 +123,12 @@ var tileObjects = {
     },
     "human" : {
         image: "Media/human.png"
+    },
+    "elf" : {
+        image: "Media/Elf.png"
+    },
+    "dwarf" : {
+        image: "Media/Dwarf.png"
     }
 };
 
@@ -133,8 +139,6 @@ var gameBoardSize = {
 };
 
 /* List of Race Options */
-// TODO
-// Change elf and dwarf pic once we have those images
 var playerObjects = {
     "Human" : {
         image: "Media/human.png",
@@ -143,13 +147,13 @@ var playerObjects = {
         armor: 1
     },
     "Dwarf" : {
-        image: "Media/human.png",
+        image: "Media/Dwarf.png",
         hp: 18,
         attack: 0,
         armor: 0
     },
     "Elf" : {
-        image: "Media/human.png",
+        image: "Media/Elf.png",
         hp: 15,
         attack: 1,
         defense: 0
