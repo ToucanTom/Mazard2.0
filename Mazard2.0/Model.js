@@ -7,6 +7,13 @@ var tileObjects = {
         east: false,
         south: false,
         west: false
+    },
+    "startTile" : {
+        image: "Media/startingTileOriginal.png",
+        north: true,
+        east: true,
+        south: false,
+        west: true
     }
 };
 
@@ -16,111 +23,19 @@ var gameBoardSize = {
     col: 6
 };
 
-// TODO
-// Find a way to make this dynamically allocated
-// JQUERY??
-var currentGameBoard = [
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}],
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}],
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}],
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}],
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}],
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}],
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}],
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}],
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}],
-    [{t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false},
-        {t_image: tileObjects.blankTile.image, foe_present: false, player_present: false, passable: false, north: false, east: false, south: false, west: false}]
-];
+/* This is our global game board
+    Data Members
+        t_object {
+           image
+           north
+           east
+           south
+           west }
+       hasPlayer
+       hasFoe
+       passable
+*/
+var currentGameBoard = [];
 
 function updateGameBoardTileObject(target , template){
     target.image = template.image;
