@@ -28,13 +28,10 @@ function selectRace(){
     console.log("select race was called");
     var playerOptions = Object.keys(playerObjects);
     var option = document.getElementsByClassName("playerOptions");
-for(var i = 0; i< option.length; i++){
-
-    option[i].innerHTML = "<img src ="+ playerObjects[playerOptions[i]].image +">";
-    option[i].onclick =
-}
-
-
+    for(var i = 0; i< option.length; i++){
+        option[i].innerHTML = "<img src ="+ playerObjects[playerOptions[i]].image + ">";
+        option[i].onclick = choosePlayer(playerObjects[playerOptions[i]]);
+    }
 }
 
 function genTile(){
@@ -47,4 +44,12 @@ function genTile(){
 
 function genPlacementOptions() {
 
+}
+
+function choosePlayer(playerChoice) {
+    currentPlayer.race = playerChoice.race;
+    currentPlayer.image = playerChoice.image;
+    currentPlayer.attack = playerChoice.attack;
+    currentPlayer.defense = playerChoice.defense;
+    currentPlayer.hp = playerChoice.hp;
 }
