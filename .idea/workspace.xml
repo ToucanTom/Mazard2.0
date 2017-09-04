@@ -17,8 +17,8 @@
       <file leaf-file-name="Mazard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mazard2.0/Mazard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="76" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="76" />
+            <state relative-caret-position="399">
+              <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -28,8 +28,12 @@
         <entry file="file://$PROJECT_DIR$/Mazard2.0/Style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="945">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding />
+              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding>
+                <marker date="1504496421642" expanded="true" signature="85:179" ph="{...}" />
+                <marker date="1504496421642" expanded="true" signature="186:342" ph="{...}" />
+                <marker date="1504496421642" expanded="true" signature="356:509" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -37,11 +41,11 @@
       <file leaf-file-name="View.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mazard2.0/View.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="53" column="75" lean-forward="false" selection-start-line="53" selection-start-column="75" selection-end-line="53" selection-end-column="75" />
+            <state relative-caret-position="546">
+              <caret line="86" column="43" lean-forward="false" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
               <folding>
-                <marker date="1504397433749" expanded="true" signature="479:537" ph="..." />
-                <marker date="1504397433749" expanded="true" signature="917:975" ph="..." />
+                <marker date="1504506853814" expanded="true" signature="479:537" ph="..." />
+                <marker date="1504506853814" expanded="true" signature="934:992" ph="..." />
               </folding>
             </state>
           </provider>
@@ -50,18 +54,9 @@
       <file leaf-file-name="Model.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mazard2.0/Model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-63">
-              <caret line="135" column="21" lean-forward="false" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
-              <folding>
-                <marker date="1504396936328" expanded="true" signature="2959:3353" ph="{...}" />
-                <marker date="1504396936328" expanded="true" signature="2975:3062" ph="{&quot;image&quot;: &quot;Media/human.png&quot;...}" />
-                <marker date="1504396936328" expanded="true" signature="3345:3351" ph="{&quot;image&quot;: &quot;Media/Elf.png&quot;...}" />
-                <marker date="1504396936328" expanded="true" signature="3357:3384" ph="/*...*/" />
-                <marker date="1504396936328" expanded="true" signature="3405:3518" ph="{&quot;image&quot;: &quot;&quot;...}" />
-                <marker date="1504396936328" expanded="true" signature="3522:3725" ph="/*...*/" />
-                <marker date="1504396936328" expanded="true" signature="3807:4038" ph="{...}" />
-                <marker date="1504396936328" expanded="true" signature="4058:4134" ph="{&quot;image&quot;: &quot;&quot;...}" />
-              </folding>
+            <state relative-caret-position="231">
+              <caret line="188" column="14" lean-forward="false" selection-start-line="188" selection-start-column="14" selection-end-line="188" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,9 +76,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Mazard2.0/Model.js" />
         <option value="$PROJECT_DIR$/Mazard2.0/Style.css" />
         <option value="$PROJECT_DIR$/Mazard2.0/Mazard.html" />
+        <option value="$PROJECT_DIR$/Mazard2.0/Model.js" />
         <option value="$PROJECT_DIR$/Mazard2.0/View.js" />
       </list>
     </option>
@@ -166,12 +161,12 @@
       <option name="presentableId" value="Default" />
       <updated>1504305553392</updated>
       <workItem from="1504305554593" duration="34605000" />
-      <workItem from="1504395168834" duration="2264000" />
+      <workItem from="1504395168834" duration="12021000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36869000" />
+    <option name="totallyTimeSpent" value="46626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -220,7 +215,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1504496421642" expanded="true" signature="85:179" ph="{...}" />
+            <marker date="1504496421642" expanded="true" signature="186:342" ph="{...}" />
+            <marker date="1504496421642" expanded="true" signature="356:509" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -229,8 +228,8 @@
         <state relative-caret-position="1008">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
-            <marker date="1504397433749" expanded="true" signature="479:537" ph="..." />
-            <marker date="1504397433749" expanded="true" signature="917:975" ph="..." />
+            <marker date="1504506853814" expanded="true" signature="479:537" ph="..." />
+            <marker date="1504506853814" expanded="true" signature="934:992" ph="..." />
           </folding>
         </state>
       </provider>
@@ -239,59 +238,45 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2835">
           <caret line="135" column="21" lean-forward="true" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
-          <folding>
-            <marker date="1504396936328" expanded="true" signature="2959:3353" ph="{...}" />
-            <marker date="1504396936328" expanded="true" signature="2975:3062" ph="{&quot;image&quot;: &quot;Media/human.png&quot;...}" />
-            <marker date="1504396936328" expanded="true" signature="3345:3351" ph="{&quot;image&quot;: &quot;Media/Elf.png&quot;...}" />
-            <marker date="1504396936328" expanded="true" signature="3357:3384" ph="/*...*/" />
-            <marker date="1504396936328" expanded="true" signature="3405:3518" ph="{&quot;image&quot;: &quot;&quot;...}" />
-            <marker date="1504396936328" expanded="true" signature="3522:3725" ph="/*...*/" />
-            <marker date="1504396936328" expanded="true" signature="3807:4038" ph="{...}" />
-            <marker date="1504396936328" expanded="true" signature="4058:4134" ph="{&quot;image&quot;: &quot;&quot;...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mazard2.0/Style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <marker date="1504496421642" expanded="true" signature="85:179" ph="{...}" />
+            <marker date="1504496421642" expanded="true" signature="186:342" ph="{...}" />
+            <marker date="1504496421642" expanded="true" signature="356:509" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mazard2.0/Model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-63">
-          <caret line="135" column="21" lean-forward="false" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
-          <folding>
-            <marker date="1504396936328" expanded="true" signature="2959:3353" ph="{...}" />
-            <marker date="1504396936328" expanded="true" signature="2975:3062" ph="{&quot;image&quot;: &quot;Media/human.png&quot;...}" />
-            <marker date="1504396936328" expanded="true" signature="3345:3351" ph="{&quot;image&quot;: &quot;Media/Elf.png&quot;...}" />
-            <marker date="1504396936328" expanded="true" signature="3357:3384" ph="/*...*/" />
-            <marker date="1504396936328" expanded="true" signature="3405:3518" ph="{&quot;image&quot;: &quot;&quot;...}" />
-            <marker date="1504396936328" expanded="true" signature="3522:3725" ph="/*...*/" />
-            <marker date="1504396936328" expanded="true" signature="3807:4038" ph="{...}" />
-            <marker date="1504396936328" expanded="true" signature="4058:4134" ph="{&quot;image&quot;: &quot;&quot;...}" />
-          </folding>
+        <state relative-caret-position="231">
+          <caret line="188" column="14" lean-forward="false" selection-start-line="188" selection-start-column="14" selection-end-line="188" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mazard2.0/Mazard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="76" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="76" />
+        <state relative-caret-position="399">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Mazard2.0/View.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="53" column="75" lean-forward="false" selection-start-line="53" selection-start-column="75" selection-end-line="53" selection-end-column="75" />
+        <state relative-caret-position="546">
+          <caret line="86" column="43" lean-forward="false" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
           <folding>
-            <marker date="1504397433749" expanded="true" signature="479:537" ph="..." />
-            <marker date="1504397433749" expanded="true" signature="917:975" ph="..." />
+            <marker date="1504506853814" expanded="true" signature="479:537" ph="..." />
+            <marker date="1504506853814" expanded="true" signature="934:992" ph="..." />
           </folding>
         </state>
       </provider>

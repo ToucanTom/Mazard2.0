@@ -186,7 +186,8 @@ var currentPlayer = {
            west }
        hasPlayer
        hasFoe
-       passable
+       blocked
+       available
 */
 var currentGameBoard = [];
 
