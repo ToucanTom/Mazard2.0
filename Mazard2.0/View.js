@@ -56,7 +56,7 @@ function genPlacementOptions() {
             counter++;
         }
     }*/
-    var setClickableTiles = [];
+    //var setClickableTiles = [];
     var counter = 0;
     var playerLocationTile = currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation];
     if (currentPlayer.rowLocation-1 >= 0 && playerLocationTile.t_object.north && currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].available && currentTile.south) {
@@ -80,17 +80,23 @@ function genPlacementOptions() {
     else {
         for (var j = 0; j < setClickableTiles.length; j++) {
             document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "Click here to place";
-            document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = placeTile(setClickableTiles, j);
+            document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = placeTile;
         }
     }
 }
 // FIX THIS CAUSE IT PLACES BEFORE CLICKING
-function placeTile(placementTileOptions, index) {
-    document.getElementById(placementTileOptions[index].x + "," + placementTileOptions[index].y).style.backgroundImage = "url(" + currentTile.image + ")";
-    for (var j = 0; j < placementTileOptions.length; j++) {
-        document.getElementById(placementTileOptions[j].x + "," + placementTileOptions[j].y).innerHTML = "";
-        document.getElementById(placementTileOptions[j].x + "," + placementTileOptions[j].y).onclick = "";
+function placeTile() {
+    var col = this.cellIndex;
+    var row = this.parentNode.rowIndex;
+    document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
+    for (var j = 0; j < setClickableTiles.length; j++) {
+        document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "";
+        document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = "";
     }
+    setClickableTiles = [];
+    document.getElementById("deck").style.backgroundImage = "";
+    document.getElementById("deck").innerHTML = "Generate Tile";
+    document.getElementById("deck").onclick = genTile;
 }
 
 function choosePlayer(playerChoice) {

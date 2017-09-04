@@ -212,3 +212,5 @@ function selectRandomTile(){
     var tileKeys = Object.keys(tileObjects);
     return tileObjects[tileKeys[randNum]];
 }
+
+var setClickableTiles = [];
