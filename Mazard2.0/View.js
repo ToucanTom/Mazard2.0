@@ -53,4 +53,6 @@ function choosePlayer(playerChoice) {
     currentPlayer.attack = playerChoice.attack;
     currentPlayer.armor = playerChoice.armor;
     currentPlayer.hp = playerChoice.hp;
+    document.getElementById("playerSelect").style.display = "none"; //remove the player select div
+    document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
 }

@@ -158,7 +158,7 @@ var playerObjects = {
         image: "Media/Elf.png",
         hp: 15,
         attack: 1,
-        defense: 0,
+        armor: 0,
         race:"elf"
     }
 };

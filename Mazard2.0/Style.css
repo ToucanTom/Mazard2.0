@@ -8,6 +8,7 @@ td{
     border: solid black thin;
     height: 100px;
     width: 100px;
+    text-align: center;
 }
 
 #deck{
