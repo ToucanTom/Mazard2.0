@@ -170,7 +170,7 @@ var currentPlayer = {
     race: "",
     hp: 0,
     attack: 0,
-    defense: 0,
+    armor: 0,
     rowLocation: 0,
     colLocation: 0
 };
