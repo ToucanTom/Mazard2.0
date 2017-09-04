@@ -3,6 +3,7 @@ body{
 }
 #gameBoard{
     border: solid black thin;
+    border-collapse: collapse;
 }
 td{
     border: solid black thin;

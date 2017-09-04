@@ -89,6 +89,7 @@ function placeTile() {
     var col = this.cellIndex;
     var row = this.parentNode.rowIndex;
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
+    currentGameBoard[row][col].available = false;
     for (var j = 0; j < setClickableTiles.length; j++) {
         document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "";
         document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = "";
