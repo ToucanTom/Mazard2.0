@@ -1,3 +1,13 @@
+/*
+color scheme for mazard
+#D4DDF7 (white/grey)
+#D4DDF7 (blue)
+#FE2712 (red)
+#FEFE33 (yellow)
+#340D09 (brown?)
+*/
+
+
 body{
     align-content: flex-start;
 }
@@ -43,5 +53,70 @@ td{
     align-content: center;
     padding-left: 50px;
     padding-top: 50px;
+    position: relative;
+}
+.overlay {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    top:0;
+    background-color: #340D09;
+    width: 150px;
+    height: 0;
+    transition: .5s ease;
+}
+#playerOption1Stats{
+    display: none;
+    white-space: nowrap;
+    color: #D4DDF7;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transition: .5s ease;
+}
+#playerOption2Stats{
+    display: none;
+    white-space: nowrap;
+    color: #D4DDF7;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transition: .5s ease;
+}
 
+#playerOption3Stats{
+    display: none;
+    white-space: nowrap;
+    color: #D4DDF7;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transition: .5s ease;
+}
+
+.playerOptions:hover .overlay {
+    bottom: 0;
+    height: 100%;
+
+}
+.playerOptions:hover  #playerOption1Stats{
+    display: inline;
+}
+.playerOptions:hover  #playerOption2Stats{
+    display: inline;
+}
+.playerOptions:hover  #playerOption3Stats{
+    display: inline;
 }

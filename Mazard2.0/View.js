@@ -28,12 +28,27 @@ function selectRace(){
     console.log("select race was called");
     var playerOptions = Object.keys(playerObjects);
     var option = document.getElementsByClassName("playerOptions");
+    var ids = ["playerOption1Stats","playerOption2Stats","playerOption3Stats"];
     for(var i = 0; i< option.length; i++){
-        option[i].innerHTML = "<img src ="+ playerObjects[playerOptions[i]].image + ">";
-        //option[i].onclick = choosePlayer(playerObjects[playerOptions[i]]);
+        option[i].innerHTML = "<img class = 'image' src ="+ playerObjects[playerOptions[i]].image + "><div class = 'overlay' ><div id="+ids[i]+"></div></div>";
     }
+    genStats();
 }
+//these variable names suck
+function genStats(){//this puts the character information into the overlay to show the stats of the player option
+    var playerOptions = Object.keys(playerObjects);
+   var statsLocations = [document.getElementById("playerOption1Stats"),document.getElementById("playerOption2Stats"),document.getElementById("playerOption3Stats")];
+ var statOptions = Object.keys(playerObjects["Human"]);
+   for(var i = 0;i<statsLocations.length;i++){
+       var html = "";
+       for(var j = 0;j<4/*number of stats*/;j++){
+           html += "<p>"+statOptions[j+1] + ": "+ playerObjects[playerOptions[i]][statOptions[j+1]]+"</p>";
+       }
+       statsLocations[i].innerHTML = html;
+   }
 
+
+}
 function genTile(){
     updateGameBoardTileObject(currentTile, selectRandomTile());
     document.getElementById("deck").style.backgroundImage = "url(" + currentTile.image + ")";
@@ -84,7 +99,7 @@ function genPlacementOptions() {
         }
     }
 }
-// FIX THIS CAUSE IT PLACES BEFORE CLICKING
+
 function placeTile() {
     var col = this.cellIndex;
     var row = this.parentNode.rowIndex;

@@ -142,24 +142,25 @@ var gameBoardSize = {
 var playerObjects = {
     "Human" : {
         image: "Media/human.png",
-        hp: 15,
+        race : "Human",
         attack: 0,
-        armor: 1,
-        race : "human"
+        hp: 15,
+        armor: 1
+
     },
     "Dwarf" : {
         image: "Media/Dwarf.png",
-        hp: 18,
+        race: "Dwarf",
         attack: 0,
-        armor: 0,
-        race: "dwarf"
+        hp: 18,
+        armor: 0
     },
     "Elf" : {
         image: "Media/Elf.png",
-        hp: 15,
+        race:"Elf",
         attack: 1,
-        armor: 0,
-        race:"elf"
+        hp: 15,
+        armor: 0
     }
 };
 
