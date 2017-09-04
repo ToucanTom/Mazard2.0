@@ -30,6 +30,7 @@ function selectRace(){
     var option = document.getElementsByClassName("playerOptions");
     for(var i = 0; i< option.length; i++){
         option[i].innerHTML = "<img src ="+ playerObjects[playerOptions[i]].image + ">";
+        //option[i].onclick = choosePlayer(playerObjects[playerOptions[i]]);
     }
 }
 
@@ -46,10 +47,12 @@ function genPlacementOptions() {
 }
 
 function choosePlayer(playerChoice) {
+    console.log("choosePlayer was called");
     currentPlayer.race = playerChoice.race;
     currentPlayer.image = playerChoice.image;
     currentPlayer.attack = playerChoice.attack;
-    currentPlayer.defense = playerChoice.defense;
+    currentPlayer.armor = playerChoice.armor;
     currentPlayer.hp = playerChoice.hp;
-    document.getElementsByClassName("playerOptions").style.display = "none";
+    document.getElementById("playerSelect").style.display = "none"; //remove the player select div
+    document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
 }
