@@ -30,7 +30,6 @@ function selectRace(){
     var option = document.getElementsByClassName("playerOptions");
     for(var i = 0; i< option.length; i++){
         option[i].innerHTML = "<img src ="+ playerObjects[playerOptions[i]].image + ">";
-        option[i].onclick = choosePlayer(playerObjects[playerOptions[i]]);
     }
 }
 
@@ -52,4 +51,5 @@ function choosePlayer(playerChoice) {
     currentPlayer.attack = playerChoice.attack;
     currentPlayer.defense = playerChoice.defense;
     currentPlayer.hp = playerChoice.hp;
+    document.getElementsByClassName("playerOptions").style.display = "none";
 }
