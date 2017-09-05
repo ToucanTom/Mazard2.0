@@ -6,8 +6,6 @@ color scheme for mazard
 #FEFE33 (yellow)
 #340D09 (brown?)
 */
-
-
 body{
     align-content: flex-start;
 }
@@ -21,7 +19,6 @@ td{
     width: 100px;
     text-align: center;
 }
-
 #deck{
     border: dashed black medium;
     width: 103px;
@@ -91,7 +88,6 @@ td{
     -ms-transform: translate(-50%, -50%);
     transition: .5s ease;
 }
-
 #playerOption3Stats{
     display: none;
     white-space: nowrap;
@@ -105,7 +101,6 @@ td{
     -ms-transform: translate(-50%, -50%);
     transition: .5s ease;
 }
-
 .playerOptions:hover .overlay {
     bottom: 0;
     height: 100%;

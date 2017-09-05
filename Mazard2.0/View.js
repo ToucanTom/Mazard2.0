@@ -56,7 +56,6 @@ function genTile(){
     document.getElementById("deck").innerHTML = "";
     genPlacementOptions();
 }
-
 function genPlacementOptions() {
     /*var setClickableTiles = [];
     var playerLocationTileKeys = Object.keys(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object);
@@ -99,7 +98,6 @@ function genPlacementOptions() {
         }
     }
 }
-
 function placeTile() {
     var col = this.cellIndex;
     var row = this.parentNode.rowIndex;
@@ -114,7 +112,6 @@ function placeTile() {
     document.getElementById("deck").innerHTML = "Generate Tile";
     document.getElementById("deck").onclick = genTile;
 }
-
 function choosePlayer(playerChoice) {
     console.log("choosePlayer was called");
     currentPlayer.race = playerChoice.race;

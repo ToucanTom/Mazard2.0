@@ -131,13 +131,11 @@ var tileObjects = {
         image: "Media/Dwarf.png"
     }
 };
-
 // Determines visual game board size
 var gameBoardSize = {
     row: 6,
     col: 6
 };
-
 /* List of Race Options */
 var playerObjects = {
     "Human" : {
@@ -163,8 +161,6 @@ var playerObjects = {
         armor: 0
     }
 };
-
-
 /* Current Player Object */
 var currentPlayer = {
     image: "",
@@ -175,8 +171,6 @@ var currentPlayer = {
     rowLocation: 0,
     colLocation: 0
 };
-
-
 /* This is our global game board
     Data Members
         t_object {
@@ -191,7 +185,6 @@ var currentPlayer = {
        available
 */
 var currentGameBoard = [];
-
 function updateGameBoardTileObject(target , template){
     console.log("updateGameBoardTileObject was called");
     target.image = template.image;
@@ -207,11 +200,9 @@ var currentTile =  {
   south:false,
   west: false
 };
-
 function selectRandomTile(){
     var randNum = Math.floor(Math.random() * 15) + 2;
     var tileKeys = Object.keys(tileObjects);
     return tileObjects[tileKeys[randNum]];
 }
-
 var setClickableTiles = [];
