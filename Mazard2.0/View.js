@@ -67,6 +67,7 @@ function placeTile() {
     }
     setClickableTiles = [];
     document.getElementById("deck").style.backgroundImage = "";
+setOnclickSettings();
     // document.getElementById("deck").innerHTML = "Generate Tile";//this should be in our setOnclickSettings function
     // document.getElementById("deck").onclick = genTile;
 }
@@ -173,5 +174,5 @@ function setOnclickSettings(){
     }
 }
 function move(){
-
+console.log("move was called");
 }
