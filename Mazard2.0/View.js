@@ -9,7 +9,7 @@ function genGameBoard() {
         for (var j = 0; j < gameBoardSize.col; j++) {
             if (i === gameBoardSize.row-1 && j === randNum) {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects.startTile.image + ")' ></td>";
-                temp_array[j] = {hasPlayer: false, hasFoe: false, blocked: false, available: true, t_object: {image: tileObjects.startTile.image, north: true, east: true, south: false, west: true}};
+                temp_array[j] = {location: i+","+j, hasFoe: false, blocked: false, available: false, t_object: {image: tileObjects.startTile.image, north: true, east: true, south: false, west: true}};
                 currentPlayer.rowLocation = i;
                 currentPlayer.colLocation = j;
             }
