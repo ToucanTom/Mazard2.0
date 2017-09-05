@@ -15,7 +15,7 @@ function genGameBoard() {
             }
             else {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects.blankTile.image + ")' ></td>";
-                temp_array[j] = {hasPlayer: false, hasFoe: false, blocked: false, available: true, t_object: {image: tileObjects.blankTile.image, north: false, east: false, south: false, west: false}};
+                temp_array[j] = {location: i+","+j, hasFoe: false, blocked: false, available: true, t_object: {image: tileObjects.blankTile.image, north: false, east: false, south: false, west: false}};
             }
         }
         html += "</td>";
@@ -55,6 +55,20 @@ function genTile(){
     document.getElementById("deck").onclick = "";
     document.getElementById("deck").innerHTML = "";
     genPlacementOptions();
+}
+function placeTile() {
+    var col = this.cellIndex;
+    var row = this.parentNode.rowIndex;
+    document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
+    currentGameBoard[row][col].available = false;
+    for (var j = 0; j < setClickableTiles.length; j++) {
+        document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "";
+        document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = "";
+    }
+    setClickableTiles = [];
+    document.getElementById("deck").style.backgroundImage = "";
+    // document.getElementById("deck").innerHTML = "Generate Tile";//this should be in our setOnclickSettings function
+    // document.getElementById("deck").onclick = genTile;
 }
 function genPlacementOptions() {
     /*var setClickableTiles = [];
@@ -98,20 +112,6 @@ function genPlacementOptions() {
         }
     }
 }
-function placeTile() {
-    var col = this.cellIndex;
-    var row = this.parentNode.rowIndex;
-    document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
-    currentGameBoard[row][col].available = false;
-    for (var j = 0; j < setClickableTiles.length; j++) {
-        document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "";
-        document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = "";
-    }
-    setClickableTiles = [];
-    document.getElementById("deck").style.backgroundImage = "";
-    document.getElementById("deck").innerHTML = "Generate Tile";
-    document.getElementById("deck").onclick = genTile;
-}
 function choosePlayer(playerChoice) {
     console.log("choosePlayer was called");
     currentPlayer.race = playerChoice.race;
@@ -121,4 +121,57 @@ function choosePlayer(playerChoice) {
     currentPlayer.hp = playerChoice.hp;
     document.getElementById("playerSelect").style.display = "none"; //remove the player select div
     document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
+    setOnclickSettings();
+}
+//returns an array of the surrounding tile objects from currentGameBoard
+function getSurroundingTiles(){
+    var tiles = [];
+    var row = currentPlayer.rowLocation;
+    var col = currentPlayer.colLocation;
+    if(row -1 >=0) {
+        tiles[0] = currentGameBoard[row-1][col]
+    }else{
+        tiles[0] = currentTile;
+    }
+    if(col+1 <gameBoardSize.col){
+        tiles[1] = currentGameBoard[row][col+1]
+    }else{
+        tiles[1] = currentTile;
+    }
+    if(row +1< gameBoardSize.row){
+        tiles[2] = currentGameBoard[row+1][col]
+    }else{
+        tiles[2] = currentTile;
+    }
+    if(col-1 >=0){
+        tiles[3] = currentGameBoard[row][col-1]
+    }else{
+        tiles[3] = currentTile;
+    }
+    return tiles;
+}
+function setOnclickSettings(){
+    var targets = getSurroundingTiles();//get the surrounding tiles
+    for (var i =0;i<targets.length;i++){
+        if (targets[i].available){//check if there is a tile already placed in each location
+            document.getElementById(targets[i].location).onclick = genTile;
+            document.getElementById(targets[i].location).innerHTML ="click here to generate a new tile";
+        }else if ( i === 0 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.north && targets[i].t_object.south){//if there is no tile and there is a connected path onclick = move
+            document.getElementById(targets[i].location).onclick = move;
+            document.getElementById(targets[i].location).innerHTML ="click to move here";
+        }else if ( i === 1 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.east && targets[i].t_object.west){//if there is no tile and there is a connected path onclick = move
+            document.getElementById(targets[i].location).onclick = move;
+            document.getElementById(targets[i].location).innerHTML ="click to move here";
+        }else if ( i === 2 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.south && targets[i].t_object.north){//if there is no tile and there is a connected path onclick = move
+            document.getElementById(targets[i].location).onclick = move;
+            document.getElementById(targets[i].location).innerHTML ="click to move here";
+        }else if ( i === 3 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.east && targets[i].t_object.west){//if there is no tile and there is a connected path onclick = move
+            document.getElementById(targets[i].location).onclick = move;
+            document.getElementById(targets[i].location).innerHTML ="click to move here";
+        }
+
+    }
+}
+function move(){
+
 }

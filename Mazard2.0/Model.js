@@ -179,7 +179,7 @@ var currentPlayer = {
            east
            south
            west }
-       hasPlayer
+       location
        hasFoe
        blocked
        available
@@ -198,7 +198,9 @@ var currentTile =  {
   north: false,
   east: false,
   south:false,
-  west: false
+  west: false,
+    available: false,
+    location:"0,0"
 };
 function selectRandomTile(){
     var randNum = Math.floor(Math.random() * 15) + 2;
