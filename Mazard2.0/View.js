@@ -46,10 +46,9 @@ function genStats(){//this puts the character information into the overlay to sh
        }
        statsLocations[i].innerHTML = html;
    }
-
-
 }
 function genTile(){
+    console.log("genTile was called");
     updateGameBoardTileObject(currentTile, selectRandomTile());
     document.getElementById("deck").style.backgroundImage = "url(" + currentTile.image + ")";
     document.getElementById("deck").onclick = "";
@@ -61,15 +60,16 @@ function placeTile() {
     var row = this.parentNode.rowIndex;
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
     currentGameBoard[row][col].available = false;
+    updateGameBoardTileObject(currentGameBoard[row][col].t_object, currentTile);
     for (var j = 0; j < setClickableTiles.length; j++) {
         document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "";
         document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = "";
     }
     setClickableTiles = [];
     document.getElementById("deck").style.backgroundImage = "";
-setOnclickSettings();
-    // document.getElementById("deck").innerHTML = "Generate Tile";//this should be in our setOnclickSettings function
-    // document.getElementById("deck").onclick = genTile;
+        setOnclickSettings();
+    document.getElementById("deck").innerHTML = "Generate Tile";//this should be in our setOnclickSettings function
+    document.getElementById("deck").onclick = genTile;
 }
 function genPlacementOptions() {
     /*var setClickableTiles = [];
@@ -122,6 +122,8 @@ function choosePlayer(playerChoice) {
     currentPlayer.hp = playerChoice.hp;
     document.getElementById("playerSelect").style.display = "none"; //remove the player select div
     document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
+    document.getElementById("deck").onclick = genTile;
+    document.getElementById("deck").innerHTML = "Generate Tile";
     setOnclickSettings();
 }
 //returns an array of the surrounding tile objects from currentGameBoard
@@ -130,34 +132,31 @@ function getSurroundingTiles(){
     var row = currentPlayer.rowLocation;
     var col = currentPlayer.colLocation;
     if(row -1 >=0) {
-        tiles[0] = currentGameBoard[row-1][col]
+        tiles[0] = currentGameBoard[row-1][col];
     }else{
-        tiles[0] = currentTile;
+        tiles[0] = {};
     }
     if(col+1 <gameBoardSize.col){
-        tiles[1] = currentGameBoard[row][col+1]
+        tiles[1] = currentGameBoard[row][col+1];
     }else{
-        tiles[1] = currentTile;
+        tiles[1] = {};
     }
     if(row +1< gameBoardSize.row){
-        tiles[2] = currentGameBoard[row+1][col]
+        tiles[2] = currentGameBoard[row+1][col];
     }else{
-        tiles[2] = currentTile;
+        tiles[2] = {};
     }
     if(col-1 >=0){
-        tiles[3] = currentGameBoard[row][col-1]
+        tiles[3] = currentGameBoard[row][col-1];
     }else{
-        tiles[3] = currentTile;
+        tiles[3] = {};
     }
     return tiles;
 }
 function setOnclickSettings(){
     var targets = getSurroundingTiles();//get the surrounding tiles
     for (var i =0;i<targets.length;i++){
-        if (targets[i].available){//check if there is a tile already placed in each location
-            document.getElementById(targets[i].location).onclick = genTile;
-            document.getElementById(targets[i].location).innerHTML ="click here to generate a new tile";
-        }else if ( i === 0 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.north && targets[i].t_object.south){//if there is no tile and there is a connected path onclick = move
+        if ( i === 0 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.north && targets[i].t_object.south){//if there is no tile and there is a connected path onclick = move
             document.getElementById(targets[i].location).onclick = move;
             document.getElementById(targets[i].location).innerHTML ="click to move here";
         }else if ( i === 1 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.east && targets[i].t_object.west){//if there is no tile and there is a connected path onclick = move
