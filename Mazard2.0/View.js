@@ -37,24 +37,44 @@ function selectRace(){
 //these variable names suck
 function genStats(){//this puts the character information into the overlay to show the stats of the player option
     var playerOptions = Object.keys(playerObjects);
-   var statsLocations = [document.getElementById("playerOption1Stats"),document.getElementById("playerOption2Stats"),document.getElementById("playerOption3Stats")];
- var statOptions = Object.keys(playerObjects["Human"]);
-   for(var i = 0;i<statsLocations.length;i++){
-       var html = "";
-       for(var j = 0;j<4/*number of stats*/;j++){
-           html += "<p>"+statOptions[j+1] + ": "+ playerObjects[playerOptions[i]][statOptions[j+1]]+"</p>";
-       }
-       statsLocations[i].innerHTML = html;
-   }
+    var statsLocations = [document.getElementById("playerOption1Stats"),document.getElementById("playerOption2Stats"),document.getElementById("playerOption3Stats")];
+    var statOptions = Object.keys(playerObjects["Human"]);
+    for(var i = 0;i<statsLocations.length;i++){
+        var html = "";
+        for(var j = 0;j<4/*number of stats*/;j++){
+            html += "<p>"+statOptions[j+1] + ": "+ playerObjects[playerOptions[i]][statOptions[j+1]]+"</p>";
+        }
+        statsLocations[i].innerHTML = html;
+    }
 
 
 }
 function genTile(){
-    updateGameBoardTileObject(currentTile, selectRandomTile());
-    document.getElementById("deck").style.backgroundImage = "url(" + currentTile.image + ")";
+    //updateGameBoardTileObject(currentTile, selectRandomTile());
+    var col = this.cellIndex;
+    var row = this.parentNode.rowIndex;
+    if (row === currentPlayer.rowLocation-1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("north"));
+    }
+    if (col === currentPlayer.colLocation+1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("east"));
+    }
+    if (row === currentPlayer.rowLocation+1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("south"));
+    }
+    if (col === currentPlayer.colLocation-1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("west"));
+    }
+    document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
+    for (var j = 0; j < setClickableTiles.length; j++) {
+        document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "";
+        document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = "";
+    }
+    setClickableTiles = [];
+    //document.getElementById("deck").style.backgroundImage = "url(" + currentTile.image + ")";
     document.getElementById("deck").onclick = "";
     document.getElementById("deck").innerHTML = "";
-    genPlacementOptions();
+    //genPlacementOptions();
 }
 function placeTile() {
     var col = this.cellIndex;
@@ -67,49 +87,37 @@ function placeTile() {
     }
     setClickableTiles = [];
     document.getElementById("deck").style.backgroundImage = "";
-setOnclickSettings();
+    setOnclickSettings();
     // document.getElementById("deck").innerHTML = "Generate Tile";//this should be in our setOnclickSettings function
     // document.getElementById("deck").onclick = genTile;
 }
 function genPlacementOptions() {
-    /*var setClickableTiles = [];
-    var playerLocationTileKeys = Object.keys(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object);
-    var currentTileKeys = ["image", "south", "west", "north", "east"];
-    var tileLocations = [currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation], currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation],
-        currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1], currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation], currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1]];
-    var playerLocationTile = currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation];
-    var counter = 0;
-    for (var i = 1; i < playerLocationTileKeys.length; i++) {
-        if (playerLocationTile.t_object[playerLocationTileKeys[i]] && tileLocations[i].available && currentTile[currentTileKeys[i]]) {
-            setClickableTiles[counter] = {x: currentPlayer.rowLocation-1, y: currentPlayer.colLocation};
-            counter++;
-        }
-    }*/
-    //var setClickableTiles = [];
     var counter = 0;
     var playerLocationTile = currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation];
-    if (currentPlayer.rowLocation-1 >= 0 && playerLocationTile.t_object.north && currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].available && currentTile.south) {
+    if (currentPlayer.rowLocation-1 >= 0 && playerLocationTile.t_object.north && currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].available) {
         setClickableTiles[counter] = {x: currentPlayer.rowLocation-1, y: currentPlayer.colLocation};
         counter++;
     }
-    if (currentPlayer.colLocation+1 <= gameBoardSize.col && playerLocationTile.t_object.east && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].available && currentTile.west) {
+    if (currentPlayer.colLocation+1 <= gameBoardSize.col && playerLocationTile.t_object.east && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].available) {
         setClickableTiles[counter] = {x: currentPlayer.rowLocation, y: currentPlayer.colLocation+1};
         counter++;
     }
-    if (currentPlayer.rowLocation+1 <= gameBoardSize.row && playerLocationTile.t_object.south && currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].available && currentTile.north) {
+    if (currentPlayer.rowLocation+1 <= gameBoardSize.row && playerLocationTile.t_object.south && currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].available) {
         setClickableTiles[counter] = {x: currentPlayer.rowLocation+1, y: currentPlayer.colLocation};
         counter++;
     }
-    if (currentPlayer.colLocation-1 >= 0 && playerLocationTile.t_object.west && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].available && currentTile.east) {
+    if (currentPlayer.colLocation-1 >= 0 && playerLocationTile.t_object.west && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].available) {
         setClickableTiles[counter] = {x: currentPlayer.rowLocation, y: currentPlayer.colLocation-1};
     }
+    // IF TILE DOESNT MATCH, GENERATE NEW TILE
+    // IF ALL POSSIBLE OUTLETS OF CURRENT TILE NOT AVAILABLE, STOP GENERATING TILES - MUST MOVE CHARACTER
     if (setClickableTiles.length === 0) {
-        genTile();
+        document.getElementById("deck").innerHTML = "You must move your character to proceed";
     }
     else {
         for (var j = 0; j < setClickableTiles.length; j++) {
-            document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "Click here to place";
-            document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = placeTile;
+            document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "Select a path to continue your journey";
+            document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = genTile;
         }
     }
 }
