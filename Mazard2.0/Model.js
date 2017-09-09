@@ -202,9 +202,48 @@ var currentTile =  {
     available: false,
     location:"0,0"
 };
-function selectRandomTile(){
-    var randNum = Math.floor(Math.random() * 15) + 2;
+function selectRandomTile(directionOfSelectedTile){
     var tileKeys = Object.keys(tileObjects);
-    return tileObjects[tileKeys[randNum]];
+    var filteredTileKeys = [];
+    var index = 0;
+    var i = 0;
+    switch (directionOfSelectedTile) {
+        // IF TILE SELECTED IS NORTH OF THE CURRENT TILE OF THE PLAYER
+        case "north":
+            for (i = 2; i < tileKeys.length; i++) {
+                if (tileObjects[tileKeys[i]].south === true) {
+                    filteredTileKeys[index] = tileObjects[tileKeys[i]];
+                    index++;
+                }
+            }
+            break;
+        case "east":
+            for (i = 2; i < tileKeys.length; i++) {
+                if (tileObjects[tileKeys[i]].west === true) {
+                    filteredTileKeys[index] = tileObjects[tileKeys[i]];
+                    index++;
+                }
+            }
+            break;
+        case "south":
+            for (i = 2; i < tileKeys.length; i++) {
+                if (tileObjects[tileKeys[i]].north === true) {
+                    filteredTileKeys[index] = tileObjects[tileKeys[i]];
+                    index++;
+                }
+            }
+            break;
+        // IF TILE SELECTED IS WEST OF THE CURRENT TILE OF THE PLAYER
+        case "west":
+            for (i = 2; i < tileKeys.length; i++) {
+                if (tileObjects[tileKeys[i]].east === true) {
+                    filteredTileKeys[index] = tileObjects[tileKeys[i]];
+                    index++;
+                }
+            }
+            break;
+    }
+    var randNum = Math.floor(Math.random() * index);
+    return filteredTileKeys[randNum];
 }
 var setClickableTiles = [];
