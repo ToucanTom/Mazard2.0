@@ -170,7 +170,6 @@ function setOnclickSettings(){
             document.getElementById(targets[i].location).onclick = move;
             document.getElementById(targets[i].location).innerHTML ="click to move here";
         }
-
     }
 }
 function move(){

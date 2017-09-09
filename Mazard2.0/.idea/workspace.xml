@@ -37,7 +37,6 @@
               <caret line="69" column="21" lean-forward="false" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
               <folding>
                 <element signature="n#!!block;n#genGameBoard#0" expanded="false" />
-                <element signature="n#!!block;n#selectRace#0" expanded="false" />
                 <element signature="n#!!block;n#genStats#0" expanded="false" />
                 <element signature="n#!!block;n#genPlacementOptions#0" expanded="false" />
                 <element signature="e#3704#4798#0" expanded="false" />
@@ -67,7 +66,6 @@
             <state relative-caret-position="210">
               <caret line="173" column="0" lean-forward="false" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
               <folding>
-                <element signature="e#113#2823#0" expanded="false" />
                 <element signature="e#2882#2908#0" expanded="false" />
                 <element signature="e#2957#3350#0" expanded="false" />
                 <element signature="e#3400#3511#0" expanded="false" />
@@ -216,6 +214,7 @@
       <workItem from="1504366532366" duration="12385000" />
       <workItem from="1504624250861" duration="3700000" />
       <workItem from="1504637977401" duration="1951000" />
+      <workItem from="1504995568380" duration="1335000" />
     </task>
     <servers />
   </component>
@@ -229,6 +228,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12162877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -320,7 +320,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -337,7 +336,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -388,7 +386,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -449,7 +446,6 @@
         <state relative-caret-position="3591">
           <caret line="171" column="14" lean-forward="false" selection-start-line="171" selection-start-column="14" selection-end-line="171" selection-end-column="14" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -467,7 +463,6 @@
           <caret line="95" column="37" lean-forward="true" selection-start-line="95" selection-start-column="37" selection-end-line="95" selection-end-column="37" />
           <folding>
             <element signature="n#!!block;n#genGameBoard#0" expanded="false" />
-            <element signature="n#!!block;n#selectRace#0" expanded="false" />
             <element signature="n#!!block;n#genStats#0" expanded="false" />
             <element signature="n#!!block;n#genPlacementOptions#0" expanded="false" />
             <element signature="e#3704#4798#0" expanded="false" />
@@ -520,7 +515,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#genGameBoard#0" expanded="false" />
-            <element signature="n#!!block;n#selectRace#0" expanded="false" />
             <element signature="n#!!block;n#genStats#0" expanded="false" />
             <element signature="n#!!block;n#genPlacementOptions#0" expanded="false" />
             <element signature="e#3704#4798#0" expanded="false" />
@@ -562,7 +556,6 @@
         <state relative-caret-position="2604">
           <caret line="124" column="42" lean-forward="false" selection-start-line="124" selection-start-column="42" selection-end-line="124" selection-end-column="42" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -589,7 +582,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -664,7 +656,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -681,7 +672,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -732,7 +722,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -818,7 +807,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#genGameBoard#0" expanded="false" />
-            <element signature="n#!!block;n#selectRace#0" expanded="false" />
             <element signature="n#!!block;n#genStats#0" expanded="false" />
             <element signature="n#!!block;n#genPlacementOptions#0" expanded="false" />
             <element signature="e#3704#4798#0" expanded="false" />
@@ -836,7 +824,6 @@
         <state relative-caret-position="84">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -863,7 +850,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -938,7 +924,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -955,7 +940,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
@@ -1006,7 +990,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#113#2823#0" expanded="false" />
             <element signature="e#2882#2908#0" expanded="false" />
             <element signature="e#2957#3350#0" expanded="false" />
             <element signature="e#3400#3511#0" expanded="false" />
