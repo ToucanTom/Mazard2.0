@@ -171,25 +171,25 @@ function getSurroundingTiles(){
     var col = currentPlayer.colLocation;
 
     // For North Tile
-    if(row-1 >= 0 && currentTile.north && (currentGameBoard[row-1][col].available || currentGameBoard[row-1][col].south)) {
+    if(row-1 >= 0 && currentGameBoard[row][col].t_object.north && (currentGameBoard[row-1][col].available || currentGameBoard[row-1][col].t_object.south)) {
         tiles[counter] = currentGameBoard[row-1][col];
         counter++;
     }
 
     // For East Tile
-    if (col+1 < gameBoardSize.col && currentTile.east && (currentGameBoard[row][col+1].available || currentGameBoard[row][col+1].west)) {
+    if (col+1 < gameBoardSize.col && currentGameBoard[row][col].t_object.east && (currentGameBoard[row][col+1].available || currentGameBoard[row][col+1].t_object.west)) {
         tiles[counter] = currentGameBoard[row][col+1];
         counter++;
     }
 
     // For South Tile
-    if (row+1 < gameBoardSize.row && currentTile.south && (currentGameBoard[row+1][col].available || currentGameBoard[row+1][col].north)) {
+    if (row+1 < gameBoardSize.row && currentGameBoard[row][col].t_object.south && (currentGameBoard[row+1][col].available || currentGameBoard[row+1][col].t_object.north)) {
         tiles[counter] = currentGameBoard[row+1][col];
         counter++;
     }
 
     // For West Tile
-    if (col-1 >= 0 && currentTile.west && (currentGameBoard[row][col-1].available || currentGameBoard[row][col-1].east)) {
+    if (col-1 >= 0 && currentGameBoard[row][col].t_object.west && (currentGameBoard[row][col-1].available || currentGameBoard[row][col-1].t_object.east)) {
         tiles[counter] = currentGameBoard[row][col-1];
     }
 
@@ -200,6 +200,11 @@ function setOnclickSettings(){
     for (var i =0;i<targets.length;i++){
         if(targets[i].staged){
             document.getElementById(targets[i].location).onclick = flipTile;
+        } else if(targets[i].available){
+            document.getElementById("deck").onclick = stageTiles;
+        } else{
+            document.getElementById(targets[i].location).onclick = move;
+            document.getElementById(targets[i].location).innerHTML ="click to move here";
         }
         // if (targets[i].available){//check if there is a tile already placed in each location
         //     document.getElementById("deck").onclick = placeDeck;
@@ -222,6 +227,7 @@ function move() {
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+    
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
     document.getElementById(row + "," + col).innerHTML = "<img src = "+currentPlayer.image+">";
