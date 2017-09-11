@@ -204,7 +204,6 @@ function setOnclickSettings(){
             document.getElementById("deck").onclick = stageTiles;
         } else{
             document.getElementById(targets[i].location).onclick = move;
-            document.getElementById(targets[i].location).innerHTML ="click to move here";
         }
         // if (targets[i].available){//check if there is a tile already placed in each location
         //     document.getElementById("deck").onclick = placeDeck;
@@ -227,7 +226,7 @@ function move() {
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
-    
+
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
     document.getElementById(row + "," + col).innerHTML = "<img src = "+currentPlayer.image+">";
