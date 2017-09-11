@@ -49,7 +49,7 @@ function genStats(){//this puts the character information into the overlay to sh
 
 
 }
-function genTile(){
+function flipTile(){
     //updateGameBoardTileObject(currentTile, selectRandomTile());
     var col = this.cellIndex;
     var row = this.parentNode.rowIndex;
@@ -143,16 +143,16 @@ function choosePlayer(playerChoice) {
     currentPlayer.hp = playerChoice.hp;
     document.getElementById("playerSelect").style.display = "none"; //remove the player select div
     document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
-    document.getElementById("deck").onclick = placeDeck;
+    document.getElementById("deck").onclick = stageTiles;
     //setOnclickSettings();
 }
 // places unflipped cards from the deck onto spots surrounding current player
-function placeDeck() {
+function stageTiles() {
     var setClickableTiles = getSurroundingTiles();
     for (var i = 0; i < setClickableTiles.length; i++) {
         if (setClickableTiles[i].available) {
             document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/meDeck.png)";
-            document.getElementById(setClickableTiles[i].location).onclick = genTile;
+            document.getElementById(setClickableTiles[i].location).onclick = flipTile;
             currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].staged = true;
         }
     }
@@ -199,7 +199,7 @@ function setOnclickSettings(){
     var targets = getSurroundingTiles();//get the surrounding tiles
     for (var i =0;i<targets.length;i++){
         if (targets[i].available){//check if there is a tile already placed in each location
-            document.getElementById("deck").onclick = placeDeck;
+            document.getElementById("deck").onclick = stageTiles;
         }else if ( i === 0 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.north && targets[i].t_object.south){//if there is a tile and there is a connected path onclick = move
             document.getElementById(targets[i].location).onclick = move;
             document.getElementById(targets[i].location).innerHTML ="click to move here";
@@ -225,7 +225,7 @@ function move() {
     clearClickableSettings();
     setOnclickSettings();
 
-    document.getElementById("deck").onclick = placeDeck;
+    document.getElementById("deck").onclick = stageTiles;
 
 
 console.log("move was called");
@@ -253,7 +253,7 @@ function clearClickableSettings() {
     document.getElementById("deck").style.backgroundImage = "";
     setOnclickSettings();
     // document.getElementById("deck").innerHTML = "Generate Tile";//this should be in our setOnclickSettings function
-    // document.getElementById("deck").onclick = genTile;
+    // document.getElementById("deck").onclick = flipTile;
 }
 */
 /*function genPlacementOptions()*/
@@ -283,7 +283,7 @@ function clearClickableSettings() {
     else {
         for (var j = 0; j < setClickableTiles.length; j++) {
             document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).innerHTML = "Select a path to continue your journey";
-            document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = genTile;
+            document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = flipTile;
         }
     }
 }*/
