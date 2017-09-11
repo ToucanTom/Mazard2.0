@@ -237,6 +237,11 @@ var currentPlayer = {
 var currentGameBoard = [];
 function updateGameBoardTileObject(target , template){
     console.log("updateGameBoardTileObject was called");
+
+    if (target.north === true || target.east === true || target.south === true || target.west === true) {
+        target.rotCCW = template.rotCCW;
+        target.rotCW = template.rotCW;
+    }
     target.image = template.image;
     target.north = template.north;
     target.east = template.east;
@@ -245,12 +250,14 @@ function updateGameBoardTileObject(target , template){
 }
 var currentTile =  {
     image: "",
-    north: false,
-    east: false,
-    south:false,
-    west: false,
+    north: true,
+    east: true,
+    south: false,
+    west: true,
     available: false,
-    location:"0,0"
+    location:"0,0",
+    rotCW: 0,
+    rotCCW: 0
 };
 function selectRandomTile(directionOfSelectedTile){
     var filteredTileKeys = [];
@@ -295,4 +302,4 @@ function selectRandomTile(directionOfSelectedTile){
     var randNum = Math.floor(Math.random() * index);
     return filteredTileKeys[randNum];
 }
-var setClickableTiles = [];
+//var setClickableTiles = [];

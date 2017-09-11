@@ -9,13 +9,13 @@ function genGameBoard() {
         for (var j = 0; j < gameBoardSize.col; j++) {
             if (i === gameBoardSize.row-1 && j === randNum) {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[1].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, hasFoe: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
+                temp_array[j] = {location: i+","+j, hasFoe: false, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
                 currentPlayer.rowLocation = i;
                 currentPlayer.colLocation = j;
             }
             else {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[0].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, hasFoe: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
+                temp_array[j] = {location: i+","+j, hasFoe: false, staged: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
             }
         }
         html += "</td>";
@@ -54,6 +54,10 @@ function genTile(){
     var col = this.cellIndex;
     var row = this.parentNode.rowIndex;
 
+    // sets clicked tile location to unavailable
+    currentGameBoard[row][col].available = false;
+    currentGameBoard[row][col].staged = false;
+
     //  Generates appropriate tile for location clicked and sets it to currentTile
     if (row === currentPlayer.rowLocation-1) {
         updateGameBoardTileObject(currentTile, selectRandomTile("north"));
@@ -68,44 +72,66 @@ function genTile(){
         updateGameBoardTileObject(currentTile, selectRandomTile("west"));
     }
 
+    // set location of current tile
+    currentTile.location = row + "," + col;
+
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
 
-    //TODO
-    // Call generate rotate div
+    // Generates rotation buttons to be able to rotate randomly selected tile
     genRotateDivs();
+
     // Sets all other surrounding tiles to unclickable until you finish rotating the current tile
-    for (var j = 0; j < setClickableTiles.length; j++) {
-        document.getElementById(setClickableTiles[j].location).innerHTML = "";
-        document.getElementById(setClickableTiles[j].location).onclick = "";
-    }
-    setClickableTiles = [];
+    clearClickableSettings();
 
 }
 
 function genRotateDivs() {
     var rotateCCWDiv = document.getElementById("rotateCCW");
     var rotateCWDiv = document.getElementById("rotateCW");
+    var setRotateDiv = document.getElementById("setRotate");
 
     // Display Box
     rotateCCWDiv.style.display = "inline";
     rotateCWDiv.style.display = "inline";
+    setRotateDiv.style.display = "inline";
 
     // Display Text in Box
     rotateCCWDiv.innerHTML = "Rotate Counter Clockwise";
     rotateCWDiv.innerHTML = "Rotate Clockwise";
+    setRotateDiv.innerHTML = "Set Rotation";
 
     // Set on Click
     rotateCCWDiv.onclick = rotateCCW;
     rotateCWDiv.onclick = rotateCW;
+    setRotateDiv.onclick = setRotation;
 }
 
 function rotateCCW() {
-
+    updateGameBoardTileObject(currentTile, tileObjects[currentTile.rotCCW]);
+    document.getElementById(currentTile.location).style.backgroundImage = "url(" + currentTile.image + ")";
 }
 
 function rotateCW() {
+    updateGameBoardTileObject(currentTile, tileObjects[currentTile.rotCW]);
+    document.getElementById(currentTile.location).style.backgroundImage = "url(" + currentTile.image + ")";
+}
 
+function setRotation() {
+
+    // Turn off all rotate options and hide boxes
+    document.getElementById("rotateCCW").onclick = "";
+    document.getElementById("rotateCW").onclick = "";
+    document.getElementById("setRotate").onclick = "";
+    document.getElementById("rotateCCW").style.display = "none";
+    document.getElementById("rotateCW").style.display = "none";
+    document.getElementById("setRotate").style.display = "none";
+
+    // Update gameboard
+    updateGameBoardTileObject(currentGameBoard[currentTile.location[0]][currentTile.location[2]].t_object,currentTile);
+
+    // Remove tile
+    setOnclickSettings();
 }
 
 function choosePlayer(playerChoice) {
@@ -118,17 +144,22 @@ function choosePlayer(playerChoice) {
     document.getElementById("playerSelect").style.display = "none"; //remove the player select div
     document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
     document.getElementById("deck").onclick = placeDeck;
-    setOnclickSettings();
+    //setOnclickSettings();
 }
 // places unflipped cards from the deck onto spots surrounding current player
 function placeDeck() {
-    setClickableTiles = getSurroundingTiles();
+    var setClickableTiles = getSurroundingTiles();
     for (var i = 0; i < setClickableTiles.length; i++) {
-        document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/meDeck.png)";
-        document.getElementById(setClickableTiles[i].location).onclick = genTile;
+        if (setClickableTiles[i].available) {
+            document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/meDeck.png)";
+            document.getElementById(setClickableTiles[i].location).onclick = genTile;
+            currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].staged = true;
+        }
     }
+
     document.getElementById("deck").onclick = "";
     document.getElementById("deck").innerHTML = "";
+    setOnclickSettings();
 }
 
 
@@ -138,58 +169,73 @@ function getSurroundingTiles(){
     var counter = 0;
     var row = currentPlayer.rowLocation;
     var col = currentPlayer.colLocation;
-    if(row-1 >=0) {
+
+    // For North Tile
+    if(row-1 >= 0 && currentTile.north && (currentGameBoard[row-1][col].available || currentGameBoard[row-1][col].south)) {
         tiles[counter] = currentGameBoard[row-1][col];
         counter++;
     }
-    //else{
-    //    tiles[0] = currentTile;
-    //}
-    if (col+1 < gameBoardSize.col) {
+
+    // For East Tile
+    if (col+1 < gameBoardSize.col && currentTile.east && (currentGameBoard[row][col+1].available || currentGameBoard[row][col+1].west)) {
         tiles[counter] = currentGameBoard[row][col+1];
         counter++;
     }
-    //else{
-    //    tiles[1] = currentTile;
-    //}
-    if (row+1 < gameBoardSize.row) {
+
+    // For South Tile
+    if (row+1 < gameBoardSize.row && currentTile.south && (currentGameBoard[row+1][col].available || currentGameBoard[row+1][col].north)) {
         tiles[counter] = currentGameBoard[row+1][col];
         counter++;
     }
-    //else{
-    //    tiles[2] = currentTile;
-    //}
-    if (col-1 >= 0) {
+
+    // For West Tile
+    if (col-1 >= 0 && currentTile.west && (currentGameBoard[row][col-1].available || currentGameBoard[row][col-1].east)) {
         tiles[counter] = currentGameBoard[row][col-1];
     }
-    //else{
-    //    tiles[3] = currentTile;
-    //}
+
     return tiles;
 }
 function setOnclickSettings(){
     var targets = getSurroundingTiles();//get the surrounding tiles
     for (var i =0;i<targets.length;i++){
         if (targets[i].available){//check if there is a tile already placed in each location
-            //document.getElementById(targets[i].location).onclick = genTile;
-            //document.getElementById(targets[i].location).innerHTML ="click here to generate a new tile";
-        }else if ( i === 0 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.north && targets[i].t_object.south){//if there is no tile and there is a connected path onclick = move
+            document.getElementById("deck").onclick = placeDeck;
+        }else if ( i === 0 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.north && targets[i].t_object.south){//if there is a tile and there is a connected path onclick = move
             document.getElementById(targets[i].location).onclick = move;
             document.getElementById(targets[i].location).innerHTML ="click to move here";
-        }else if ( i === 1 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.east && targets[i].t_object.west){//if there is no tile and there is a connected path onclick = move
+        }else if ( i === 1 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.east && targets[i].t_object.west){//if there is a tile and there is a connected path onclick = move
             document.getElementById(targets[i].location).onclick = move;
             document.getElementById(targets[i].location).innerHTML ="click to move here";
-        }else if ( i === 2 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.south && targets[i].t_object.north){//if there is no tile and there is a connected path onclick = move
+        }else if ( i === 2 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.south && targets[i].t_object.north){//if there is a tile and there is a connected path onclick = move
             document.getElementById(targets[i].location).onclick = move;
             document.getElementById(targets[i].location).innerHTML ="click to move here";
-        }else if ( i === 3 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.east && targets[i].t_object.west){//if there is no tile and there is a connected path onclick = move
+        }else if ( i === 3 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.west && targets[i].t_object.east){//if there is a tile and there is a connected path onclick = move
             document.getElementById(targets[i].location).onclick = move;
             document.getElementById(targets[i].location).innerHTML ="click to move here";
         }
     }
 }
 function move() {
+    var row = this.parentNode.rowIndex;
+    var col = this.cellIndex;
+    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+    currentPlayer.rowLocation = row;
+    currentPlayer.colLocation = col;
+    document.getElementById(row + "," + col).innerHTML = "<img src = "+currentPlayer.image+">";
+    clearClickableSettings();
+    setOnclickSettings();
+
+    document.getElementById("deck").onclick = placeDeck;
+
+
 console.log("move was called");
+}
+
+function clearClickableSettings() {
+    var cells = document.getElementsByTagName("td");
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].onclick = "";
+    }
 }
 /*/////////   Elephant bone yard /////////*/
 /*function placeTile()*/

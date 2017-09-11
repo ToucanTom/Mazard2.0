@@ -54,6 +54,18 @@ td{
     display: none;
 }
 
+#setRotate {
+    border: solid black thick;
+    position: absolute;
+    top: 450px;
+    left: 850px;
+    width: 103px;
+    height: 75px;
+    text-align: center;
+    line-height: 37.5px;
+    display: none;
+}
+
 #playerSelect{
     position:absolute;
     top: 25px;
