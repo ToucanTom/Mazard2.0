@@ -30,6 +30,29 @@ td{
 
     text-align: center;
 }
+#rotateCCW {
+    border: solid black thick;
+    position: absolute;
+    top: 450px;
+    left: 725px;
+    width: 103px;
+    height: 75px;
+    text-align: center;
+    line-height: 37.5px;
+    display: none;
+}
+
+#rotateCW {
+    border: solid black thick;
+    position: absolute;
+    top: 550px;
+    left: 725px;
+    width: 103px;
+    height: 75px;
+    text-align: center;
+    line-height: 37.5px;
+    display: none;
+}
 
 #playerSelect{
     position:absolute;

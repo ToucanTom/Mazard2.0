@@ -1,136 +1,187 @@
 
 // Details on all images used as tiles
 // *** Note: Add to bottom of list to not change order
-var tileObjects = {
-    "blankTile" : {
+
+var tileObjects = [
+    {
+        name: "blankTile",
         image: "Media/blankTile.png",
         north: false,
         east: false,
         south: false,
         west: false
     },
-    "startTile" : {
+    {
+        name: "startTile",
         image: "Media/startingTileOriginal.png",
         north: true,
         east: true,
         south: false,
         west: true
     },
-    "east" : {
+    {
+        name: "east",
         image: "Media/east.png",
         north: false,
         east: true,
         south: false,
-        west: false
+        west: false,
+        rotCCW: 6,
+        rotCW: 14
     },
-    "eastSouth" : {
+    {
+        name: "eastSouth",
         image: "Media/eastSouth.png",
         north: false,
         east: true,
         south: true,
-        west: false
+        west: false,
+        rotCCW: 7,
+        rotCW: 15
     },
-    "eastSouthWest" : {
+    {
+        name: "eastSouthWest",
         image: "Media/eastSouthWest.png",
         north: false,
         east: true,
         south: true,
-        west: true
+        west: true,
+        rotCCW: 8,
+        rotCW: 12
     },
-    "eastWest" : {
+    {
+        name: "eastWest",
         image: "Media/eastWest.png",
         north: false,
         east: true,
         south: false,
-        west: true
+        west: true,
+        rotCCW: 11,
+        rotCW: 11
     },
-    "north" : {
+    {
+        name: "north",
         image: "Media/north.png",
         north: true,
         east: false,
         south: false,
-        west: false
+        west: false,
+        rotCCW: 16,
+        rotCW: 2
     },
-    "northEast" : {
+    {
+        name: "northEast",
         image: "Media/northEast.png",
         north: true,
         east: true,
         south: false,
-        west: false
+        west: false,
+        rotCCW: 13,
+        rotCW: 3
     },
-    "northEastSouth" : {
+    {
+        name: "northEastSouth",
         image: "Media/northEastSouth.png",
         north: true,
         east: true,
         south: true,
-        west: false
+        west: false,
+        rotCCW: 10,
+        rotCW: 4
     },
-    "northEastSouthWest" : {
+    {
+        name: "northEastSouthWest",
         image: "Media/northEastSouthWest.png",
         north: true,
         east: true,
         south: true,
-        west: true
+        west: true,
+        rotCCW: 9,
+        rotCW: 9
     },
-    "northEastWest" : {
+    {
+        name: "northEastWest",
         image: "Media/northEastWest.png",
         north: true,
         east: true,
         south: false,
-        west: true
+        west: true,
+        rotCCW: 12,
+        rotCW: 8
     },
-    "northSouth" : {
+    {
+        name: "northSouth",
         image: "Media/northSouth.png",
         north: true,
         east: false,
         south: true,
-        west: false
+        west: false,
+        rotCCW: 5,
+        rotCW: 5
     },
-    "northSouthWest" : {
+    {
+        name: "northSouthWest",
         image: "Media/northSouthWest.png",
         north: true,
         east: false,
         south: true,
-        west: true
+        west: true,
+        rotCCW: 4,
+        rotCW: 10
     },
-    "northWest" : {
+    {
+        name: "northWest",
         image: "Media/northWest.png",
         north: true,
         east: false,
         south: false,
-        west: true
+        west: true,
+        rotCCW: 15,
+        rotCW: 7
     },
-    "south" : {
+    {
+        name: "south",
         image: "Media/south.png",
         north: false,
         east: false,
         south: true,
-        west: false
+        west: false,
+        rotCCW: 2,
+        rotCW: 16
     },
-    "southWest" : {
+    {
+        name: "southWest",
         image: "Media/southWest.png",
         north: false,
         east: false,
         south: true,
-        west: true
+        west: true,
+        rotCCW: 3,
+        rotCW: 13
     },
-    "west" : {
+    {
+        name: "west",
         image: "Media/west.png",
         north: false,
         east: false,
         south: false,
-        west: true
+        west: true,
+        rotCCW: 14,
+        rotCW: 6
     },
-    "human" : {
+    {
+        name: "human",
         image: "Media/human.png"
     },
-    "elf" : {
+    {
+        name: "elf",
         image: "Media/Elf.png"
     },
-    "dwarf" : {
+    {
+        name: "dwarf",
         image: "Media/Dwarf.png"
     }
-};
+];
 // Determines visual game board size
 var gameBoardSize = {
     row: 6,
@@ -144,7 +195,6 @@ var playerObjects = {
         attack: 0,
         hp: 15,
         armor: 1
-
     },
     "Dwarf" : {
         image: "Media/Dwarf.png",
@@ -194,50 +244,49 @@ function updateGameBoardTileObject(target , template){
     target.west = template.west;
 }
 var currentTile =  {
-  image: "",
-  north: false,
-  east: false,
-  south:false,
-  west: false,
+    image: "",
+    north: false,
+    east: false,
+    south:false,
+    west: false,
     available: false,
     location:"0,0"
 };
 function selectRandomTile(directionOfSelectedTile){
-    var tileKeys = Object.keys(tileObjects);
     var filteredTileKeys = [];
     var index = 0;
     var i = 0;
     switch (directionOfSelectedTile) {
         // IF TILE SELECTED IS NORTH OF THE CURRENT TILE OF THE PLAYER
         case "north":
-            for (i = 2; i < tileKeys.length; i++) {
-                if (tileObjects[tileKeys[i]].south === true) {
-                    filteredTileKeys[index] = tileObjects[tileKeys[i]];
+            for (i = 2; i < tileObjects.length; i++) {
+                if (tileObjects[i].south === true) {
+                    filteredTileKeys[index] = tileObjects[i];
                     index++;
                 }
             }
             break;
         case "east":
-            for (i = 2; i < tileKeys.length; i++) {
-                if (tileObjects[tileKeys[i]].west === true) {
-                    filteredTileKeys[index] = tileObjects[tileKeys[i]];
+            for (i = 2; i < tileObjects.length; i++) {
+                if (tileObjects[i].west === true) {
+                    filteredTileKeys[index] = tileObjects[i];
                     index++;
                 }
             }
             break;
         case "south":
-            for (i = 2; i < tileKeys.length; i++) {
-                if (tileObjects[tileKeys[i]].north === true) {
-                    filteredTileKeys[index] = tileObjects[tileKeys[i]];
+            for (i = 2; i < tileObjects.length; i++) {
+                if (tileObjects[i].north === true) {
+                    filteredTileKeys[index] = tileObjects[i];
                     index++;
                 }
             }
             break;
         // IF TILE SELECTED IS WEST OF THE CURRENT TILE OF THE PLAYER
         case "west":
-            for (i = 2; i < tileKeys.length; i++) {
-                if (tileObjects[tileKeys[i]].east === true) {
-                    filteredTileKeys[index] = tileObjects[tileKeys[i]];
+            for (i = 2; i < tileObjects.length; i++) {
+                if (tileObjects[i].east === true) {
+                    filteredTileKeys[index] = tileObjects[i];
                     index++;
                 }
             }
