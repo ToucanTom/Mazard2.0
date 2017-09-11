@@ -198,21 +198,24 @@ function getSurroundingTiles(){
 function setOnclickSettings(){
     var targets = getSurroundingTiles();//get the surrounding tiles
     for (var i =0;i<targets.length;i++){
-        if (targets[i].available){//check if there is a tile already placed in each location
-            document.getElementById("deck").onclick = stageTiles;
-        }else if ( i === 0 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.north && targets[i].t_object.south){//if there is a tile and there is a connected path onclick = move
-            document.getElementById(targets[i].location).onclick = move;
-            document.getElementById(targets[i].location).innerHTML ="click to move here";
-        }else if ( i === 1 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.east && targets[i].t_object.west){//if there is a tile and there is a connected path onclick = move
-            document.getElementById(targets[i].location).onclick = move;
-            document.getElementById(targets[i].location).innerHTML ="click to move here";
-        }else if ( i === 2 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.south && targets[i].t_object.north){//if there is a tile and there is a connected path onclick = move
-            document.getElementById(targets[i].location).onclick = move;
-            document.getElementById(targets[i].location).innerHTML ="click to move here";
-        }else if ( i === 3 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.west && targets[i].t_object.east){//if there is a tile and there is a connected path onclick = move
-            document.getElementById(targets[i].location).onclick = move;
-            document.getElementById(targets[i].location).innerHTML ="click to move here";
+        if(targets[i].staged){
+            document.getElementById(targets[i].location).onclick = flipTile;
         }
+        // if (targets[i].available){//check if there is a tile already placed in each location
+        //     document.getElementById("deck").onclick = placeDeck;
+        // }else if ( i === 0 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.north && targets[i].t_object.south){//if there is a tile and there is a connected path onclick = move
+        //     document.getElementById(targets[i].location).onclick = move;
+        //     document.getElementById(targets[i].location).innerHTML ="click to move here";
+        // }else if ( i === 1 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.east && targets[i].t_object.west){//if there is a tile and there is a connected path onclick = move
+        //     document.getElementById(targets[i].location).onclick = move;
+        //     document.getElementById(targets[i].location).innerHTML ="click to move here";
+        // }else if ( i === 2 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.south && targets[i].t_object.north){//if there is a tile and there is a connected path onclick = move
+        //     document.getElementById(targets[i].location).onclick = move;
+        //     document.getElementById(targets[i].location).innerHTML ="click to move here";
+        // }else if ( i === 3 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.west && targets[i].t_object.east){//if there is a tile and there is a connected path onclick = move
+        //     document.getElementById(targets[i].location).onclick = move;
+        //     document.getElementById(targets[i].location).innerHTML ="click to move here";
+        // }
     }
 }
 function move() {
