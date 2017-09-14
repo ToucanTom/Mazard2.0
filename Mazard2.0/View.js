@@ -1,4 +1,9 @@
 function genGameBoard() {
+    document.getElementById("newLevel").style.display = "none";
+    document.getElementById("rotateCCW").style.display = "none";
+    document.getElementById("rotateCW").style.display = "none";
+    document.getElementById("setRotate").style.display = "none";
+    tileCountDown = totalTiles-1;
     var gameBoard = document.getElementById("gameBoard");
     var html = "";
     var randNum = Math.floor(Math.random()*(gameBoardSize.col-2)) + 1;
@@ -22,7 +27,14 @@ function genGameBoard() {
         currentGameBoard[i] = temp_array;
     }
     gameBoard.innerHTML = html;
-    selectRace();
+    document.getElementById("currentLevel").innerHTML = "Level " + currentLevel;
+    if (currentLevel === 1) {
+        selectRace();
+    }
+    else {
+        document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
+    }
+
 }
 function selectRace(){
     console.log("select race was called");
@@ -53,6 +65,18 @@ function flipTile(){
     //updateGameBoardTileObject(currentTile, selectRandomTile());
     var col = this.cellIndex;
     var row = this.parentNode.rowIndex;
+
+    tileCountDown--;
+    if (tileCountDown === 0) {
+        currentLevel++;
+        document.getElementById("win").play();
+        document.getElementById("newLevel").style.display = "inline";
+        document.getElementById("newLevel").innerHTML = "Go to Level " + currentLevel;
+        document.getElementById("newLevel").onclick = genGameBoard;
+        document.getElementById("deck").onclick = stageTiles;
+        gameBoardSize.row++;
+        totalTiles+=6;
+    }
 
     // sets clicked tile location to unavailable
     currentGameBoard[row][col].available = false;
@@ -157,7 +181,6 @@ function stageTiles() {
             currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].staged = true;
         }
     }
-
     document.getElementById("deck").onclick = "";
     document.getElementById("deck").innerHTML = "";
     setOnclickSettings();

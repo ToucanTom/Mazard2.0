@@ -9,9 +9,15 @@ color scheme for mazard
 body{
     align-content: flex-start;
 }
+
+#homeBase {
+    position: relative;
+}
+
 #gameBoard{
     border: solid black thin;
     border-collapse: collapse;
+    position: absolute;
 }
 td{
     border: solid black thin;
@@ -66,6 +72,18 @@ td{
     display: none;
 }
 
+#newLevel {
+    border: solid black thick;
+    position: absolute;
+    top: 200px;
+    left: 725px;
+    width: 103px;
+    height: 75px;
+    text-align: center;
+    line-height: 37.5px;
+    display: none;
+}
+
 #playerSelect{
     position:absolute;
     top: 25px;
@@ -76,7 +94,16 @@ td{
     display: inline-flex;
     background-color: #D4DDF7;
 
+#currentLevel {
+    position: absolute;
+    top: 50px;
+    left: 725px;
+    width: 103px;
+    height: 75px;
+    text-align: center;
+    line-height: 37.5px;
 }
+
 .playerOptions{
     width: 100px;
     height: 100px;

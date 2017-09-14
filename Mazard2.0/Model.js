@@ -261,6 +261,14 @@ var currentTile =  {
 };
 /*contains the location of tiles connected to the players current location in #,# format*/
 var currentConnectedTiles = [];
+
+var tileCountDown;
+
+var totalTiles = gameBoardSize.row * gameBoardSize.col;
+
+var currentLevel = 1;
+
+
 function selectRandomTile(directionOfSelectedTile){
     var filteredTileKeys = [];
     var index = 0;
