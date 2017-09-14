@@ -9,7 +9,7 @@ function genGameBoard() {
         for (var j = 0; j < gameBoardSize.col; j++) {
             if (i === gameBoardSize.row-1 && j === randNum) {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[1].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, hasFoe: false, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
+                temp_array[j] = {location: i+","+j, connected: false, hasFoe: false, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
                 currentPlayer.rowLocation = i;
                 currentPlayer.colLocation = j;
             }
@@ -144,6 +144,7 @@ function choosePlayer(playerChoice) {
     document.getElementById("playerSelect").style.display = "none"; //remove the player select div
     document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
     document.getElementById("deck").onclick = stageTiles;
+    document.addEventListener("onkeydown", move2(5));
     //setOnclickSettings();
 }
 // places unflipped cards from the deck onto spots surrounding current player
@@ -161,36 +162,51 @@ function stageTiles() {
     document.getElementById("deck").innerHTML = "";
     setOnclickSettings();
 }
-
-
 //returns an array of the surrounding tile objects from currentGameBoard
 function getSurroundingTiles(){
     var tiles = [];
     var counter = 0;
+    var counter2 = 0;
     var row = currentPlayer.rowLocation;
     var col = currentPlayer.colLocation;
 
     // For North Tile
     if(row-1 >= 0 && currentGameBoard[row][col].t_object.north && (currentGameBoard[row-1][col].available || currentGameBoard[row-1][col].t_object.south)) {
         tiles[counter] = currentGameBoard[row-1][col];
+        if(currentGameBoard[row-1][col].t_object.south){
+            currentGameBoard[row-1][col].connected = true;
+            currentConnectedTiles[counter2++] = currentGameBoard[row-1][col].location;
+        }
         counter++;
     }
 
     // For East Tile
     if (col+1 < gameBoardSize.col && currentGameBoard[row][col].t_object.east && (currentGameBoard[row][col+1].available || currentGameBoard[row][col+1].t_object.west)) {
         tiles[counter] = currentGameBoard[row][col+1];
+        if(currentGameBoard[row][col+1].t_object.west){
+            currentGameBoard[row][col+1].connected = true;
+            currentConnectedTiles[counter2++] = currentGameBoard[row][col+1].location;
+        }
         counter++;
     }
 
     // For South Tile
     if (row+1 < gameBoardSize.row && currentGameBoard[row][col].t_object.south && (currentGameBoard[row+1][col].available || currentGameBoard[row+1][col].t_object.north)) {
         tiles[counter] = currentGameBoard[row+1][col];
+        if(currentGameBoard[row+1][col].t_object.north){
+            currentGameBoard[row+1][col].connected = true;
+            currentConnectedTiles[counter2++] = currentGameBoard[row+1][col].location;
+        }
         counter++;
     }
 
     // For West Tile
     if (col-1 >= 0 && currentGameBoard[row][col].t_object.west && (currentGameBoard[row][col-1].available || currentGameBoard[row][col-1].t_object.east)) {
         tiles[counter] = currentGameBoard[row][col-1];
+        if(currentGameBoard[row][col-1].t_object.east){
+            currentGameBoard[row][col-1].connected = true;
+            currentConnectedTiles[counter2] = currentGameBoard[row][col-1].location;
+        }
     }
 
     return tiles;
@@ -204,6 +220,7 @@ function setOnclickSettings(){
             document.getElementById("deck").onclick = stageTiles;
         } else{
             document.getElementById(targets[i].location).onclick = move;
+           // document.getElementById(targets[i].location).addEventListener("onkeydown",function (){} );
         }
         // if (targets[i].available){//check if there is a tile already placed in each location
         //     document.getElementById("deck").onclick = placeDeck;
@@ -222,6 +239,7 @@ function setOnclickSettings(){
         // }
     }
 }
+//move used as the onclick attribute
 function move() {
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
@@ -238,7 +256,50 @@ function move() {
 
 console.log("move was called");
 }
+//move function used as the keydown event listener
 
+function move2(keyCode){
+    console.log("the keycode is" + keyCode);
+    keycode = event.keyCode;
+    switch (keyCode){
+        case(38):
+            //up
+            if(currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].connected){
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
+                currentPlayer.rowLocation++;
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+            }
+            break;
+        case(39):
+            //right
+            if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].connected){
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
+                currentPlayer.colLocation++;
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+            }
+            break;
+        case(40):
+            //down
+            if(currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].connected){
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
+                currentPlayer.rowLocation--;
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+            }
+            break;
+        case(37):
+            //left
+            if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].connected){
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
+                currentPlayer.colLocation--;
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+            }
+            break;
+    }
+    //update currentConnected[]
+        currentConnectedTiles = [];
+        getSurroundingTiles();
+
+}
 function clearClickableSettings() {
     var cells = document.getElementsByTagName("td");
     for (var i = 0; i < cells.length; i++) {

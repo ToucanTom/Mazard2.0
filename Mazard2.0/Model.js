@@ -259,6 +259,8 @@ var currentTile =  {
     rotCW: 0,
     rotCCW: 0
 };
+/*contains the location of tiles connected to the players current location in #,# format*/
+var currentConnectedTiles = [];
 function selectRandomTile(directionOfSelectedTile){
     var filteredTileKeys = [];
     var index = 0;
