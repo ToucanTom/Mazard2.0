@@ -84,8 +84,8 @@ td{
     display: none;
 }
 
-#playerSelect{
-    position:absolute;
+#playerSelect {
+    position: absolute;
     top: 25px;
     left: 850px;
     width: 535px;
@@ -93,7 +93,8 @@ td{
     border: thick black solid;
     display: inline-flex;
     background-color: #D4DDF7;
-
+}
+    
 #currentLevel {
     position: absolute;
     top: 50px;
