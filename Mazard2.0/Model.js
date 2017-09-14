@@ -259,6 +259,14 @@ var currentTile =  {
     rotCW: 0,
     rotCCW: 0
 };
+
+var tileCountDown;
+
+var totalTiles = gameBoardSize.row * gameBoardSize.col;
+
+var currentLevel = 1;
+
+
 function selectRandomTile(directionOfSelectedTile){
     var filteredTileKeys = [];
     var index = 0;
