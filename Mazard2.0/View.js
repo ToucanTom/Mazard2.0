@@ -168,7 +168,7 @@ function choosePlayer(playerChoice) {
     document.getElementById("playerSelect").style.display = "none"; //remove the player select div
     document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
     document.getElementById("deck").onclick = stageTiles;
-    document.addEventListener("onkeydown", move2(5));
+    //document.addEventListener("onkeydown", move2());
     //setOnclickSettings();
 }
 // places unflipped cards from the deck onto spots surrounding current player
@@ -281,28 +281,39 @@ console.log("move was called");
 }
 //move function used as the keydown event listener
 
-function move2(keyCode){
-    console.log("the keycode is" + keyCode);
-    keycode = event.keyCode;
+function move2(){
+
+    var keyCode = event.keyCode;
+    console.log("the key code is " + keyCode);
+    //todo
+    //there is a problem with stage tiles if you move using the buttons
     switch (keyCode){
-        case(38):
-            //up
+        case(87):
+            //up 'W'
+        case(40):
+            //up ^
             if(currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].connected){
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.rowLocation++;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
             }
             break;
+        case(68):
+            //right 'D'
+
         case(39):
-            //right
+            //right >
             if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].connected){
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.colLocation++;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
             }
             break;
-        case(40):
-            //down
+        case(38):
+            //down v
+
+        case(83):
+            //down 'S'
             if(currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].connected){
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.rowLocation--;
@@ -310,7 +321,9 @@ function move2(keyCode){
             }
             break;
         case(37):
-            //left
+            //left <
+        case(65):
+            //left 'A'
             if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].connected){
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.colLocation--;
