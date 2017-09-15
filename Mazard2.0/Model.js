@@ -204,7 +204,7 @@ var playerObjects = {
         armor: 0
     },
     "Elf" : {
-        image: "Media/Elf.png",
+        image: "Media/elfmage.png",
         race:"Elf",
         attack: 1,
         hp: 15,

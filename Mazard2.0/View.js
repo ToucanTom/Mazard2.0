@@ -168,8 +168,15 @@ function choosePlayer(playerChoice) {
     document.getElementById("playerSelect").style.display = "none"; //remove the player select div
     document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
     document.getElementById("deck").onclick = stageTiles;
-    //document.addEventListener("onkeydown", move2());
-    //setOnclickSettings();
+
+    // Visually display characters stats
+    var option = document.getElementsByClassName("playerStats");
+    option[0].innerHTML = "<img src = " + currentPlayer.image + ">";
+    option[1].innerHTML = "Health: " + currentPlayer.hp;
+    option[2].innerHTML = "Attack: " + currentPlayer.attack;
+    option[3].innerHTML = "Armor: " + currentPlayer.armor;
+
+
 }
 // places unflipped cards from the deck onto spots surrounding current player
 function stageTiles() {
@@ -277,7 +284,8 @@ function move() {
 }
 //move function used as the keydown event listener
 function move2(){
-
+    var currentSurroundingTiles = getSurroundingTiles();
+    var i;
     var keyCode = event.keyCode;
     console.log("the key code is " + keyCode);
     //todo
@@ -288,6 +296,9 @@ function move2(){
         case(40):
             //up ^
             if(currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].connected){
+                for (i = 0; i < currentSurroundingTiles.length; i++) {
+                    currentSurroundingTiles[i].connected = false;
+                }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.rowLocation++;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
@@ -302,6 +313,9 @@ function move2(){
         case(39):
             //right >
             if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].connected){
+                for (i = 0; i < currentSurroundingTiles.length; i++) {
+                    currentSurroundingTiles[i].connected = false;
+                }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.colLocation++;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
@@ -316,6 +330,9 @@ function move2(){
         case(87):
             //down 'S'
             if(currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].connected){
+                for (i = 0; i < currentSurroundingTiles.length; i++) {
+                    currentSurroundingTiles[i].connected = false;
+                }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.rowLocation--;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
@@ -329,6 +346,9 @@ function move2(){
         case(65):
             //left 'A'
             if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].connected){
+                for (i = 0; i < currentSurroundingTiles.length; i++) {
+                    currentSurroundingTiles[i].connected = false;
+                }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.colLocation--;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";

@@ -14,6 +14,27 @@ body{
     position: relative;
 }
 
+#player {
+    border: solid black thick;
+    position: absolute;
+    top: 125px;
+    left: 725px;
+    width: 250px;
+    height: 75px;
+    text-align: center;
+    display: inline-flex;
+}
+
+.playerStats {
+    width: 50px;
+    height: 50px;
+    margin-top: 1px;
+    margin-left: 10px;
+    background-repeat: no-repeat;
+    align-content: center;
+    position: relative;
+}
+
 #gameBoard{
     border: solid black thin;
     border-collapse: collapse;
@@ -75,7 +96,7 @@ td{
 #newLevel {
     border: solid black thick;
     position: absolute;
-    top: 200px;
+    top: 225px;
     left: 725px;
     width: 103px;
     height: 75px;
