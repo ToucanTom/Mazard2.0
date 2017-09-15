@@ -267,20 +267,15 @@ function move() {
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
-
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
     document.getElementById(row + "," + col).innerHTML = "<img src = "+currentPlayer.image+">";
+
     clearClickableSettings();
     setOnclickSettings();
-
     document.getElementById("deck").onclick = stageTiles;
-
-
-console.log("move was called");
 }
 //move function used as the keydown event listener
-
 function move2(){
 
     var keyCode = event.keyCode;
@@ -288,7 +283,7 @@ function move2(){
     //todo
     //there is a problem with stage tiles if you move using the buttons
     switch (keyCode){
-        case(87):
+        case(83):
             //up 'W'
         case(40):
             //up ^
@@ -296,6 +291,9 @@ function move2(){
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.rowLocation++;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+                clearClickableSettings();
+                setOnclickSettings();
+                document.getElementById("deck").onclick = stageTiles;
             }
             break;
         case(68):
@@ -307,17 +305,23 @@ function move2(){
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.colLocation++;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+                clearClickableSettings();
+                setOnclickSettings();
+                document.getElementById("deck").onclick = stageTiles;
             }
             break;
         case(38):
             //down v
 
-        case(83):
+        case(87):
             //down 'S'
             if(currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].connected){
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.rowLocation--;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+                clearClickableSettings();
+                setOnclickSettings();
+                document.getElementById("deck").onclick = stageTiles;
             }
             break;
         case(37):
@@ -328,6 +332,9 @@ function move2(){
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.colLocation--;
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+                clearClickableSettings();
+                setOnclickSettings();
+                document.getElementById("deck").onclick = stageTiles;
             }
             break;
     }
@@ -342,7 +349,7 @@ function clearClickableSettings() {
         cells[i].onclick = "";
     }
 }
-/*/////////   Elephant bone yard /////////*/
+/*/////////Elephant bone yard/////////*/
 /*function placeTile()*/
  /*{
 
