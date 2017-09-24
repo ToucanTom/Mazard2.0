@@ -337,6 +337,14 @@ function move() {
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
     if (document.getElementById(row + "," + col).hasFoe === true) {
+        document.getElementById("battle").innerHTML = "Battle!";
+        document.getElementById("battle").style.display = "inline";
+        var contenders = document.getElementsByClassName("contenders");
+        contenders[0].style.display = "inline";
+        contenders[1].style.display = "inline";
+        contenders[0].style.backgroundImage = "url(Media/skeleton.png)";
+        contenders[1].style.backgroundImage = "url(" + currentPlayer.image + ")";
+
         currentPlayer.hp--;
         if (currentPlayer.hp === 0) {
             document.getElementById("message").innerHTML = "YOU DIED";
