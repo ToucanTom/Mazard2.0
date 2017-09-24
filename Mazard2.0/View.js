@@ -109,7 +109,52 @@ function flipTile(){
     clearClickableSettings();
 
 }
+//used for buttons
+function flipTile2( row, col){
+    //updateGameBoardTileObject(currentTile, selectRandomTile());
+    tileCountDown--;
+    if (tileCountDown === 0) {
+        currentLevel++;
+        document.getElementById("win").play();
+        document.getElementById("newLevel").style.display = "inline";
+        document.getElementById("newLevel").innerHTML = "Go to Level " + currentLevel;
+        document.getElementById("newLevel").onclick = genGameBoard;
+        document.getElementById("deck").onclick = stageTiles;
+        gameBoardSize.row++;
+        totalTiles+=6;
+    }
 
+    // sets clicked tile location to unavailable
+    currentGameBoard[row][col].available = false;
+    currentGameBoard[row][col].staged = false;
+
+    //  Generates appropriate tile for location clicked and sets it to currentTile
+    if (row === currentPlayer.rowLocation-1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("north"));
+    }
+    if (col === currentPlayer.colLocation+1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("east"));
+    }
+    if (row === currentPlayer.rowLocation+1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("south"));
+    }
+    if (col === currentPlayer.colLocation-1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("west"));
+    }
+
+    // set location of current tile
+    currentTile.location = row + "," + col;
+
+    // sets tile background to randomly chosen tile - aka "flips the tile at that location"
+    document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
+
+    // Generates rotation buttons to be able to rotate randomly selected tile
+    genRotateDivs();
+
+    // Sets all other surrounding tiles to unclickable until you finish rotating the current tile
+    clearClickableSettings();
+
+}
 function genRotateDivs() {
     var rotateCCWDiv = document.getElementById("rotateCCW");
     var rotateCWDiv = document.getElementById("rotateCW");
