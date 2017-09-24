@@ -252,7 +252,8 @@ var currentTile =  {
     available: false,
     location:"0,0",
     rotCW: 0,
-    rotCCW: 0
+    rotCCW: 0,
+    hasFoe: false
 };
 /*contains the location of tiles connected to the players current location in #,# format*/
 var currentConnectedTiles = [];

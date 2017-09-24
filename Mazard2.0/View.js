@@ -96,11 +96,20 @@ function flipTile(){
         updateGameBoardTileObject(currentTile, selectRandomTile("west"));
     }
 
+    var randNum = Math.floor(Math.random()*3);
+    if (randNum === 1) {
+        currentTile.hasFoe = true;
+    }
     // set location of current tile
     currentTile.location = row + "," + col;
 
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
+    if (currentTile.hasFoe) {
+        document.getElementById(row + "," + col).innerHTML = "<img src = Media/skeleton.png>";
+        document.getElementById(row + "," + col).hasFoe = true;
+    }
+     currentTile.hasFoe = false;
 
     // Generates rotation buttons to be able to rotate randomly selected tile
     genRotateDivs();
@@ -215,14 +224,20 @@ function choosePlayer(playerChoice) {
     document.getElementById("deck").onclick = stageTiles;
 
     // Visually display characters stats
+    updateStats();
+
+
+}
+
+// Updates players stats
+function updateStats() {
     var option = document.getElementsByClassName("playerStats");
     option[0].innerHTML = "<img src = " + currentPlayer.image + ">";
     option[1].innerHTML = "Health: " + currentPlayer.hp;
     option[2].innerHTML = "Attack: " + currentPlayer.attack;
     option[3].innerHTML = "Armor: " + currentPlayer.armor;
-
-
 }
+
 // places unflipped cards from the deck onto spots surrounding current player
 function stageTiles() {
     var setClickableTiles = getSurroundingTiles();
@@ -321,8 +336,16 @@ function move() {
     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
+    if (document.getElementById(row + "," + col).hasFoe === true) {
+        currentPlayer.hp--;
+        if (currentPlayer.hp === 0) {
+            document.getElementById("message").innerHTML = "YOU DIED";
+            document.getElementById("message").style.display = "inline";
+        }
+    }
     document.getElementById(row + "," + col).innerHTML = "<img src = "+currentPlayer.image+">";
-
+    document.getElementById(row + "," + col).hasFoe = false;
+    updateStats();
     clearClickableSettings();
     setOnclickSettings();
     document.getElementById("deck").onclick = stageTiles;
@@ -346,7 +369,16 @@ function move2(){
                 }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.rowLocation++;
+                if (document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe === true) {
+                    currentPlayer.hp--;
+                    if (currentPlayer.hp === 0) {
+                        document.getElementById("message").innerHTML = "YOU DIED";
+                        document.getElementById("message").style.display = "inline";
+                    }
+                }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe = false;
+                updateStats();
                 clearClickableSettings();
                 setOnclickSettings();
                 document.getElementById("deck").onclick = stageTiles;
@@ -363,7 +395,16 @@ function move2(){
                 }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.colLocation++;
+                if (document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe === true) {
+                    currentPlayer.hp--;
+                    if (currentPlayer.hp === 0) {
+                        document.getElementById("message").innerHTML = "YOU DIED";
+                        document.getElementById("message").style.display = "inline";
+                    }
+                }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe = false;
+                updateStats();
                 clearClickableSettings();
                 setOnclickSettings();
                 document.getElementById("deck").onclick = stageTiles;
@@ -380,7 +421,16 @@ function move2(){
                 }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.rowLocation--;
+                if (document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe === true) {
+                    currentPlayer.hp--;
+                    if (currentPlayer.hp === 0) {
+                        document.getElementById("message").innerHTML = "YOU DIED";
+                        document.getElementById("message").style.display = "inline";
+                    }
+                }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe = false;
+                updateStats();
                 clearClickableSettings();
                 setOnclickSettings();
                 document.getElementById("deck").onclick = stageTiles;
@@ -396,7 +446,16 @@ function move2(){
                 }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.colLocation--;
+                if (document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe === true) {
+                    currentPlayer.hp--;
+                    if (currentPlayer.hp === 0) {
+                        document.getElementById("message").innerHTML = "YOU DIED";
+                        document.getElementById("message").style.display = "inline";
+                    }
+                }
                 document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
+                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe = false;
+                updateStats();
                 clearClickableSettings();
                 setOnclickSettings();
                 document.getElementById("deck").onclick = stageTiles;

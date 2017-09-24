@@ -40,6 +40,28 @@ body{
     border-collapse: collapse;
     position: absolute;
 }
+
+#message {
+    width: 100vw;
+    height: 100vh;
+    background-color: #D4DDF7;
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    text-align: center;
+    line-height: 50vh;
+}
+
+#battle {
+    width: 50vw;
+    height: 50vh;
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    text-align: center;
+    border: solid black thick;
+}
+
 td{
     border: solid black thin;
     height: 100px;
