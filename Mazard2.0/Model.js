@@ -21,14 +21,24 @@ var tileObjects = [
     },
     //1 way
     {
+        name: "north",
+        image: "Media/north.png",
+        north: true,
+        east: false,
+        south: false,
+        west: false,
+        rotCCW: 3,
+        rotCW: 5
+    },
+    {
         name: "east",
         image: "Media/east.png",
         north: false,
         east: true,
         south: false,
         west: false,
-        rotCCW: 6,
-        rotCW: 14
+        rotCCW: 4,
+        rotCW: 2
     },
     {
         name: "south",
@@ -37,8 +47,8 @@ var tileObjects = [
         east: false,
         south: true,
         west: false,
-        rotCCW: 2,
-        rotCW: 16
+        rotCCW: 5,
+        rotCW: 3
     },
     {
         name: "west",
@@ -47,10 +57,20 @@ var tileObjects = [
         east: false,
         south: false,
         west: true,
-        rotCCW: 14,
-        rotCW: 6
+        rotCCW: 2,
+        rotCW: 4
     },
    //2 way
+    {
+    name: "northEast",
+    image: "Media/northEast.png",
+    north: true,
+    east: true,
+    south: false,
+    west: false,
+    rotCCW: 7,
+    rotCW: 9
+    },
     {
         name: "eastSouth",
         image: "Media/eastSouth.png",
@@ -58,9 +78,30 @@ var tileObjects = [
         east: true,
         south: true,
         west: false,
-        rotCCW: 7,
-        rotCW: 15
+        rotCCW: 8,
+        rotCW: 6
     },
+    {
+        name: "southWest",
+        image: "Media/southWest.png",
+        north: false,
+        east: false,
+        south: true,
+        west: true,
+        rotCCW: 9,
+        rotCW: 7
+    },
+    {
+        name: "northWest",
+        image: "Media/northWest.png",
+        north: true,
+        east: false,
+        south: false,
+        west: true,
+        rotCCW: 6,
+        rotCW: 8
+    },
+    //straight
     {
         name: "eastWest",
         image: "Media/eastWest.png",
@@ -72,56 +113,16 @@ var tileObjects = [
         rotCW: 11
     },
     {
-        name: "northEast",
-        image: "Media/northEast.png",
-        north: true,
-        east: true,
-        south: false,
-        west: false,
-        rotCCW: 13,
-        rotCW: 3
-    },
-    {
         name: "northSouth",
         image: "Media/northSouth.png",
         north: true,
         east: false,
         south: true,
         west: false,
-        rotCCW: 5,
-        rotCW: 5
-    },
-    {
-        name: "northWest",
-        image: "Media/northWest.png",
-        north: true,
-        east: false,
-        south: false,
-        west: true,
-        rotCCW: 15,
-        rotCW: 7
-    },
-    {
-        name: "southWest",
-        image: "Media/southWest.png",
-        north: false,
-        east: false,
-        south: true,
-        west: true,
-        rotCCW: 3,
-        rotCW: 13
+        rotCCW: 10,
+        rotCW: 10
     },
     //3 way
-    {
-        name: "eastSouthWest",
-        image: "Media/eastSouthWest.png",
-        north: false,
-        east: true,
-        south: true,
-        west: true,
-        rotCCW: 8,
-        rotCW: 12
-    },
     {
         name: "northEastSouth",
         image: "Media/northEastSouth.png",
@@ -129,8 +130,28 @@ var tileObjects = [
         east: true,
         south: true,
         west: false,
-        rotCCW: 10,
-        rotCW: 4
+        rotCCW: 13,
+        rotCW: 15
+    },
+    {
+        name: "eastSouthWest",
+        image: "Media/eastSouthWest.png",
+        north: false,
+        east: true,
+        south: true,
+        west: true,
+        rotCCW: 14,
+        rotCW: 12
+    },
+    {
+        name: "northSouthWest",
+        image: "Media/northSouthWest.png",
+        north: true,
+        east: false,
+        south: true,
+        west: true,
+        rotCCW: 15,
+        rotCW: 13
     },
     {
         name: "northEastWest",
@@ -140,17 +161,7 @@ var tileObjects = [
         south: false,
         west: true,
         rotCCW: 12,
-        rotCW: 8
-    },
-    {
-        name: "northSouthWest",
-        image: "Media/northSouthWest.png",
-        north: true,
-        east: false,
-        south: true,
-        west: true,
-        rotCCW: 4,
-        rotCW: 10
+        rotCW: 14
     },
     //4 way
     {
