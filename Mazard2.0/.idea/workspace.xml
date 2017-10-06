@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d6592f4-c34e-44fa-a074-5866126bd4c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Mazard.html" afterPath="$PROJECT_DIR$/Mazard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model.js" afterPath="$PROJECT_DIR$/Model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Style.css" afterPath="$PROJECT_DIR$/Style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/View.js" afterPath="$PROJECT_DIR$/View.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -17,6 +13,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Mazard2.0" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
@@ -33,42 +32,50 @@
       <file leaf-file-name="View.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/View.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="443" column="52" lean-forward="false" selection-start-line="443" selection-start-column="52" selection-end-line="443" selection-end-column="52" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#genGameBoard#0" expanded="false" />
                 <element signature="n#!!block;n#selectRace#0" expanded="false" />
                 <element signature="n#!!block;n#genStats#0" expanded="false" />
                 <element signature="n#!!block;n#flipTile#0" expanded="false" />
-                <element signature="e#3362#3779#0" expanded="false" />
-                <element signature="e#4056#4138#0" expanded="false" />
-                <element signature="e#4184#4265#0" expanded="false" />
-                <element signature="e#4311#4393#0" expanded="false" />
-                <element signature="e#4439#4520#0" expanded="false" />
-                <element signature="e#4592#4634#0" expanded="false" />
-                <element signature="e#4939#5105#0" expanded="false" />
-                <element signature="n#!!block;n#flipTile2#0" expanded="false" />
-                <element signature="e#5573#5990#0" expanded="false" />
-                <element signature="e#6267#6349#0" expanded="false" />
-                <element signature="e#6395#6476#0" expanded="false" />
-                <element signature="e#6522#6604#0" expanded="false" />
-                <element signature="e#6650#6731#0" expanded="false" />
-                <element signature="e#6803#6845#0" expanded="false" />
-                <element signature="e#7150#7316#0" expanded="false" />
+                <element signature="e#3391#3808#0" expanded="false" />
+                <element signature="e#4085#4167#0" expanded="false" />
+                <element signature="e#4213#4294#0" expanded="false" />
+                <element signature="e#4340#4422#0" expanded="false" />
+                <element signature="e#4468#4549#0" expanded="false" />
+                <element signature="e#4621#4663#0" expanded="false" />
+                <element signature="e#4968#5134#0" expanded="false" />
+                <element signature="e#5626#6043#0" expanded="false" />
+                <element signature="e#6320#6402#0" expanded="false" />
+                <element signature="e#6448#6529#0" expanded="false" />
+                <element signature="e#6575#6657#0" expanded="false" />
+                <element signature="e#6703#6784#0" expanded="false" />
+                <element signature="e#6856#6898#0" expanded="false" />
+                <element signature="e#7203#7369#0" expanded="false" />
                 <element signature="n#!!block;n#genRotateDivs#0" expanded="false" />
                 <element signature="n#!!block;n#rotateCCW#0" expanded="false" />
                 <element signature="n#!!block;n#rotateCW#0" expanded="false" />
-                <element signature="n#!!block;n#setRotation#0" expanded="false" />
                 <element signature="n#!!block;n#choosePlayer#0" expanded="false" />
                 <element signature="n#!!block;n#updateStats#0" expanded="false" />
                 <element signature="n#!!block;n#stageTiles#0" expanded="false" />
                 <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
                 <element signature="n#!!block;n#setOnclickSettings#0" expanded="false" />
+                <element signature="n#!!block;n#move#0" expanded="false" />
+                <element signature="e#17337#24247#0" expanded="false" />
+                <element signature="e#19135#20799#0" expanded="false" />
+                <element signature="e#19494#20776#0" expanded="false" />
+                <element signature="e#20853#22516#0" expanded="false" />
+                <element signature="e#20991#21099#0" expanded="false" />
+                <element signature="e#21211#22493#0" expanded="false" />
+                <element signature="e#22572#24237#0" expanded="false" />
+                <element signature="e#22712#22820#0" expanded="false" />
+                <element signature="e#22932#24214#0" expanded="false" />
                 <element signature="n#!!block;n#clearClickableSettings#0" expanded="false" />
-                <element signature="e#23893#24688#0" expanded="false" />
-                <element signature="e#24724#26676#0" expanded="false" />
-                <marker date="1507253635087" expanded="true" signature="771:822" ph="..." />
-                <marker date="1507253635087" expanded="true" signature="1247:1298" ph="..." />
+                <element signature="e#24601#25396#0" expanded="false" />
+                <element signature="e#25432#27384#0" expanded="false" />
+                <marker date="1507317900245" expanded="true" signature="800:851" ph="..." />
+                <marker date="1507317900245" expanded="true" signature="1276:1327" ph="..." />
               </folding>
             </state>
           </provider>
@@ -187,7 +194,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="952" />
     <option name="width" value="976" />
     <option name="height" value="1038" />
@@ -273,32 +280,32 @@
       <workItem from="1506141619861" duration="595000" />
       <workItem from="1506226271947" duration="5079000" />
       <workItem from="1507046633620" duration="152000" />
-      <workItem from="1507239524723" duration="5723000" />
+      <workItem from="1507239524723" duration="11892000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80797000" />
+    <option name="totallyTimeSpent" value="86966000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15230037" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15230037" sideWeight="0.4954751" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15230037" sideWeight="0.5045249" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32918552" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -640,35 +647,43 @@
             <element signature="n#!!block;n#selectRace#0" expanded="false" />
             <element signature="n#!!block;n#genStats#0" expanded="false" />
             <element signature="n#!!block;n#flipTile#0" expanded="false" />
-            <element signature="e#3362#3779#0" expanded="false" />
-            <element signature="e#4056#4138#0" expanded="false" />
-            <element signature="e#4184#4265#0" expanded="false" />
-            <element signature="e#4311#4393#0" expanded="false" />
-            <element signature="e#4439#4520#0" expanded="false" />
-            <element signature="e#4592#4634#0" expanded="false" />
-            <element signature="e#4939#5105#0" expanded="false" />
-            <element signature="n#!!block;n#flipTile2#0" expanded="false" />
-            <element signature="e#5573#5990#0" expanded="false" />
-            <element signature="e#6267#6349#0" expanded="false" />
-            <element signature="e#6395#6476#0" expanded="false" />
-            <element signature="e#6522#6604#0" expanded="false" />
-            <element signature="e#6650#6731#0" expanded="false" />
-            <element signature="e#6803#6845#0" expanded="false" />
-            <element signature="e#7150#7316#0" expanded="false" />
+            <element signature="e#3391#3808#0" expanded="false" />
+            <element signature="e#4085#4167#0" expanded="false" />
+            <element signature="e#4213#4294#0" expanded="false" />
+            <element signature="e#4340#4422#0" expanded="false" />
+            <element signature="e#4468#4549#0" expanded="false" />
+            <element signature="e#4621#4663#0" expanded="false" />
+            <element signature="e#4968#5134#0" expanded="false" />
+            <element signature="e#5626#6043#0" expanded="false" />
+            <element signature="e#6320#6402#0" expanded="false" />
+            <element signature="e#6448#6529#0" expanded="false" />
+            <element signature="e#6575#6657#0" expanded="false" />
+            <element signature="e#6703#6784#0" expanded="false" />
+            <element signature="e#6856#6898#0" expanded="false" />
+            <element signature="e#7203#7369#0" expanded="false" />
             <element signature="n#!!block;n#genRotateDivs#0" expanded="false" />
             <element signature="n#!!block;n#rotateCCW#0" expanded="false" />
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
-            <element signature="n#!!block;n#setRotation#0" expanded="false" />
             <element signature="n#!!block;n#choosePlayer#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#stageTiles#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
             <element signature="n#!!block;n#setOnclickSettings#0" expanded="false" />
+            <element signature="n#!!block;n#move#0" expanded="false" />
+            <element signature="e#17337#24247#0" expanded="false" />
+            <element signature="e#19135#20799#0" expanded="false" />
+            <element signature="e#19494#20776#0" expanded="false" />
+            <element signature="e#20853#22516#0" expanded="false" />
+            <element signature="e#20991#21099#0" expanded="false" />
+            <element signature="e#21211#22493#0" expanded="false" />
+            <element signature="e#22572#24237#0" expanded="false" />
+            <element signature="e#22712#22820#0" expanded="false" />
+            <element signature="e#22932#24214#0" expanded="false" />
             <element signature="n#!!block;n#clearClickableSettings#0" expanded="false" />
-            <element signature="e#23893#24688#0" expanded="false" />
-            <element signature="e#24724#26676#0" expanded="false" />
-            <marker date="1507253635087" expanded="true" signature="771:822" ph="..." />
-            <marker date="1507253635087" expanded="true" signature="1247:1298" ph="..." />
+            <element signature="e#24601#25396#0" expanded="false" />
+            <element signature="e#25432#27384#0" expanded="false" />
+            <marker date="1507317900245" expanded="true" signature="800:851" ph="..." />
+            <marker date="1507317900245" expanded="true" signature="1276:1327" ph="..." />
           </folding>
         </state>
       </provider>
@@ -724,35 +739,43 @@
             <element signature="n#!!block;n#selectRace#0" expanded="false" />
             <element signature="n#!!block;n#genStats#0" expanded="false" />
             <element signature="n#!!block;n#flipTile#0" expanded="false" />
-            <element signature="e#3362#3779#0" expanded="false" />
-            <element signature="e#4056#4138#0" expanded="false" />
-            <element signature="e#4184#4265#0" expanded="false" />
-            <element signature="e#4311#4393#0" expanded="false" />
-            <element signature="e#4439#4520#0" expanded="false" />
-            <element signature="e#4592#4634#0" expanded="false" />
-            <element signature="e#4939#5105#0" expanded="false" />
-            <element signature="n#!!block;n#flipTile2#0" expanded="false" />
-            <element signature="e#5573#5990#0" expanded="false" />
-            <element signature="e#6267#6349#0" expanded="false" />
-            <element signature="e#6395#6476#0" expanded="false" />
-            <element signature="e#6522#6604#0" expanded="false" />
-            <element signature="e#6650#6731#0" expanded="false" />
-            <element signature="e#6803#6845#0" expanded="false" />
-            <element signature="e#7150#7316#0" expanded="false" />
+            <element signature="e#3391#3808#0" expanded="false" />
+            <element signature="e#4085#4167#0" expanded="false" />
+            <element signature="e#4213#4294#0" expanded="false" />
+            <element signature="e#4340#4422#0" expanded="false" />
+            <element signature="e#4468#4549#0" expanded="false" />
+            <element signature="e#4621#4663#0" expanded="false" />
+            <element signature="e#4968#5134#0" expanded="false" />
+            <element signature="e#5626#6043#0" expanded="false" />
+            <element signature="e#6320#6402#0" expanded="false" />
+            <element signature="e#6448#6529#0" expanded="false" />
+            <element signature="e#6575#6657#0" expanded="false" />
+            <element signature="e#6703#6784#0" expanded="false" />
+            <element signature="e#6856#6898#0" expanded="false" />
+            <element signature="e#7203#7369#0" expanded="false" />
             <element signature="n#!!block;n#genRotateDivs#0" expanded="false" />
             <element signature="n#!!block;n#rotateCCW#0" expanded="false" />
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
-            <element signature="n#!!block;n#setRotation#0" expanded="false" />
             <element signature="n#!!block;n#choosePlayer#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#stageTiles#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
             <element signature="n#!!block;n#setOnclickSettings#0" expanded="false" />
+            <element signature="n#!!block;n#move#0" expanded="false" />
+            <element signature="e#17337#24247#0" expanded="false" />
+            <element signature="e#19135#20799#0" expanded="false" />
+            <element signature="e#19494#20776#0" expanded="false" />
+            <element signature="e#20853#22516#0" expanded="false" />
+            <element signature="e#20991#21099#0" expanded="false" />
+            <element signature="e#21211#22493#0" expanded="false" />
+            <element signature="e#22572#24237#0" expanded="false" />
+            <element signature="e#22712#22820#0" expanded="false" />
+            <element signature="e#22932#24214#0" expanded="false" />
             <element signature="n#!!block;n#clearClickableSettings#0" expanded="false" />
-            <element signature="e#23893#24688#0" expanded="false" />
-            <element signature="e#24724#26676#0" expanded="false" />
-            <marker date="1507253635087" expanded="true" signature="771:822" ph="..." />
-            <marker date="1507253635087" expanded="true" signature="1247:1298" ph="..." />
+            <element signature="e#24601#25396#0" expanded="false" />
+            <element signature="e#25432#27384#0" expanded="false" />
+            <marker date="1507317900245" expanded="true" signature="800:851" ph="..." />
+            <marker date="1507317900245" expanded="true" signature="1276:1327" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1195,35 +1218,43 @@
             <element signature="n#!!block;n#selectRace#0" expanded="false" />
             <element signature="n#!!block;n#genStats#0" expanded="false" />
             <element signature="n#!!block;n#flipTile#0" expanded="false" />
-            <element signature="e#3362#3779#0" expanded="false" />
-            <element signature="e#4056#4138#0" expanded="false" />
-            <element signature="e#4184#4265#0" expanded="false" />
-            <element signature="e#4311#4393#0" expanded="false" />
-            <element signature="e#4439#4520#0" expanded="false" />
-            <element signature="e#4592#4634#0" expanded="false" />
-            <element signature="e#4939#5105#0" expanded="false" />
-            <element signature="n#!!block;n#flipTile2#0" expanded="false" />
-            <element signature="e#5573#5990#0" expanded="false" />
-            <element signature="e#6267#6349#0" expanded="false" />
-            <element signature="e#6395#6476#0" expanded="false" />
-            <element signature="e#6522#6604#0" expanded="false" />
-            <element signature="e#6650#6731#0" expanded="false" />
-            <element signature="e#6803#6845#0" expanded="false" />
-            <element signature="e#7150#7316#0" expanded="false" />
+            <element signature="e#3391#3808#0" expanded="false" />
+            <element signature="e#4085#4167#0" expanded="false" />
+            <element signature="e#4213#4294#0" expanded="false" />
+            <element signature="e#4340#4422#0" expanded="false" />
+            <element signature="e#4468#4549#0" expanded="false" />
+            <element signature="e#4621#4663#0" expanded="false" />
+            <element signature="e#4968#5134#0" expanded="false" />
+            <element signature="e#5626#6043#0" expanded="false" />
+            <element signature="e#6320#6402#0" expanded="false" />
+            <element signature="e#6448#6529#0" expanded="false" />
+            <element signature="e#6575#6657#0" expanded="false" />
+            <element signature="e#6703#6784#0" expanded="false" />
+            <element signature="e#6856#6898#0" expanded="false" />
+            <element signature="e#7203#7369#0" expanded="false" />
             <element signature="n#!!block;n#genRotateDivs#0" expanded="false" />
             <element signature="n#!!block;n#rotateCCW#0" expanded="false" />
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
-            <element signature="n#!!block;n#setRotation#0" expanded="false" />
             <element signature="n#!!block;n#choosePlayer#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#stageTiles#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
             <element signature="n#!!block;n#setOnclickSettings#0" expanded="false" />
+            <element signature="n#!!block;n#move#0" expanded="false" />
+            <element signature="e#17337#24247#0" expanded="false" />
+            <element signature="e#19135#20799#0" expanded="false" />
+            <element signature="e#19494#20776#0" expanded="false" />
+            <element signature="e#20853#22516#0" expanded="false" />
+            <element signature="e#20991#21099#0" expanded="false" />
+            <element signature="e#21211#22493#0" expanded="false" />
+            <element signature="e#22572#24237#0" expanded="false" />
+            <element signature="e#22712#22820#0" expanded="false" />
+            <element signature="e#22932#24214#0" expanded="false" />
             <element signature="n#!!block;n#clearClickableSettings#0" expanded="false" />
-            <element signature="e#23893#24688#0" expanded="false" />
-            <element signature="e#24724#26676#0" expanded="false" />
-            <marker date="1507253635087" expanded="true" signature="771:822" ph="..." />
-            <marker date="1507253635087" expanded="true" signature="1247:1298" ph="..." />
+            <element signature="e#24601#25396#0" expanded="false" />
+            <element signature="e#25432#27384#0" expanded="false" />
+            <marker date="1507317900245" expanded="true" signature="800:851" ph="..." />
+            <marker date="1507317900245" expanded="true" signature="1276:1327" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1669,42 +1700,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/View.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="443" column="52" lean-forward="false" selection-start-line="443" selection-start-column="52" selection-end-line="443" selection-end-column="52" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#genGameBoard#0" expanded="false" />
             <element signature="n#!!block;n#selectRace#0" expanded="false" />
             <element signature="n#!!block;n#genStats#0" expanded="false" />
             <element signature="n#!!block;n#flipTile#0" expanded="false" />
-            <element signature="e#3362#3779#0" expanded="false" />
-            <element signature="e#4056#4138#0" expanded="false" />
-            <element signature="e#4184#4265#0" expanded="false" />
-            <element signature="e#4311#4393#0" expanded="false" />
-            <element signature="e#4439#4520#0" expanded="false" />
-            <element signature="e#4592#4634#0" expanded="false" />
-            <element signature="e#4939#5105#0" expanded="false" />
-            <element signature="n#!!block;n#flipTile2#0" expanded="false" />
-            <element signature="e#5573#5990#0" expanded="false" />
-            <element signature="e#6267#6349#0" expanded="false" />
-            <element signature="e#6395#6476#0" expanded="false" />
-            <element signature="e#6522#6604#0" expanded="false" />
-            <element signature="e#6650#6731#0" expanded="false" />
-            <element signature="e#6803#6845#0" expanded="false" />
-            <element signature="e#7150#7316#0" expanded="false" />
+            <element signature="e#3391#3808#0" expanded="false" />
+            <element signature="e#4085#4167#0" expanded="false" />
+            <element signature="e#4213#4294#0" expanded="false" />
+            <element signature="e#4340#4422#0" expanded="false" />
+            <element signature="e#4468#4549#0" expanded="false" />
+            <element signature="e#4621#4663#0" expanded="false" />
+            <element signature="e#4968#5134#0" expanded="false" />
+            <element signature="e#5626#6043#0" expanded="false" />
+            <element signature="e#6320#6402#0" expanded="false" />
+            <element signature="e#6448#6529#0" expanded="false" />
+            <element signature="e#6575#6657#0" expanded="false" />
+            <element signature="e#6703#6784#0" expanded="false" />
+            <element signature="e#6856#6898#0" expanded="false" />
+            <element signature="e#7203#7369#0" expanded="false" />
             <element signature="n#!!block;n#genRotateDivs#0" expanded="false" />
             <element signature="n#!!block;n#rotateCCW#0" expanded="false" />
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
-            <element signature="n#!!block;n#setRotation#0" expanded="false" />
             <element signature="n#!!block;n#choosePlayer#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#stageTiles#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
             <element signature="n#!!block;n#setOnclickSettings#0" expanded="false" />
+            <element signature="n#!!block;n#move#0" expanded="false" />
+            <element signature="e#17337#24247#0" expanded="false" />
+            <element signature="e#19135#20799#0" expanded="false" />
+            <element signature="e#19494#20776#0" expanded="false" />
+            <element signature="e#20853#22516#0" expanded="false" />
+            <element signature="e#20991#21099#0" expanded="false" />
+            <element signature="e#21211#22493#0" expanded="false" />
+            <element signature="e#22572#24237#0" expanded="false" />
+            <element signature="e#22712#22820#0" expanded="false" />
+            <element signature="e#22932#24214#0" expanded="false" />
             <element signature="n#!!block;n#clearClickableSettings#0" expanded="false" />
-            <element signature="e#23893#24688#0" expanded="false" />
-            <element signature="e#24724#26676#0" expanded="false" />
-            <marker date="1507253635087" expanded="true" signature="771:822" ph="..." />
-            <marker date="1507253635087" expanded="true" signature="1247:1298" ph="..." />
+            <element signature="e#24601#25396#0" expanded="false" />
+            <element signature="e#25432#27384#0" expanded="false" />
+            <marker date="1507317900245" expanded="true" signature="800:851" ph="..." />
+            <marker date="1507317900245" expanded="true" signature="1276:1327" ph="..." />
           </folding>
         </state>
       </provider>

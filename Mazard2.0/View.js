@@ -1,3 +1,4 @@
+var tileBeingPlaced = false;
 function genGameBoard() {
     document.getElementById("newLevel").style.display = "none";
     document.getElementById("rotateCCW").style.display = "none";
@@ -121,6 +122,7 @@ function flipTile(){
 //used for buttons
 function flipTile2(row, col){
     //updateGameBoardTileObject(currentTile, selectRandomTile());
+tileBeingPlaced = true;
 console.log("flipTile2 was called");
     tileCountDown--;
     if (tileCountDown === 0) {
@@ -217,7 +219,7 @@ function setRotation() {
 
     // Update gameboard
     updateGameBoardTileObject(currentGameBoard[currentTile.location[0]][currentTile.location[2]].t_object,currentTile);
-
+ tileBeingPlaced = false;
     // Remove tile
     setOnclickSettings();
 }
@@ -250,9 +252,11 @@ function updateStats() {
 
 // places unflipped cards from the deck onto spots surrounding current player
 function stageTiles() {
+
     var setClickableTiles = getSurroundingTiles();
     for (var i = 0; i < setClickableTiles.length; i++) {
         if (setClickableTiles[i].available) {
+
             document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/meDeck.png)";
             document.getElementById(setClickableTiles[i].location).onclick = flipTile;
             currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].staged = true;
@@ -370,6 +374,8 @@ function move() {
 }
 //move function used as the keydown event listener
 function move2(){
+    //only run if there isnt a tile being placed
+  if(!tileBeingPlaced) {
     console.log("move2 was called");
     var currentSurroundingTiles = getSurroundingTiles();
     var i;
@@ -377,127 +383,128 @@ function move2(){
     console.log("the key code is " + keyCode);
     //todo
     //there is a problem with stage tiles if you move using the buttons
-    switch (keyCode){
-        case(83):
+
+        switch (keyCode) {
             //down 's'
-        case(40):
-            //down ^
-            if(currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].staged){
-                flipTile2(currentPlayer.rowLocation+1,currentPlayer.colLocation);
-            }
-            else if (currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].connected){
-                for (i = 0; i < currentSurroundingTiles.length; i++) {
-                    currentSurroundingTiles[i].connected = false;
+            case(83):
+            case(40):
+                //down ^
+                if (currentGameBoard[currentPlayer.rowLocation + 1][currentPlayer.colLocation].staged) {
+                    flipTile2(currentPlayer.rowLocation + 1, currentPlayer.colLocation);
                 }
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
-                currentPlayer.rowLocation++;
-                if (document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe === true) {
-                    currentPlayer.hp--;
-                    if (currentPlayer.hp === 0) {
-                        document.getElementById("message").innerHTML = "YOU DIED";
-                        document.getElementById("message").style.display = "inline";
+                else if (currentGameBoard[currentPlayer.rowLocation + 1][currentPlayer.colLocation].connected) {
+                    for (i = 0; i < currentSurroundingTiles.length; i++) {
+                        currentSurroundingTiles[i].connected = false;
                     }
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                    currentPlayer.rowLocation++;
+                    if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
+                        currentPlayer.hp--;
+                        if (currentPlayer.hp === 0) {
+                            document.getElementById("message").innerHTML = "YOU DIED";
+                            document.getElementById("message").style.display = "inline";
+                        }
+                    }
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe = false;
+                    updateStats();
+                    clearClickableSettings();
+                    setOnclickSettings();
+                    document.getElementById("deck").onclick = stageTiles;
                 }
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe = false;
-                updateStats();
-                clearClickableSettings();
-                setOnclickSettings();
-                document.getElementById("deck").onclick = stageTiles;
-            }
-            break;
-        case(68):
+                break;
             //right 'D'
-
-        case(39):
-            //right >
-            if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].staged){
-                flipTile2(currentPlayer.rowLocation,currentPlayer.colLocation+1);
-            }
-            else if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].connected){
-                for (i = 0; i < currentSurroundingTiles.length; i++) {
-                    currentSurroundingTiles[i].connected = false;
+            case(68):
+            case(39):
+                //right >
+                if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation + 1].staged) {
+                    flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation + 1);
                 }
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
-                currentPlayer.colLocation++;
-                if (document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe === true) {
-                    currentPlayer.hp--;
-                    if (currentPlayer.hp === 0) {
-                        document.getElementById("message").innerHTML = "YOU DIED";
-                        document.getElementById("message").style.display = "inline";
+                else if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation + 1].connected) {
+                    for (i = 0; i < currentSurroundingTiles.length; i++) {
+                        currentSurroundingTiles[i].connected = false;
                     }
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                    currentPlayer.colLocation++;
+                    if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
+                        currentPlayer.hp--;
+                        if (currentPlayer.hp === 0) {
+                            document.getElementById("message").innerHTML = "YOU DIED";
+                            document.getElementById("message").style.display = "inline";
+                        }
+                    }
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe = false;
+                    updateStats();
+                    clearClickableSettings();
+                    setOnclickSettings();
+                    document.getElementById("deck").onclick = stageTiles;
                 }
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe = false;
-                updateStats();
-                clearClickableSettings();
-                setOnclickSettings();
-                document.getElementById("deck").onclick = stageTiles;
-            }
-            break;
-        case(38):
+                break;
             //up ^
-
-        case(87):
-            //up 'W'
-            if(currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].staged){
-                flipTile2(currentPlayer.rowLocation-1,currentPlayer.colLocation);
-            }
-            else if(currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].connected){
-                for (i = 0; i < currentSurroundingTiles.length; i++) {
-                    currentSurroundingTiles[i].connected = false;
+            case(38):
+            case(87):
+                //up 'W'
+                if (currentGameBoard[currentPlayer.rowLocation - 1][currentPlayer.colLocation].staged) {
+                    flipTile2(currentPlayer.rowLocation - 1, currentPlayer.colLocation);
                 }
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
-                currentPlayer.rowLocation--;
-                if (document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe === true) {
-                    currentPlayer.hp--;
-                    if (currentPlayer.hp === 0) {
-                        document.getElementById("message").innerHTML = "YOU DIED";
-                        document.getElementById("message").style.display = "inline";
+                else if (currentGameBoard[currentPlayer.rowLocation - 1][currentPlayer.colLocation].connected) {
+                    for (i = 0; i < currentSurroundingTiles.length; i++) {
+                        currentSurroundingTiles[i].connected = false;
                     }
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                    currentPlayer.rowLocation--;
+                    if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
+                        currentPlayer.hp--;
+                        if (currentPlayer.hp === 0) {
+                            document.getElementById("message").innerHTML = "YOU DIED";
+                            document.getElementById("message").style.display = "inline";
+                        }
+                    }
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe = false;
+                    updateStats();
+                    clearClickableSettings();
+                    setOnclickSettings();
+                    document.getElementById("deck").onclick = stageTiles;
                 }
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe = false;
-                updateStats();
-                clearClickableSettings();
-                setOnclickSettings();
-                document.getElementById("deck").onclick = stageTiles;
-            }
-            break;
-        case(37):
+                break;
             //left <
-        case(65):
-            //left 'A'
-            if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].staged){
-                flipTile2(currentPlayer.rowLocation,currentPlayer.colLocation-1);
-            }
-            else if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].connected){
-                for (i = 0; i < currentSurroundingTiles.length; i++) {
-                    currentSurroundingTiles[i].connected = false;
+            case(37):
+            case(65):
+                //left 'A'
+                if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation - 1].staged) {
+                    flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation - 1);
                 }
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "";
-                currentPlayer.colLocation--;
-                if (document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe === true) {
-                    currentPlayer.hp--;
-                    if (currentPlayer.hp === 0) {
-                        document.getElementById("message").innerHTML = "YOU DIED";
-                        document.getElementById("message").style.display = "inline";
+                else if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation - 1].connected) {
+                    for (i = 0; i < currentSurroundingTiles.length; i++) {
+                        currentSurroundingTiles[i].connected = false;
                     }
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                    currentPlayer.colLocation--;
+                    if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
+                        currentPlayer.hp--;
+                        if (currentPlayer.hp === 0) {
+                            document.getElementById("message").innerHTML = "YOU DIED";
+                            document.getElementById("message").style.display = "inline";
+                        }
+                    }
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe = false;
+                    updateStats();
+                    clearClickableSettings();
+                    setOnclickSettings();
+                    document.getElementById("deck").onclick = stageTiles;
                 }
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).innerHTML = "<img src="+currentPlayer.image +">";
-                document.getElementById(currentPlayer.rowLocation+","+ currentPlayer.colLocation).hasFoe = false;
-                updateStats();
-                clearClickableSettings();
-                setOnclickSettings();
-                document.getElementById("deck").onclick = stageTiles;
-            }
-            break;
-    }
-    //update currentConnected[]
+                break;
+        }
+
+        //update currentConnected[]
         currentConnectedTiles = [];
         getSurroundingTiles();
-
+    }
 }
+
 function clearClickableSettings() {
     var cells = document.getElementsByTagName("td");
     for (var i = 0; i < cells.length; i++) {
