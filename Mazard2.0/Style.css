@@ -177,6 +177,7 @@ td{
     padding-top: 50px;
     position: relative;
 }
+/*css to make a drop down overlay*/
 .overlay {
     position: absolute;
     bottom: 100%;

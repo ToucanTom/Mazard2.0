@@ -290,6 +290,7 @@ function selectRandomTile(directionOfSelectedTile){
                 }
             }
             break;
+        // IF TILE SELECTED IS EAST OF THE CURRENT TILE OF THE PLAYER
         case "east":
             for (i = 2; i < tileObjects.length; i++) {
                 if (tileObjects[i].west === true) {
@@ -298,6 +299,7 @@ function selectRandomTile(directionOfSelectedTile){
                 }
             }
             break;
+        // IF TILE SELECTED IS SOUTH OF THE CURRENT TILE OF THE PLAYER
         case "south":
             for (i = 2; i < tileObjects.length; i++) {
                 if (tileObjects[i].north === true) {

@@ -119,8 +119,9 @@ function flipTile(){
 
 }
 //used for buttons
-function flipTile2( row, col){
+function flipTile2(row, col){
     //updateGameBoardTileObject(currentTile, selectRandomTile());
+console.log("flipTile2 was called");
     tileCountDown--;
     if (tileCountDown === 0) {
         currentLevel++;
@@ -151,11 +152,20 @@ function flipTile2( row, col){
         updateGameBoardTileObject(currentTile, selectRandomTile("west"));
     }
 
+    var randNum = Math.floor(Math.random()*3);
+    if (randNum === 1) {
+        currentTile.hasFoe = true;
+    }
     // set location of current tile
     currentTile.location = row + "," + col;
 
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
+    if (currentTile.hasFoe) {
+        document.getElementById(row + "," + col).innerHTML = "<img src = Media/skeleton.png>";
+        document.getElementById(row + "," + col).hasFoe = true;
+    }
+    currentTile.hasFoe = false;
 
     // Generates rotation buttons to be able to rotate randomly selected tile
     genRotateDivs();
@@ -360,6 +370,7 @@ function move() {
 }
 //move function used as the keydown event listener
 function move2(){
+    console.log("move2 was called");
     var currentSurroundingTiles = getSurroundingTiles();
     var i;
     var keyCode = event.keyCode;
@@ -368,10 +379,13 @@ function move2(){
     //there is a problem with stage tiles if you move using the buttons
     switch (keyCode){
         case(83):
-            //up 'W'
+            //down 's'
         case(40):
-            //up ^
-            if(currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].connected){
+            //down ^
+            if(currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].staged){
+                flipTile2(currentPlayer.rowLocation+1,currentPlayer.colLocation);
+            }
+            else if (currentGameBoard[currentPlayer.rowLocation+1][currentPlayer.colLocation].connected){
                 for (i = 0; i < currentSurroundingTiles.length; i++) {
                     currentSurroundingTiles[i].connected = false;
                 }
@@ -397,7 +411,10 @@ function move2(){
 
         case(39):
             //right >
-            if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].connected){
+            if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].staged){
+                flipTile2(currentPlayer.rowLocation,currentPlayer.colLocation+1);
+            }
+            else if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation+1].connected){
                 for (i = 0; i < currentSurroundingTiles.length; i++) {
                     currentSurroundingTiles[i].connected = false;
                 }
@@ -419,11 +436,14 @@ function move2(){
             }
             break;
         case(38):
-            //down v
+            //up ^
 
         case(87):
-            //down 'S'
-            if(currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].connected){
+            //up 'W'
+            if(currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].staged){
+                flipTile2(currentPlayer.rowLocation-1,currentPlayer.colLocation);
+            }
+            else if(currentGameBoard[currentPlayer.rowLocation-1][currentPlayer.colLocation].connected){
                 for (i = 0; i < currentSurroundingTiles.length; i++) {
                     currentSurroundingTiles[i].connected = false;
                 }
@@ -448,7 +468,10 @@ function move2(){
             //left <
         case(65):
             //left 'A'
-            if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].connected){
+            if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].staged){
+                flipTile2(currentPlayer.rowLocation,currentPlayer.colLocation-1);
+            }
+            else if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation-1].connected){
                 for (i = 0; i < currentSurroundingTiles.length; i++) {
                     currentSurroundingTiles[i].connected = false;
                 }
