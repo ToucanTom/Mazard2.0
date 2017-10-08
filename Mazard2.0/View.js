@@ -351,18 +351,17 @@ function move() {
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
     if (document.getElementById(row + "," + col).hasFoe === true) {
-        document.getElementById("battle").innerHTML = "Battle!";
         document.getElementById("battle").style.display = "inline";
         document.getElementById("contender1").style.backgroundImage = "url(Media/skeleton.png)";
-        document.getElementById("contender1").style.display = "inline";
+        document.getElementById("contender1").style.display = "inline-flex";
         document.getElementById("contender2").style.backgroundImage = "url(" + currentPlayer.image + ")";
-        document.getElementById("contender2").style.display = "inline";
+        document.getElementById("contender2").style.display = "inline-flex";
         document.getElementById("dice1").style.backgroundImage = "url(Media/dieFive.png)";
-        document.getElementById("dice1").style.display = "inline";
+        document.getElementById("dice1").style.display = "inline-flex";
         document.getElementById("dice2").style.backgroundImage = "url(Media/dieFive.png)";
-        document.getElementById("dice2").style.display = "inline";
+        document.getElementById("dice2").style.display = "inline-flex";
         document.getElementById("rollButton").innerHTML = "Roll Dice!";
-        document.getElementById("rollButton").style.display = "inline";
+        document.getElementById("rollButton").style.display = "inline-flex";
 
         currentPlayer.hp--;
         if (currentPlayer.hp === 0) {
