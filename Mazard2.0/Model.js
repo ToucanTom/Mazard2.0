@@ -62,14 +62,14 @@ var tileObjects = [
     },
    //2 way
     {
-    name: "northEast",
-    image: "Media/northEast.png",
-    north: true,
-    east: true,
-    south: false,
-    west: false,
-    rotCCW: 7,
-    rotCW: 9
+        name: "northEast",
+        image: "Media/northEast.png",
+        north: true,
+        east: true,
+        south: false,
+        west: false,
+        rotCCW: 7,
+        rotCW: 9
     },
     {
         name: "eastSouth",
@@ -188,6 +188,28 @@ var tileObjects = [
         image: "Media/Dwarf.png"
     }
 ];
+
+var diceOptions = [
+    {
+        image: "Media/dieOne.png"
+    },
+    {
+        image: "Media/dieTwo.png"
+    },
+    {
+        image: "Media/dieThree.png"
+    },
+    {
+        image: "Media/dieFour.png"
+    },
+    {
+        image: "Media/dieFive.png"
+    },
+    {
+        image: "Media/dieSix.png"
+    }
+];
+
 // Determines visual game board size
 var gameBoardSize = {
     row: 6,

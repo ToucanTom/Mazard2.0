@@ -351,19 +351,7 @@ function move() {
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
     if (document.getElementById(row + "," + col).hasFoe === true) {
-        document.getElementById("battle").style.display = "inline";
-        document.getElementById("contender1").style.backgroundImage = "url(Media/skeleton.png)";
-        document.getElementById("contender1").style.display = "inline-flex";
-        document.getElementById("contender2").style.backgroundImage = "url(" + currentPlayer.image + ")";
-        document.getElementById("contender2").style.display = "inline-flex";
-        document.getElementById("dice1").style.backgroundImage = "url(Media/dieFive.png)";
-        document.getElementById("dice1").style.display = "inline-flex";
-        document.getElementById("dice2").style.backgroundImage = "url(Media/dieFive.png)";
-        document.getElementById("dice2").style.display = "inline-flex";
-        document.getElementById("rollButton").innerHTML = "Roll Dice!";
-        document.getElementById("rollButton").style.display = "inline-flex";
-
-        currentPlayer.hp--;
+        battle();
         if (currentPlayer.hp === 0) {
             document.getElementById("message").innerHTML = "YOU DIED";
             document.getElementById("message").style.display = "inline";
@@ -376,6 +364,54 @@ function move() {
     setOnclickSettings();
     document.getElementById("deck").onclick = stageTiles;
 }
+
+function battle() {
+    document.getElementById("battle").style.display = "inline";
+    document.getElementById("battleEnemy").style.backgroundImage = "url(Media/skeleton.png)";
+    document.getElementById("battlePlayer").innerHTML = "<img src = "+currentPlayer.image+">";
+    document.getElementById("rollButton").onclick = roll;
+}
+
+function roll() {
+    var enemyDieRoll = Math.floor(Math.random()*6);
+    var playerDieRoll = Math.floor(Math.random()*6);
+
+    document.getElementById("enemyDice").innerHTML = "<img src = " + diceOptions[enemyDieRoll].image + ">";
+    document.getElementById("playerDice").innerHTML = "<img src = " + diceOptions[playerDieRoll].image + ">";
+
+    if (playerDieRoll > enemyDieRoll) {
+        // You Win!
+        document.getElementById("battleResult").innerHTML = "You Win!";
+    }
+    else {
+        // You Lose!
+        document.getElementById("battleResult").innerHTML = "You Lose!"
+        currentPlayer.hp--;
+    }
+
+    // Display Exit Battle Button
+    document.getElementById("returnButton").style.display = "inline";
+    document.getElementById("returnButton").onclick = returnFromBattle;
+
+    // Turn off Roll Button
+    document.getElementById("rollButton").onclick = "";
+
+}
+
+function returnFromBattle() {
+
+    // Clear Return Button, Battle Result Status, and Dice. Return to Game
+    document.getElementById("returnButton").onclick = "";
+    document.getElementById("returnButton").style.display = "none";
+    document.getElementById("battleResult").innerHTML = "";
+    document.getElementById("enemyDice").innerHTML = "Enemy's Roll";
+    document.getElementById("playerDice").innerHTML = "Player's Roll";
+    document.getElementById("battle").style.display = "none";
+
+    // Update Player Stats
+    updateStats();
+}
+
 //move function used as the keydown event listener
 function move2(){
     //only run if there isnt a tile being placed
@@ -403,7 +439,7 @@ function move2(){
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
                     currentPlayer.rowLocation++;
                     if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
-                        currentPlayer.hp--;
+                        battle();
                         if (currentPlayer.hp === 0) {
                             document.getElementById("message").innerHTML = "YOU DIED";
                             document.getElementById("message").style.display = "inline";
@@ -431,7 +467,7 @@ function move2(){
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
                     currentPlayer.colLocation++;
                     if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
-                        currentPlayer.hp--;
+                        battle();
                         if (currentPlayer.hp === 0) {
                             document.getElementById("message").innerHTML = "YOU DIED";
                             document.getElementById("message").style.display = "inline";
@@ -459,7 +495,7 @@ function move2(){
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
                     currentPlayer.rowLocation--;
                     if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
-                        currentPlayer.hp--;
+                        battle();
                         if (currentPlayer.hp === 0) {
                             document.getElementById("message").innerHTML = "YOU DIED";
                             document.getElementById("message").style.display = "inline";
@@ -487,7 +523,7 @@ function move2(){
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
                     currentPlayer.colLocation--;
                     if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
-                        currentPlayer.hp--;
+                        battle();
                         if (currentPlayer.hp === 0) {
                             document.getElementById("message").innerHTML = "YOU DIED";
                             document.getElementById("message").style.display = "inline";
