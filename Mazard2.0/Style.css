@@ -54,13 +54,13 @@ body{
 
 #battle {
     width: 50vw;
-    height: 50vh;
+    height: 55vh;
     margin-top: 20vh;
     margin-left: 10vw;
     font-size: x-large;
     position: absolute;
     background-color: white;
-    z-index: 900;
+    z-index: 1;
     border: solid black thick;
     display: none;
 }

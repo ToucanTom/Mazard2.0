@@ -107,10 +107,9 @@ function flipTile(){
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
     if (currentTile.hasFoe) {
-        document.getElementById(row + "," + col).innerHTML = "<img src = Media/skeleton.png>";
         document.getElementById(row + "," + col).hasFoe = true;
     }
-     currentTile.hasFoe = false;
+    currentTile.hasFoe = false;
 
     // Generates rotation buttons to be able to rotate randomly selected tile
     genRotateDivs();
@@ -164,7 +163,6 @@ console.log("flipTile2 was called");
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
     if (currentTile.hasFoe) {
-        document.getElementById(row + "," + col).innerHTML = "<img src = Media/skeleton.png>";
         document.getElementById(row + "," + col).hasFoe = true;
     }
     currentTile.hasFoe = false;
@@ -217,9 +215,14 @@ function setRotation() {
     document.getElementById("rotateCW").style.display = "none";
     document.getElementById("setRotate").style.display = "none";
 
+    // Place enemy after rotation set
+    if (document.getElementById(currentTile.location).hasFoe === true) {
+        document.getElementById(currentTile.location).innerHTML = "<img src = Media/goblin.png>";
+    }
+
     // Update gameboard
     updateGameBoardTileObject(currentGameBoard[currentTile.location[0]][currentTile.location[2]].t_object,currentTile);
- tileBeingPlaced = false;
+    tileBeingPlaced = false;
     // Remove tile
     setOnclickSettings();
 }
@@ -257,7 +260,7 @@ function stageTiles() {
     for (var i = 0; i < setClickableTiles.length; i++) {
         if (setClickableTiles[i].available) {
 
-            document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/meDeck.png)";
+            document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/gameDeck.png)";
             document.getElementById(setClickableTiles[i].location).onclick = flipTile;
             currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].staged = true;
         }
@@ -385,7 +388,7 @@ function roll() {
     }
     else {
         // You Lose!
-        document.getElementById("battleResult").innerHTML = "You Lose!"
+        document.getElementById("battleResult").innerHTML = "You Lose!";
         currentPlayer.hp--;
     }
 
