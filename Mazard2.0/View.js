@@ -1,3 +1,23 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///TODO
+//\GENERAL
+//  SHOULD ONLY BE ABLE TO FLIP TILES YOU CAN MOVE TO (NO FLIPPING A STAGED TILE ACROSS A WALL)
+//  WIN CONDITION = GEMS
+//  MAYBE ROOMS = 100% EVENT(ITEMS OR BATTLE GUARANTEED)
+//\ITEMS
+//  HEALTH
+//  OFFENSIVE
+//  DEFENSIVE
+//  CHESTS/KEYS
+//  UTILITY (DOORS, TOLL TROLLS, EQUIPMENT, ETC...)
+//\BATTLES
+//  IMAGE SHOULD BE THE SAME AS THE ENCOUNTER ON THE MAP
+//  HIT AND MISS SHOULD BE BASED ON ARMOR
+//  REWARDS FOR BEATING FOES
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 var tileBeingPlaced = false;
 function genGameBoard() {
     document.getElementById("newLevel").style.display = "none";
