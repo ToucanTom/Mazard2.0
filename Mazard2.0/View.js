@@ -63,7 +63,7 @@ function selectRace(){
     var option = document.getElementsByClassName("playerOptions");
     var ids = ["playerOption1Stats","playerOption2Stats","playerOption3Stats"];
     for(var i = 0; i< option.length; i++){
-        option[i].innerHTML = "<img class = 'image' src ="+ playerObjects[playerOptions[i]].image + "><div class = 'overlay' ><div id="+ids[i]+"></div></div>";
+        option[i].innerHTML = "<img class = 'image' src ="+ playerObjects[playerOptions[i]].image + "><div class = 'overlay'  ><div id="+ids[i]+"></div></div>";
     }
     genStats();
 }
@@ -75,7 +75,7 @@ function genStats(){//this puts the character information into the overlay to sh
     for(var i = 0;i<statsLocations.length;i++){
         var html = "";
         for(var j = 0;j<4/*number of stats*/;j++){
-            html += "<p>"+statOptions[j+1] + ": "+ playerObjects[playerOptions[i]][statOptions[j+1]]+"</p>";
+            html += "<p>"+statOptions[j+1] + ":"+ playerObjects[playerOptions[i]][statOptions[j+1]]+"</p>";
         }
         statsLocations[i].innerHTML = html;
     }
@@ -125,12 +125,13 @@ function flipTile(){
     currentTile.location = row + "," + col;
 
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
+    //something weird is going on here with the true false setting on has foe. im not sure i get it....
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
     if (currentTile.hasFoe) {
         document.getElementById(row + "," + col).hasFoe = true;
     }
     currentTile.hasFoe = false;
-
+    /////////////////////////////////////////////////////////////////////////////////
     // Generates rotation buttons to be able to rotate randomly selected tile
     genRotateDivs();
 
@@ -234,9 +235,10 @@ function setRotation() {
     document.getElementById("rotateCCW").style.display = "none";
     document.getElementById("rotateCW").style.display = "none";
     document.getElementById("setRotate").style.display = "none";
-
+ 
     // Place enemy after rotation set
     if (document.getElementById(currentTile.location).hasFoe === true) {
+
         document.getElementById(currentTile.location).innerHTML = "<img src = Media/goblin.png>";
     }
 

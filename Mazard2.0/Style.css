@@ -241,6 +241,7 @@ td{
 /*css to make a drop down overlay*/
 .overlay {
     position: absolute;
+    overflow: hidden;
     bottom: 100%;
     left: 0;
     top:0;
