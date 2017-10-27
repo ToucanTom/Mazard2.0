@@ -35,13 +35,13 @@ function genGameBoard() {
         for (var j = 0; j < gameBoardSize.col; j++) {
             if (i === gameBoardSize.row-1 && j === randNum) {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[1].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, connected: false, hasFoe: false, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
+                temp_array[j] = {location: i+","+j, connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
                 currentPlayer.rowLocation = i;
                 currentPlayer.colLocation = j;
             }
             else {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[0].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, hasFoe: false, staged: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
+                temp_array[j] = {location: i+","+j, hasFoe: false, foe: {}, staged: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
             }
         }
         html += "</td>";
@@ -117,9 +117,10 @@ function flipTile(){
         updateGameBoardTileObject(currentTile, selectRandomTile("west"));
     }
 
-    var randNum = Math.floor(Math.random()*3);
-    if (randNum === 1) {
+    var randNum = Math.floor((Math.random()*8));
+    if (randNum <= 2) {
         currentTile.hasFoe = true;
+        curretFoe = foeOptions[randNum];
     }
     // set location of current tile
     currentTile.location = row + "," + col;
@@ -127,9 +128,10 @@ function flipTile(){
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     //something weird is going on here with the true false setting on has foe. im not sure i get it....
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
-    if (currentTile.hasFoe) {
-        document.getElementById(row + "," + col).hasFoe = true;
-    }
+
+    if (currentTile.hasFoe) document.getElementById(row + "," + col).innerHTML = currentTile.foe.image;
+
+    currentTile.foe = {};
     currentTile.hasFoe = false;
     /////////////////////////////////////////////////////////////////////////////////
     // Generates rotation buttons to be able to rotate randomly selected tile
@@ -174,19 +176,19 @@ console.log("flipTile2 was called");
         updateGameBoardTileObject(currentTile, selectRandomTile("west"));
     }
 
-    var randNum = Math.floor(Math.random()*3);
-    if (randNum === 1) {
-        currentTile.hasFoe = true;
+    var randNum = Math.floor(Math.random()*8);
+    if (randNum <= 2) {
+        currentTile.foe = foeOptions[randNum];
     }
     // set location of current tile
     currentTile.location = row + "," + col;
 
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
-    if (currentTile.hasFoe) {
-        document.getElementById(row + "," + col).hasFoe = true;
-    }
-    currentTile.hasFoe = false;
+
+        document.getElementById(row + "," + col).foe = currentTile.foe;
+
+    currentTile.foe = "";
 
     // Generates rotation buttons to be able to rotate randomly selected tile
     genRotateDivs();
@@ -235,9 +237,9 @@ function setRotation() {
     document.getElementById("rotateCCW").style.display = "none";
     document.getElementById("rotateCW").style.display = "none";
     document.getElementById("setRotate").style.display = "none";
- 
+
     // Place enemy after rotation set
-    if (document.getElementById(currentTile.location).hasFoe === true) {
+    if (document.getElementById(currentTile.location).hasFoe) {
 
         document.getElementById(currentTile.location).innerHTML = "<img src = Media/goblin.png>";
     }

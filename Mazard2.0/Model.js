@@ -220,21 +220,21 @@ var playerObjects = {
     "Human" : {
         image: "Media/human.png",
         race : "Human",
-        attack: 0,
+        attack: 1,
         hp: 15,
         armor: 1
     },
     "Dwarf" : {
         image: "Media/Dwarf.png",
         race: "Dwarf",
-        attack: 0,
+        attack: 1,
         hp: 18,
         armor: 0
     },
     "Elf" : {
         image: "Media/elfmage.png",
         race:"Elf",
-        attack: 1,
+        attack: 2,
         hp: 15,
         armor: 0
     }
@@ -249,6 +249,18 @@ var currentPlayer = {
     rowLocation: 0,
     colLocation: 0
 };
+var currentFoe ={
+    name: "",
+    image:"",
+    hp: 0,
+    armor: 0,
+    attack: 0
+};
+var foeOptions = [
+    {name: "Skeleton", hp: 1, armor: 0, attack: 1, image: "Media/skeleton.png"},
+    {name: "Lion", hp:2, armor:0, attack: 2, image: "Media/lion.png"},
+    {name: "Knight", hp:3, armor: 1, attack: 1, image: "Media/knight.png"}
+];
 /* This is our global game board
     Data Members
         t_object {
