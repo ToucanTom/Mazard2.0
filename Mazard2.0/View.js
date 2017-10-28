@@ -16,6 +16,10 @@
 //  HIT AND MISS SHOULD BE BASED ON ARMOR
 //  REWARDS FOR BEATING FOES
 
+/* should we create foe locations when we generate grid? should we generate item drops when we generate grid?
+    tiers for items and put higher tier items with more difficult foes.
+ */
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var tileBeingPlaced = false;
@@ -27,12 +31,16 @@ function genGameBoard() {
     tileCountDown = totalTiles-1;
     var gameBoard = document.getElementById("gameBoard");
     var html = "";
+
+    // Random number generated for random starting location
     var randNum = Math.floor(Math.random()*(gameBoardSize.col-2)) + 1;
     console.log(randNum);
     for (var i = 0; i < gameBoardSize.row; i++) {
         html += "<tr>";
         var temp_array = [];
         for (var j = 0; j < gameBoardSize.col; j++) {
+
+            // Checks to place starting tile in random location on bottom row
             if (i === gameBoardSize.row-1 && j === randNum) {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[1].image + ")' ></td>";
                 temp_array[j] = {location: i+","+j, connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
@@ -55,6 +63,30 @@ function genGameBoard() {
     else {
         document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
     }
+
+    /* **UPDATE IF YOU CHANGE gameBoard**
+        Each element on grid has these data members:
+            string location - row, col - i.e "1,2"
+            boolean connected - is true when a path from this location is connected to tile player is currently on
+            boolean hasFoe - true when element contains a foe
+            object foe -
+                data members:
+                    string name
+                    string image
+                    int hp
+                    int armor
+                    int attack
+            boolean staged - true when element has tile but tile is not flipped over
+            boolean blocked - true when obstacle blocks a path to the element from players current position
+            boolean available - true if not already staged or containing a tile
+            object t_object -
+                data members:
+                    image
+                    north
+                    east
+                    south
+                    west
+     */
 
 }
 function selectRace(){
@@ -120,7 +152,7 @@ function flipTile(){
     var randNum = Math.floor((Math.random()*8));
     if (randNum <= 2) {
         currentTile.hasFoe = true;
-        curretFoe = foeOptions[randNum];
+        currentFoe = foeOptions[randNum];
     }
     // set location of current tile
     currentTile.location = row + "," + col;
@@ -129,9 +161,8 @@ function flipTile(){
     //something weird is going on here with the true false setting on has foe. im not sure i get it....
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
 
-    if (currentTile.hasFoe) document.getElementById(row + "," + col).innerHTML = currentTile.foe.image;
+    if (currentTile.hasFoe) document.getElementById(row + "," + col).innerHTML = "<img src = " + currentFoe.image + ">";
 
-    currentTile.foe = {};
     currentTile.hasFoe = false;
     /////////////////////////////////////////////////////////////////////////////////
     // Generates rotation buttons to be able to rotate randomly selected tile
@@ -144,8 +175,8 @@ function flipTile(){
 //used for buttons
 function flipTile2(row, col){
     //updateGameBoardTileObject(currentTile, selectRandomTile());
-tileBeingPlaced = true;
-console.log("flipTile2 was called");
+    tileBeingPlaced = true;
+    console.log("flipTile2 was called");
     tileCountDown--;
     if (tileCountDown === 0) {
         currentLevel++;
@@ -178,7 +209,8 @@ console.log("flipTile2 was called");
 
     var randNum = Math.floor(Math.random()*8);
     if (randNum <= 2) {
-        currentTile.foe = foeOptions[randNum];
+        currentFoe = foeOptions[randNum];
+        currentTile.hasFoe = true
     }
     // set location of current tile
     currentTile.location = row + "," + col;
@@ -186,9 +218,11 @@ console.log("flipTile2 was called");
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
 
-        document.getElementById(row + "," + col).foe = currentTile.foe;
+    if (currentTile.hasFoe) {
+        document.getElementById(row + "," + col).innerHTML = "<img src = " + currentFoe.image + ">";
+    }
 
-    currentTile.foe = "";
+    currentTile.hasFoe = false;
 
     // Generates rotation buttons to be able to rotate randomly selected tile
     genRotateDivs();
