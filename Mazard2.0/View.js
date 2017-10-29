@@ -115,7 +115,7 @@ function genStats(){//this puts the character information into the overlay to sh
 
 }
 function flipTile(){
-    //updateGameBoardTileObject(currentTile, selectRandomTile());
+    // updateGameBoardTileObject(currentTile, selectRandomTile());
     var col = this.cellIndex;
     var row = this.parentNode.rowIndex;
 
@@ -135,7 +135,7 @@ function flipTile(){
     currentGameBoard[row][col].available = false;
     currentGameBoard[row][col].staged = false;
 
-    //  Generates appropriate tile for location clicked and sets it to currentTile
+    // Generates appropriate tile for location clicked and sets it to currentTile
     if (row === currentPlayer.rowLocation-1) {
         updateGameBoardTileObject(currentTile, selectRandomTile("north"));
     }
@@ -158,7 +158,7 @@ function flipTile(){
     currentTile.location = row + "," + col;
 
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
-    //something weird is going on here with the true false setting on has foe. im not sure i get it....
+    // something weird is going on here with the true false setting on has foe. im not sure i get it....
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
 
     if (currentTile.hasFoe) document.getElementById(row + "," + col).innerHTML = "<img src = " + currentFoe.image + ">";
@@ -172,9 +172,9 @@ function flipTile(){
     clearClickableSettings();
 
 }
-//used for buttons
+// used for buttons
 function flipTile2(row, col){
-    //updateGameBoardTileObject(currentTile, selectRandomTile());
+    // updateGameBoardTileObject(currentTile, selectRandomTile());
     tileBeingPlaced = true;
     console.log("flipTile2 was called");
     tileCountDown--;
@@ -193,7 +193,7 @@ function flipTile2(row, col){
     currentGameBoard[row][col].available = false;
     currentGameBoard[row][col].staged = false;
 
-    //  Generates appropriate tile for location clicked and sets it to currentTile
+    // Generates appropriate tile for location clicked and sets it to currentTile
     if (row === currentPlayer.rowLocation-1) {
         updateGameBoardTileObject(currentTile, selectRandomTile("north"));
     }
@@ -281,6 +281,7 @@ function setRotation() {
     // Update gameboard
     updateGameBoardTileObject(currentGameBoard[currentTile.location[0]][currentTile.location[2]].t_object,currentTile);
     tileBeingPlaced = false;
+
     // Remove tile
     setOnclickSettings();
 }
@@ -327,7 +328,8 @@ function stageTiles() {
     document.getElementById("deck").innerHTML = "";
     setOnclickSettings();
 }
-//returns an array of the surrounding tile objects from currentGameBoard
+
+// returns an array of the surrounding tile objects from currentGameBoard
 function getSurroundingTiles(){
     var tiles = [];
     var counter = 0;
@@ -404,7 +406,7 @@ function setOnclickSettings(){
         // }
     }
 }
-//move used as the onclick attribute
+// move used as the onclick attribute
 function move() {
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
@@ -473,23 +475,23 @@ function returnFromBattle() {
     updateStats();
 }
 
-//move function used as the keydown event listener
+// move function used as the keydown event listener
 function move2(){
-    //only run if there isnt a tile being placed
+    // only run if there isnt a tile being placed
   if(!tileBeingPlaced) {
     console.log("move2 was called");
     var currentSurroundingTiles = getSurroundingTiles();
     var i;
     var keyCode = event.keyCode;
     console.log("the key code is " + keyCode);
-    //todo
-    //there is a problem with stage tiles if you move using the buttons
+    // todo
+    // there is a problem with stage tiles if you move using the buttons
 
         switch (keyCode) {
-            //down 's'
+            // down 's'
             case(83):
             case(40):
-                //down ^
+                // down ^
                 if (currentGameBoard[currentPlayer.rowLocation + 1][currentPlayer.colLocation].staged) {
                     flipTile2(currentPlayer.rowLocation + 1, currentPlayer.colLocation);
                 }
@@ -514,10 +516,10 @@ function move2(){
                     document.getElementById("deck").onclick = stageTiles;
                 }
                 break;
-            //right 'D'
+            // right 'D'
             case(68):
             case(39):
-                //right >
+                // right >
                 if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation + 1].staged) {
                     flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation + 1);
                 }
@@ -542,10 +544,10 @@ function move2(){
                     document.getElementById("deck").onclick = stageTiles;
                 }
                 break;
-            //up ^
+            // up ^
             case(38):
             case(87):
-                //up 'W'
+                // up 'W'
                 if (currentGameBoard[currentPlayer.rowLocation - 1][currentPlayer.colLocation].staged) {
                     flipTile2(currentPlayer.rowLocation - 1, currentPlayer.colLocation);
                 }
@@ -570,10 +572,10 @@ function move2(){
                     document.getElementById("deck").onclick = stageTiles;
                 }
                 break;
-            //left <
+            // left <
             case(37):
             case(65):
-                //left 'A'
+                // left 'A'
                 if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation - 1].staged) {
                     flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation - 1);
                 }
@@ -600,7 +602,7 @@ function move2(){
                 break;
         }
 
-        //update currentConnected[]
+        // update currentConnected[]
         currentConnectedTiles = [];
         getSurroundingTiles();
     }
@@ -613,7 +615,7 @@ function clearClickableSettings() {
     }
 }
 /*/////////Elephant bone yard/////////*/
-/*function placeTile()*/
+/* function placeTile() */
  /*{
 
     var col = this.cellIndex;
