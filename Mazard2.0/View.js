@@ -16,6 +16,10 @@
 //  HIT AND MISS SHOULD BE BASED ON ARMOR
 //  REWARDS FOR BEATING FOES
 
+/* should we create foe locations when we generate grid? should we generate item drops when we generate grid?
+    tiers for items and put higher tier items with more difficult foes.
+ */
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var tileBeingPlaced = false;
 function genGameBoard() {
@@ -26,12 +30,16 @@ function genGameBoard() {
     tileCountDown = totalTiles-1;
     var gameBoard = document.getElementById("gameBoard");
     var html = "";
+
+    // Random number generated for random starting location
     var randNum = Math.floor(Math.random()*(gameBoardSize.col-2)) + 1;
     console.log(randNum);
     for (var i = 0; i < gameBoardSize.row; i++) {
         html += "<tr>";
         var temp_array = [];
         for (var j = 0; j < gameBoardSize.col; j++) {
+
+            // Checks to place starting tile in random location on bottom row
             if (i === gameBoardSize.row-1 && j === randNum) {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[1].image + ")' ></td>";
                 temp_array[j] = {location: i+","+j, connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
@@ -54,6 +62,30 @@ function genGameBoard() {
     else {
         document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
     }
+
+    /* **UPDATE IF YOU CHANGE gameBoard**
+        Each element on grid has these data members:
+            string location - row, col - i.e "1,2"
+            boolean connected - is true when a path from this location is connected to tile player is currently on
+            boolean hasFoe - true when element contains a foe
+            object foe -
+                data members:
+                    string name
+                    string image
+                    int hp
+                    int armor
+                    int attack
+            boolean staged - true when element has tile but tile is not flipped over
+            boolean blocked - true when obstacle blocks a path to the element from players current position
+            boolean available - true if not already staged or containing a tile
+            object t_object -
+                data members:
+                    image
+                    north
+                    east
+                    south
+                    west
+     */
 
 }
 function selectRace(){
@@ -82,7 +114,7 @@ function genStats(){//this puts the character information into the overlay to sh
 
 }
 function flipTile(){
-    //updateGameBoardTileObject(currentTile, selectRandomTile());
+    // updateGameBoardTileObject(currentTile, selectRandomTile());
     var col = this.cellIndex;
     var row = this.parentNode.rowIndex;
 
@@ -102,7 +134,7 @@ function flipTile(){
     currentGameBoard[row][col].available = false;
     currentGameBoard[row][col].staged = false;
 
-    //  Generates appropriate tile for location clicked and sets it to currentTile
+    // Generates appropriate tile for location clicked and sets it to currentTile
     if (row === currentPlayer.rowLocation-1) {
         updateGameBoardTileObject(currentTile, selectRandomTile("north"));
     }
@@ -119,18 +151,17 @@ function flipTile(){
     var randNum = Math.floor((Math.random()*8));
     if (randNum <= 2) {
         currentTile.hasFoe = true;
-        curretFoe = foeOptions[randNum];
+        currentFoe = foeOptions[randNum];
     }
     // set location of current tile
     currentTile.location = row + "," + col;
 
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
-    //something weird is going on here with the true false setting on has foe. im not sure i get it....
+    // something weird is going on here with the true false setting on has foe. im not sure i get it....
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
 
-    if (currentTile.hasFoe) document.getElementById(row + "," + col).innerHTML = currentTile.foe.image;
+    if (currentTile.hasFoe) document.getElementById(row + "," + col).innerHTML = "<img src = " + currentFoe.image + ">";
 
-    currentTile.foe = {};
     currentTile.hasFoe = false;
     /////////////////////////////////////////////////////////////////////////////////
     // Generates rotation buttons to be able to rotate randomly selected tile
@@ -140,11 +171,11 @@ function flipTile(){
     clearClickableSettings();
 
 }
-//used for buttons
+// used for buttons
 function flipTile2(row, col){
-    //updateGameBoardTileObject(currentTile, selectRandomTile());
-tileBeingPlaced = true;
-console.log("flipTile2 was called");
+    // updateGameBoardTileObject(currentTile, selectRandomTile());
+    tileBeingPlaced = true;
+    console.log("flipTile2 was called");
     tileCountDown--;
     if (tileCountDown === 0) {
         currentLevel++;
@@ -161,7 +192,7 @@ console.log("flipTile2 was called");
     currentGameBoard[row][col].available = false;
     currentGameBoard[row][col].staged = false;
 
-    //  Generates appropriate tile for location clicked and sets it to currentTile
+    // Generates appropriate tile for location clicked and sets it to currentTile
     if (row === currentPlayer.rowLocation-1) {
         updateGameBoardTileObject(currentTile, selectRandomTile("north"));
     }
@@ -177,7 +208,8 @@ console.log("flipTile2 was called");
 
     var randNum = Math.floor(Math.random()*8);
     if (randNum <= 2) {
-        currentTile.foe = foeOptions[randNum];
+        currentFoe = foeOptions[randNum];
+        currentTile.hasFoe = true
     }
     // set location of current tile
     currentTile.location = row + "," + col;
@@ -185,9 +217,11 @@ console.log("flipTile2 was called");
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
 
-        document.getElementById(row + "," + col).foe = currentTile.foe;
+    if (currentTile.hasFoe) {
+        document.getElementById(row + "," + col).innerHTML = "<img src = " + currentFoe.image + ">";
+    }
 
-    currentTile.foe = "";
+    currentTile.hasFoe = false;
 
     // Generates rotation buttons to be able to rotate randomly selected tile
     genRotateDivs();
@@ -296,7 +330,8 @@ function stageTiles() {
     document.getElementById("deck").innerHTML = "";
     setOnclickSettings();
 }
-//returns an array of the surrounding tile objects from currentGameBoard
+
+// returns an array of the surrounding tile objects from currentGameBoard
 function getSurroundingTiles(){
     var tiles = [];
     var counter = 0;
@@ -373,7 +408,7 @@ function setOnclickSettings(){
         // }
     }
 }
-//move used as the onclick attribute
+// move used as the onclick attribute
 function move() {
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
@@ -440,21 +475,21 @@ function returnFromBattle() {
 }
 //move function used as the keydown event listener
 function move2(){
-    //only run if there isnt a tile being placed
+    // only run if there isnt a tile being placed
   if(!tileBeingPlaced) {
     console.log("move2 was called");
     var currentSurroundingTiles = getSurroundingTiles();
     var i;
     var keyCode = event.keyCode;
     console.log("the key code is " + keyCode);
-    //todo
-    //there is a problem with stage tiles if you move using the buttons
+    // todo
+    // there is a problem with stage tiles if you move using the buttons
 
         switch (keyCode) {
-            //down 's'
+            // down 's'
             case(83):
             case(40):
-                //down ^
+                // down ^
                 if (currentGameBoard[currentPlayer.rowLocation + 1][currentPlayer.colLocation].staged) {
                     flipTile2(currentPlayer.rowLocation + 1, currentPlayer.colLocation);
                 }
@@ -479,10 +514,10 @@ function move2(){
                     document.getElementById("deck").onclick = stageTiles;
                 }
                 break;
-            //right 'D'
+            // right 'D'
             case(68):
             case(39):
-                //right >
+                // right >
                 if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation + 1].staged) {
                     flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation + 1);
                 }
@@ -507,10 +542,10 @@ function move2(){
                     document.getElementById("deck").onclick = stageTiles;
                 }
                 break;
-            //up ^
+            // up ^
             case(38):
             case(87):
-                //up 'W'
+                // up 'W'
                 if (currentGameBoard[currentPlayer.rowLocation - 1][currentPlayer.colLocation].staged) {
                     flipTile2(currentPlayer.rowLocation - 1, currentPlayer.colLocation);
                 }
@@ -535,10 +570,10 @@ function move2(){
                     document.getElementById("deck").onclick = stageTiles;
                 }
                 break;
-            //left <
+            // left <
             case(37):
             case(65):
-                //left 'A'
+                // left 'A'
                 if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation - 1].staged) {
                     flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation - 1);
                 }
@@ -565,7 +600,7 @@ function move2(){
                 break;
         }
 
-        //update currentConnected[]
+        // update currentConnected[]
         currentConnectedTiles = [];
         getSurroundingTiles();
     }
@@ -577,7 +612,7 @@ function clearClickableSettings() {
     }
 }
 /*/////////Elephant bone yard/////////*/
-/*function placeTile()*/
+/* function placeTile() */
  /*{
 
     var col = this.cellIndex;
