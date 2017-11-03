@@ -254,7 +254,9 @@ var currentFoe ={
     image:"",
     hp: 0,
     armor: 0,
-    attack: 0
+    attack: 0,
+    rowLocation: 0,
+    colLocation: 0
 };
 var foeOptions = [
     {name: "Skeleton", hp: 1, armor: 0, attack: 1, image: "Media/skeleton.png"},

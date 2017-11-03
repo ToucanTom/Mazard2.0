@@ -17,7 +17,6 @@
 //  REWARDS FOR BEATING FOES
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 var tileBeingPlaced = false;
 function genGameBoard() {
     document.getElementById("newLevel").style.display = "none";
@@ -116,7 +115,7 @@ function flipTile(){
     if (col === currentPlayer.colLocation-1) {
         updateGameBoardTileObject(currentTile, selectRandomTile("west"));
     }
-
+    //decide if there is a foe
     var randNum = Math.floor((Math.random()*8));
     if (randNum <= 2) {
         currentTile.hasFoe = true;
@@ -217,17 +216,14 @@ function genRotateDivs() {
     rotateCWDiv.onclick = rotateCW;
     setRotateDiv.onclick = setRotation;
 }
-
 function rotateCCW() {
     updateGameBoardTileObject(currentTile, tileObjects[currentTile.rotCCW]);
     document.getElementById(currentTile.location).style.backgroundImage = "url(" + currentTile.image + ")";
 }
-
 function rotateCW() {
     updateGameBoardTileObject(currentTile, tileObjects[currentTile.rotCW]);
     document.getElementById(currentTile.location).style.backgroundImage = "url(" + currentTile.image + ")";
 }
-
 function setRotation() {
 
     // Turn off all rotate options and hide boxes
@@ -238,19 +234,28 @@ function setRotation() {
     document.getElementById("rotateCW").style.display = "none";
     document.getElementById("setRotate").style.display = "none";
 
-    // Place enemy after rotation set
-    if (document.getElementById(currentTile.location).hasFoe) {
 
-        document.getElementById(currentTile.location).innerHTML = "<img src = Media/goblin.png>";
-    }
 
     // Update gameboard
     updateGameBoardTileObject(currentGameBoard[currentTile.location[0]][currentTile.location[2]].t_object,currentTile);
     tileBeingPlaced = false;
+    // Place enemy after rotation set
+    //decide if there is a foe or anything else......
+    var randNum = Math.floor((Math.random()*8));
+    if (randNum <= 2) {
+        currentFoe = foeOptions[randNum];
+        currentFoe.rowLocation = currentTile.location[0];
+        currentFoe.colLocation = currentTile.location[2];
+        document.getElementById(currentTile.location).innerHTML = "<img src="+ currentFoe.image+ ">";
+        //add an alert of some kind
+            //maybe use a message div for multiple events?
+
+        // call up the battle div
+        battle();
+    }
     // Remove tile
     setOnclickSettings();
 }
-
 function choosePlayer(playerChoice) {
     console.log("choosePlayer was called");
     currentPlayer.race = playerChoice.race;
@@ -267,7 +272,6 @@ function choosePlayer(playerChoice) {
 
 
 }
-
 // Updates players stats
 function updateStats() {
     var option = document.getElementsByClassName("playerStats");
@@ -276,7 +280,6 @@ function updateStats() {
     option[2].innerHTML = "Attack: " + currentPlayer.attack;
     option[3].innerHTML = "Armor: " + currentPlayer.armor;
 }
-
 // places unflipped cards from the deck onto spots surrounding current player
 function stageTiles() {
 
@@ -391,14 +394,12 @@ function move() {
     setOnclickSettings();
     document.getElementById("deck").onclick = stageTiles;
 }
-
 function battle() {
     document.getElementById("battle").style.display = "inline";
-    document.getElementById("battleEnemy").style.backgroundImage = "url(Media/skeleton.png)";
+    document.getElementById("battleEnemy").style.backgroundImage = "url("+currentFoe.image+")";
     document.getElementById("battlePlayer").innerHTML = "<img src = "+currentPlayer.image+">";
     document.getElementById("rollButton").onclick = roll;
 }
-
 function roll() {
     var enemyDieRoll = Math.floor(Math.random()*6);
     var playerDieRoll = Math.floor(Math.random()*6);
@@ -424,7 +425,6 @@ function roll() {
     document.getElementById("rollButton").onclick = "";
 
 }
-
 function returnFromBattle() {
 
     // Clear Return Button, Battle Result Status, and Dice. Return to Game
@@ -434,11 +434,10 @@ function returnFromBattle() {
     document.getElementById("enemyDice").innerHTML = "Enemy's Roll";
     document.getElementById("playerDice").innerHTML = "Player's Roll";
     document.getElementById("battle").style.display = "none";
-
+    document.getElementById(currentFoe.rowLocation+","+currentFoe.colLocation).innerHTML = "";
     // Update Player Stats
     updateStats();
 }
-
 //move function used as the keydown event listener
 function move2(){
     //only run if there isnt a tile being placed
@@ -571,7 +570,6 @@ function move2(){
         getSurroundingTiles();
     }
 }
-
 function clearClickableSettings() {
     var cells = document.getElementsByTagName("td");
     for (var i = 0; i < cells.length; i++) {
