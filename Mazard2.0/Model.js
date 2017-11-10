@@ -218,7 +218,7 @@ var gameBoardSize = {
 /* List of Race Options */
 var playerObjects = {
     "Human" : {
-        image: "Media/human.png",
+        image: "Media/pixelKnight.gif",
         race : "Human",
         attack: 1,
         hp: 15,
@@ -259,7 +259,7 @@ var currentFoe ={
     colLocation: 0
 };
 var foeOptions = [
-    {name: "Skeleton", hp: 1, armor: 0, attack: 1, image: "Media/skeleton.png"},
+    {name: "Skeleton", hp: 1, armor: 0, attack: 1, image: "Media/pixelSkeleton.gif"},
     {name: "Lion", hp:2, armor:0, attack: 2, image: "Media/lion.png"},
     {name: "Knight", hp:3, armor: 1, attack: 1, image: "Media/knight.png"}
 ];
