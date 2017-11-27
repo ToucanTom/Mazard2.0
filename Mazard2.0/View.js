@@ -1,27 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-///TODO
-//\GENERAL
-//  SHOULD ONLY BE ABLE TO FLIP TILES YOU CAN MOVE TO (NO FLIPPING A STAGED TILE ACROSS A WALL)
-//  WIN CONDITION = GEMS
-//  MAYBE ROOMS = 100% EVENT(ITEMS OR BATTLE GUARANTEED)
-//\ITEMS
-//  HEALTH
-//  OFFENSIVE
-//  DEFENSIVE
-//  CHESTS/KEYS
-//  UTILITY (DOORS, TOLL TROLLS, EQUIPMENT, ETC...)
-//\BATTLES
-//  IMAGE SHOULD BE THE SAME AS THE ENCOUNTER ON THE MAP
-//  HIT AND MISS SHOULD BE BASED ON ARMOR
-//  REWARDS FOR BEATING FOES
 
-/* should we create foe locations when we generate grid? should we generate item drops when we generate grid?
-    tiers for items and put higher tier items with more difficult foes.
- */
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var tileBeingPlaced = false;
 function genGameBoard() {
     document.getElementById("newLevel").style.display = "none";
     document.getElementById("rotateCCW").style.display = "none";
@@ -48,8 +26,9 @@ function genGameBoard() {
             }
             else {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[0].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, hasFoe: false, foe: {}, staged: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
+                temp_array[j] = {location: i+","+j, connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
             }
+            // ****** IF YOU CHANGED THE CREATION OF THE GAME BOARD, UPDATE IN Model.js ******
         }
         html += "</td>";
         currentGameBoard[i] = temp_array;
@@ -57,38 +36,16 @@ function genGameBoard() {
     gameBoard.innerHTML = html;
     document.getElementById("currentLevel").innerHTML = "Level " + currentLevel;
     if (currentLevel === 1) {
-        selectRace();
+        populatePlayerOptions();
     }
     else {
         document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
+        document.getElementById("deck").onclick = stageTiles;
     }
 
-    /* **UPDATE IF YOU CHANGE gameBoard**
-        Each element on grid has these data members:
-            string location - row, col - i.e "1,2"
-            boolean connected - is true when a path from this location is connected to tile player is currently on
-            boolean hasFoe - true when element contains a foe
-            object foe -
-                data members:
-                    string name
-                    string image
-                    int hp
-                    int armor
-                    int attack
-            boolean staged - true when element has tile but tile is not flipped over
-            boolean blocked - true when obstacle blocks a path to the element from players current position
-            boolean available - true if not already staged or containing a tile
-            object t_object -
-                data members:
-                    image
-                    north
-                    east
-                    south
-                    west
-     */
-
 }
-function selectRace(){
+
+function populatePlayerOptions(){
     console.log("select race was called");
     var playerOptions = Object.keys(playerObjects);
     var option = document.getElementsByClassName("playerOptions");
@@ -99,7 +56,7 @@ function selectRace(){
     genStats();
 }
 //these variable names suck
-function genStats(){//this puts the character information into the overlay to show the stats of the player option
+function genStats(){  //this puts the character information into the overlay to show the stats of the player option
     var playerOptions = Object.keys(playerObjects);
     var statsLocations = [document.getElementById("playerOption1Stats"),document.getElementById("playerOption2Stats"),document.getElementById("playerOption3Stats")];
     var statOptions = Object.keys(playerObjects["Human"]);
@@ -113,7 +70,50 @@ function genStats(){//this puts the character information into the overlay to sh
 
 
 }
-function flipTile(){
+
+function choosePlayer(playerChoice) {
+    console.log("choosePlayer was called");
+    currentPlayer.race = playerChoice.race;
+    currentPlayer.image = playerChoice.image;
+    currentPlayer.attack = playerChoice.attack;
+    currentPlayer.armor = playerChoice.armor;
+    currentPlayer.hp = playerChoice.hp;
+    document.getElementById("playerSelect").style.display = "none"; //remove the player select div
+    document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
+    document.getElementById("deck").onclick = stageTiles;
+
+    // Visually display characters stats
+    updateStats();
+}
+
+// places unflipped cards from the deck onto spots surrounding current player
+function stageTiles() {
+
+    var setClickableTiles = getSurroundingTiles();
+    for (var i = 0; i < setClickableTiles.length; i++) {
+        if (setClickableTiles[i].available) { // if not already occupied
+            document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/gameDeck.png)";       // Set background as deck
+            currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].staged = true;             // update model
+            currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].available = false;
+        }
+    }
+    // Turn off deck while player chooses a staged tile to be flipped
+    document.getElementById("deck").onclick = "";
+    document.getElementById("deck").innerHTML = "";
+    setOnclickSettings();
+}
+
+function genNewLevel() {
+    currentLevel++;
+    document.getElementById("win").play();
+    document.getElementById("newLevel").style.display = "inline";
+    document.getElementById("newLevel").innerHTML = "Go to Level " + currentLevel;
+    document.getElementById("newLevel").onclick = genGameBoard;
+    gameBoardSize.row++;
+    totalTiles+=6;
+}
+
+/*function flipTile(){
     // updateGameBoardTileObject(currentTile, selectRandomTile());
     var col = this.cellIndex;
     var row = this.parentNode.rowIndex;
@@ -170,26 +170,24 @@ function flipTile(){
     // Sets all other surrounding tiles to unclickable until you finish rotating the current tile
     clearClickableSettings();
 
-}
+}*/
 // used for buttons
 function flipTile2(row, col){
     // updateGameBoardTileObject(currentTile, selectRandomTile());
+    if (col === undefined) {
+        row = this.parentNode.rowIndex;
+        col = this.cellIndex;
+    }
     tileBeingPlaced = true;
     console.log("flipTile2 was called");
     tileCountDown--;
+
+    // FOR NOW - can start new level once last tile is flipped over
     if (tileCountDown === 0) {
-        currentLevel++;
-        document.getElementById("win").play();
-        document.getElementById("newLevel").style.display = "inline";
-        document.getElementById("newLevel").innerHTML = "Go to Level " + currentLevel;
-        document.getElementById("newLevel").onclick = genGameBoard;
-        document.getElementById("deck").onclick = stageTiles;
-        gameBoardSize.row++;
-        totalTiles+=6;
+        genNewLevel();
     }
 
-    // sets clicked tile location to unavailable
-    currentGameBoard[row][col].available = false;
+    // Now that the tile is flipped, it is no longer staged
     currentGameBoard[row][col].staged = false;
 
     // Generates appropriate tile for location clicked and sets it to currentTile
@@ -290,124 +288,7 @@ function setRotation() {
     // Remove tile
     setOnclickSettings();
 }
-function choosePlayer(playerChoice) {
-    console.log("choosePlayer was called");
-    currentPlayer.race = playerChoice.race;
-    currentPlayer.image = playerChoice.image;
-    currentPlayer.attack = playerChoice.attack;
-    currentPlayer.armor = playerChoice.armor;
-    currentPlayer.hp = playerChoice.hp;
-    document.getElementById("playerSelect").style.display = "none"; //remove the player select div
-    document.getElementById(currentPlayer.rowLocation+","+currentPlayer.colLocation).innerHTML = "<img src = "+currentPlayer.image+">";
-    document.getElementById("deck").onclick = stageTiles;
 
-    // Visually display characters stats
-    updateStats();
-
-
-}
-// Updates players stats
-function updateStats() {
-    var option = document.getElementsByClassName("playerStats");
-    option[0].innerHTML = "<img src = " + currentPlayer.image + ">";
-    option[1].innerHTML = "Health: " + currentPlayer.hp;
-    option[2].innerHTML = "Attack: " + currentPlayer.attack;
-    option[3].innerHTML = "Armor: " + currentPlayer.armor;
-}
-// places unflipped cards from the deck onto spots surrounding current player
-function stageTiles() {
-
-    var setClickableTiles = getSurroundingTiles();
-    for (var i = 0; i < setClickableTiles.length; i++) {
-        if (setClickableTiles[i].available) {
-
-            document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/gameDeck.png)";
-            document.getElementById(setClickableTiles[i].location).onclick = flipTile;
-            currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].staged = true;
-        }
-    }
-    document.getElementById("deck").onclick = "";
-    document.getElementById("deck").innerHTML = "";
-    setOnclickSettings();
-}
-
-// returns an array of the surrounding tile objects from currentGameBoard
-function getSurroundingTiles(){
-    var tiles = [];
-    var counter = 0;
-    var counter2 = 0;
-    var row = currentPlayer.rowLocation;
-    var col = currentPlayer.colLocation;
-
-    // For North Tile
-    if(row-1 >= 0 && currentGameBoard[row][col].t_object.north && (currentGameBoard[row-1][col].available || currentGameBoard[row-1][col].t_object.south)) {
-        tiles[counter] = currentGameBoard[row-1][col];
-        if(currentGameBoard[row-1][col].t_object.south){
-            currentGameBoard[row-1][col].connected = true;
-            currentConnectedTiles[counter2++] = currentGameBoard[row-1][col].location;
-        }
-        counter++;
-    }
-
-    // For East Tile
-    if (col+1 < gameBoardSize.col && currentGameBoard[row][col].t_object.east && (currentGameBoard[row][col+1].available || currentGameBoard[row][col+1].t_object.west)) {
-        tiles[counter] = currentGameBoard[row][col+1];
-        if(currentGameBoard[row][col+1].t_object.west){
-            currentGameBoard[row][col+1].connected = true;
-            currentConnectedTiles[counter2++] = currentGameBoard[row][col+1].location;
-        }
-        counter++;
-    }
-
-    // For South Tile
-    if (row+1 < gameBoardSize.row && currentGameBoard[row][col].t_object.south && (currentGameBoard[row+1][col].available || currentGameBoard[row+1][col].t_object.north)) {
-        tiles[counter] = currentGameBoard[row+1][col];
-        if(currentGameBoard[row+1][col].t_object.north){
-            currentGameBoard[row+1][col].connected = true;
-            currentConnectedTiles[counter2++] = currentGameBoard[row+1][col].location;
-        }
-        counter++;
-    }
-
-    // For West Tile
-    if (col-1 >= 0 && currentGameBoard[row][col].t_object.west && (currentGameBoard[row][col-1].available || currentGameBoard[row][col-1].t_object.east)) {
-        tiles[counter] = currentGameBoard[row][col-1];
-        if(currentGameBoard[row][col-1].t_object.east){
-            currentGameBoard[row][col-1].connected = true;
-            currentConnectedTiles[counter2] = currentGameBoard[row][col-1].location;
-        }
-    }
-
-    return tiles;
-}
-function setOnclickSettings(){
-    var targets = getSurroundingTiles();//get the surrounding tiles
-    for (var i =0;i<targets.length;i++){
-        if(targets[i].staged){
-            document.getElementById(targets[i].location).onclick = flipTile;
-        } else if(targets[i].available){
-            document.getElementById("deck").onclick = stageTiles;
-        } else{
-            document.getElementById(targets[i].location).onclick = move;
-           // document.getElementById(targets[i].location).addEventListener("onkeydown",function (){} );
-        }
-        // if (targets[i].available){//check if there is a tile already placed in each location
-        //     document.getElementById("deck").onclick = placeDeck;
-        // }else if ( i === 0 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.north && targets[i].t_object.south){//if there is a tile and there is a connected path onclick = move
-        //     document.getElementById(targets[i].location).onclick = move;
-        //     document.getElementById(targets[i].location).innerHTML ="click to move here";
-        // }else if ( i === 1 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.east && targets[i].t_object.west){//if there is a tile and there is a connected path onclick = move
-        //     document.getElementById(targets[i].location).onclick = move;
-        //     document.getElementById(targets[i].location).innerHTML ="click to move here";
-        // }else if ( i === 2 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.south && targets[i].t_object.north){//if there is a tile and there is a connected path onclick = move
-        //     document.getElementById(targets[i].location).onclick = move;
-        //     document.getElementById(targets[i].location).innerHTML ="click to move here";
-        // }else if ( i === 3 && currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].t_object.west && targets[i].t_object.east){//if there is a tile and there is a connected path onclick = move
-        //     document.getElementById(targets[i].location).onclick = move;
-        //     document.getElementById(targets[i].location).innerHTML ="click to move here";
-        // }
-    }
-}
 // move used as the onclick attribute
 function move() {
     var row = this.parentNode.rowIndex;
@@ -605,12 +486,95 @@ function move2(){
         getSurroundingTiles();
     }
 }
+
+// Updates players stats
+function updateStats() {
+    var option = document.getElementsByClassName("playerStats");
+    option[0].innerHTML = "<img src = " + currentPlayer.image + ">";
+    option[1].innerHTML = "Health: " + currentPlayer.hp;
+    option[2].innerHTML = "Attack: " + currentPlayer.attack;
+    option[3].innerHTML = "Armor: " + currentPlayer.armor;
+}
+
 function clearClickableSettings() {
     var cells = document.getElementsByTagName("td");
     for (var i = 0; i < cells.length; i++) {
         cells[i].onclick = "";
     }
 }
+
+// returns an array of the surrounding tile objects from currentGameBoard
+function getSurroundingTiles(){
+    var tiles = [];
+    var counter = 0;
+    var counter2 = 0;
+    var row = currentPlayer.rowLocation;
+    var col = currentPlayer.colLocation;
+
+    // For North Tile
+    if(row-1 >= 0 && currentGameBoard[row][col].t_object.north &&
+        (currentGameBoard[row-1][col].available || currentGameBoard[row-1][col].staged || currentGameBoard[row-1][col].t_object.south)) {
+
+        tiles[counter] = currentGameBoard[row-1][col];
+        if(currentGameBoard[row-1][col].t_object.south){
+            currentGameBoard[row-1][col].connected = true;
+            currentConnectedTiles[counter2++] = currentGameBoard[row-1][col].location;
+        }
+        counter++;
+    }
+
+    // For East Tile
+    if (col+1 < gameBoardSize.col && currentGameBoard[row][col].t_object.east &&
+        (currentGameBoard[row][col+1].available || currentGameBoard[row][col+1].staged || currentGameBoard[row][col+1].t_object.west)) {
+
+        tiles[counter] = currentGameBoard[row][col+1];
+        if(currentGameBoard[row][col+1].t_object.west){
+            currentGameBoard[row][col+1].connected = true;
+            currentConnectedTiles[counter2++] = currentGameBoard[row][col+1].location;
+        }
+        counter++;
+    }
+
+    // For South Tile
+    if (row+1 < gameBoardSize.row && currentGameBoard[row][col].t_object.south &&
+        (currentGameBoard[row+1][col].available || currentGameBoard[row+1][col].staged || currentGameBoard[row+1][col].t_object.north)) {
+        tiles[counter] = currentGameBoard[row+1][col];
+        if(currentGameBoard[row+1][col].t_object.north){
+            currentGameBoard[row+1][col].connected = true;
+            currentConnectedTiles[counter2++] = currentGameBoard[row+1][col].location;
+        }
+        counter++;
+    }
+
+    // For West Tile
+    if (col-1 >= 0 && currentGameBoard[row][col].t_object.west &&
+        (currentGameBoard[row][col-1].available || currentGameBoard[row][col-1].staged || currentGameBoard[row][col-1].t_object.east)) {
+        tiles[counter] = currentGameBoard[row][col-1];
+        if(currentGameBoard[row][col-1].t_object.east){
+            currentGameBoard[row][col-1].connected = true;
+            currentConnectedTiles[counter2] = currentGameBoard[row][col-1].location;
+        }
+    }
+
+    return tiles;
+}
+
+function setOnclickSettings(){
+    var targets = getSurroundingTiles();
+    for (var i =0;i<targets.length;i++){
+        if (targets[i].available) {
+            document.getElementById("deck").onclick = stageTiles;
+        }
+        else if(targets[i].staged) {
+            document.getElementById(targets[i].location).onclick = flipTile2;
+        } else {
+            document.getElementById(targets[i].location).onclick = move;
+            // document.getElementById(targets[i].location).addEventListener("onkeydown",function (){} );
+        }
+    }
+}
+
+
 /*/////////Elephant bone yard/////////*/
 /* function placeTile() */
  /*{

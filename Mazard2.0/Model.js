@@ -264,19 +264,28 @@ var foeOptions = [
     {name: "Knight", hp:3, armor: 1, attack: 1, image: "Media/knight.png"}
 ];
 /* This is our global game board
-    Data Members
-        t_object {
+    Grid Element Data Members:
+        location: (0,0) is top left
+        connected: is this element currently connected to the element your player is on?
+        hasFoe: does it have a foe?
+        foe: foe object
+        staged: is this element staged
+
+        blocked: is movement to this element by the player blocked?  <-------- Need to modify:
+            ** this could be true or false depending on which direction you come to the tile from
+            ** Thought: just use the north, east, south, west members of t_object. Set to false if blocked
+
+        available: is this element currently completely unoccupied?
+        t_object {   <--- tile object the element holds
            image
            north
            east
            south
            west }
-       location
-       hasFoe
-       blocked
-       available
+
 */
 var currentGameBoard = [];
+
 function updateGameBoardTileObject(target , template){
     console.log("updateGameBoardTileObject was called");
 
@@ -290,6 +299,7 @@ function updateGameBoardTileObject(target , template){
     target.south = template.south;
     target.west = template.west;
 }
+
 var currentTile =  {
     image: "",
     north: true,
@@ -302,6 +312,7 @@ var currentTile =  {
     rotCCW: 0,
     hasFoe: false
 };
+
 /*contains the location of tiles connected to the players current location in #,# format*/
 var currentConnectedTiles = [];
 
@@ -311,6 +322,7 @@ var totalTiles = gameBoardSize.row * gameBoardSize.col;
 
 var currentLevel = 1;
 
+var tileBeingPlaced = false;
 
 function selectRandomTile(directionOfSelectedTile){
     var filteredTileKeys = [];
