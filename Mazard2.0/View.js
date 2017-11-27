@@ -282,6 +282,9 @@ function setRotation() {
         //add an alert of some kind
             //maybe use a message div for multiple events?
 
+            // Want to set it up to show enemy right when tile is flipped... then since you are forces
+            // to set tile, you have to battle no matter what, but you get to see it first.
+
         // call up the battle div
         battle();
     }
