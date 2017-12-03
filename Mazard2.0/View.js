@@ -173,18 +173,33 @@ function genNewLevel() {
 }*/
 // used for buttons
 function flipTile2(row, col){
-    // updateGameBoardTileObject(currentTile, selectRandomTile());
+    // Checks for clicking vs key presses
     if (col === undefined) {
         row = this.parentNode.rowIndex;
         col = this.cellIndex;
     }
-    tileBeingPlaced = true;
+
+    // flag to inhibit movement
+    immobile = true;
     console.log("flipTile2 was called");
     tileCountDown--;
 
     // FOR NOW - can start new level once last tile is flipped over
     if (tileCountDown === 0) {
         genNewLevel();
+    }
+
+    // 33% chance to generate a foe to fight and return to stage tile state if foe generated
+    var randNum = Math.floor(Math.random()*8);
+    if (randNum <= 2) {
+        // Show a message that you are about to battle
+        document.getElementById("message").innerHTML = "A enemy has spotted you!";
+        document.getElementById("message").style.display = "inline";
+        // Waits 2 seconds before proceeding with the battle
+        setTimeout(function() {battle(foeOptions[randNum])}, 2000);
+        return;
+        //currentFoe = foeOptions[randNum];
+        //currentTile.hasFoe = true;
     }
 
     // Now that the tile is flipped, it is no longer staged
@@ -204,22 +219,11 @@ function flipTile2(row, col){
         updateGameBoardTileObject(currentTile, selectRandomTile("west"));
     }
 
-    var randNum = Math.floor(Math.random()*8);
-    if (randNum <= 2) {
-        currentFoe = foeOptions[randNum];
-        currentTile.hasFoe = true
-    }
     // set location of current tile
     currentTile.location = row + "," + col;
 
     // sets tile background to randomly chosen tile - aka "flips the tile at that location"
     document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
-
-    if (currentTile.hasFoe) {
-        document.getElementById(row + "," + col).innerHTML = "<img src = " + currentFoe.image + ">";
-    }
-
-    currentTile.hasFoe = false;
 
     // Generates rotation buttons to be able to rotate randomly selected tile
     genRotateDivs();
@@ -267,14 +271,13 @@ function setRotation() {
     document.getElementById("setRotate").style.display = "none";
 
 
-
     // Update gameboard
     updateGameBoardTileObject(currentGameBoard[currentTile.location[0]][currentTile.location[2]].t_object,currentTile);
-    tileBeingPlaced = false;
+    immobile = false;
     // Place enemy after rotation set
     //decide if there is a foe or anything else......
-    var randNum = Math.floor((Math.random()*8));
-    if (randNum <= 2) {
+    //var randNum = Math.floor((Math.random()*8));
+    /*if (randNum <= 2) {
         currentFoe = foeOptions[randNum];
         currentFoe.rowLocation = currentTile.location[0];
         currentFoe.colLocation = currentTile.location[2];
@@ -287,7 +290,7 @@ function setRotation() {
 
         // call up the battle div
         battle();
-    }
+    }*/
     // Remove tile
     setOnclickSettings();
 }
@@ -299,23 +302,15 @@ function move() {
     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
-    if (document.getElementById(row + "," + col).hasFoe === true) {
-        battle();
-        if (currentPlayer.hp === 0) {
-            document.getElementById("message").innerHTML = "YOU DIED";
-            document.getElementById("message").style.display = "inline";
-        }
-    }
     document.getElementById(row + "," + col).innerHTML = "<img src = "+currentPlayer.image+">";
-    document.getElementById(row + "," + col).hasFoe = false;
-    updateStats();
     clearClickableSettings();
     setOnclickSettings();
     document.getElementById("deck").onclick = stageTiles;
 }
-function battle() {
+function battle(foeObject) {
+    document.getElementById("message").style.display = "none";
     document.getElementById("battle").style.display = "inline";
-    document.getElementById("battleEnemy").style.backgroundImage = "url("+currentFoe.image+")";
+    document.getElementById("battleEnemy").style.backgroundImage = "url("+foeObject.image+")";
     document.getElementById("battlePlayer").innerHTML = "<img src = "+currentPlayer.image+">";
     document.getElementById("rollButton").onclick = roll;
 }
@@ -353,14 +348,14 @@ function returnFromBattle() {
     document.getElementById("enemyDice").innerHTML = "Enemy's Roll";
     document.getElementById("playerDice").innerHTML = "Player's Roll";
     document.getElementById("battle").style.display = "none";
-    document.getElementById(currentFoe.rowLocation+","+currentFoe.colLocation).innerHTML = "";
     // Update Player Stats
     updateStats();
+    stageTiles();
 }
 //move function used as the keydown event listener
 function move2(){
     // only run if there isnt a tile being placed
-  if(!tileBeingPlaced) {
+  if(!immobile) {
     console.log("move2 was called");
     var currentSurroundingTiles = getSurroundingTiles();
     var i;
@@ -383,16 +378,7 @@ function move2(){
                     }
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
                     currentPlayer.rowLocation++;
-                    if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
-                        battle();
-                        if (currentPlayer.hp === 0) {
-                            document.getElementById("message").innerHTML = "YOU DIED";
-                            document.getElementById("message").style.display = "inline";
-                        }
-                    }
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe = false;
-                    updateStats();
                     clearClickableSettings();
                     setOnclickSettings();
                     document.getElementById("deck").onclick = stageTiles;
@@ -411,16 +397,7 @@ function move2(){
                     }
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
                     currentPlayer.colLocation++;
-                    if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
-                        battle();
-                        if (currentPlayer.hp === 0) {
-                            document.getElementById("message").innerHTML = "YOU DIED";
-                            document.getElementById("message").style.display = "inline";
-                        }
-                    }
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe = false;
-                    updateStats();
                     clearClickableSettings();
                     setOnclickSettings();
                     document.getElementById("deck").onclick = stageTiles;
@@ -439,16 +416,7 @@ function move2(){
                     }
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
                     currentPlayer.rowLocation--;
-                    if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
-                        battle();
-                        if (currentPlayer.hp === 0) {
-                            document.getElementById("message").innerHTML = "YOU DIED";
-                            document.getElementById("message").style.display = "inline";
-                        }
-                    }
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe = false;
-                    updateStats();
                     clearClickableSettings();
                     setOnclickSettings();
                     document.getElementById("deck").onclick = stageTiles;
@@ -467,16 +435,7 @@ function move2(){
                     }
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
                     currentPlayer.colLocation--;
-                    if (document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe === true) {
-                        battle();
-                        if (currentPlayer.hp === 0) {
-                            document.getElementById("message").innerHTML = "YOU DIED";
-                            document.getElementById("message").style.display = "inline";
-                        }
-                    }
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).hasFoe = false;
-                    updateStats();
                     clearClickableSettings();
                     setOnclickSettings();
                     document.getElementById("deck").onclick = stageTiles;

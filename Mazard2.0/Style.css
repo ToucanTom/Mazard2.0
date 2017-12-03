@@ -42,15 +42,19 @@ body{
 }
 
 #message {
-    width: 100vw;
-    height: 100vh;
+    width: 50vw;
+    height: 50vh;
     background-color: #D4DDF7;
     position: absolute;
     z-index: 1000;
     display: none;
+    margin-top: 25vh;
+    margin-left: 25vw;
     text-align: center;
+    font-size: x-large;
     line-height: 50vh;
 }
+
 
 #battle {
     width: 50vw;

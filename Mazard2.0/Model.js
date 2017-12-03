@@ -322,7 +322,7 @@ var totalTiles = gameBoardSize.row * gameBoardSize.col;
 
 var currentLevel = 1;
 
-var tileBeingPlaced = false;
+var immobile = false;
 
 function selectRandomTile(directionOfSelectedTile){
     var filteredTileKeys = [];
