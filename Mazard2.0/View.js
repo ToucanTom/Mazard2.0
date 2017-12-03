@@ -190,7 +190,7 @@ function flipTile2(row, col){
         document.getElementById("message").innerHTML = "A enemy has spotted you!";
         document.getElementById("message").style.display = "inline";
         // Waits 2 seconds before proceeding with the battle
-        setTimeout(function() {battle(foeOptions[randNum])}, 2000);
+        setTimeout(function() {battle(foeOptions[randNum])}, 4000);
         return;
         //currentFoe = foeOptions[randNum];
         //currentTile.hasFoe = true;
@@ -355,6 +355,7 @@ function returnFromBattle() {
     // Update Player Stats
     updateStats();
 
+    // check if battle lowered hp to 0
     if (currentPlayer.hp === 0) {
         document.getElementById("message").innerHTML = "You ded foo";
         document.getElementById("message").style.display = "inline";

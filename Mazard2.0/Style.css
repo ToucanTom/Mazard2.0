@@ -49,10 +49,11 @@ body{
     z-index: 1000;
     display: none;
     margin-top: 25vh;
-    margin-left: 25vw;
     text-align: center;
     font-size: x-large;
     line-height: 50vh;
+    animation-name: newFoe;
+    animation-duration: 4s;
 }
 
 
@@ -306,4 +307,10 @@ td{
 }
 .playerOptions:hover  #playerOption3Stats{
     display: inline;
+}
+
+@keyframes newFoe {
+    0%  {background-color:#D4DDF7; left:-50%; top:0px;}
+    50%  {background-color:teal; left:25%; top:0px;}
+    100% {background-color:green; left:100%; top:0px;}
 }
