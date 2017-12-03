@@ -182,12 +182,6 @@ function flipTile2(row, col){
     // flag to inhibit movement
     immobile = true;
     console.log("flipTile2 was called");
-    tileCountDown--;
-
-    // FOR NOW - can start new level once last tile is flipped over
-    if (tileCountDown === 0) {
-        genNewLevel();
-    }
 
     // 33% chance to generate a foe to fight and return to stage tile state if foe generated
     var randNum = Math.floor(Math.random()*8);
@@ -200,6 +194,13 @@ function flipTile2(row, col){
         return;
         //currentFoe = foeOptions[randNum];
         //currentTile.hasFoe = true;
+    }
+
+    tileCountDown--;
+
+    // FOR NOW - can start new level once last tile is flipped over
+    if (tileCountDown === 0) {
+        genNewLevel();
     }
 
     // Now that the tile is flipped, it is no longer staged
@@ -297,6 +298,9 @@ function setRotation() {
 
 // move used as the onclick attribute
 function move() {
+    if (immobile) {
+        return;
+    }
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
@@ -350,12 +354,24 @@ function returnFromBattle() {
     document.getElementById("battle").style.display = "none";
     // Update Player Stats
     updateStats();
+
+    if (currentPlayer.hp === 0) {
+        document.getElementById("message").innerHTML = "You ded foo";
+        document.getElementById("message").style.display = "inline";
+        immobile = true;
+        return;
+    }
+
+    // this currently stages all tiles around player even if you haven't staged them previously by clicking deck
     stageTiles();
+    immobile = false;
 }
 //move function used as the keydown event listener
 function move2(){
     // only run if there isnt a tile being placed
-  if(!immobile) {
+    if(immobile) {
+        return;
+    }
     console.log("move2 was called");
     var currentSurroundingTiles = getSurroundingTiles();
     var i;
@@ -364,89 +380,88 @@ function move2(){
     // todo
     // there is a problem with stage tiles if you move using the buttons
 
-        switch (keyCode) {
-            // down 's'
-            case(83):
-            case(40):
-                // down ^
-                if (currentGameBoard[currentPlayer.rowLocation + 1][currentPlayer.colLocation].staged) {
-                    flipTile2(currentPlayer.rowLocation + 1, currentPlayer.colLocation);
+    switch (keyCode) {
+        // down 's'
+        case(83):
+        case(40):
+            // down ^
+            if (currentGameBoard[currentPlayer.rowLocation + 1][currentPlayer.colLocation].staged) {
+                flipTile2(currentPlayer.rowLocation + 1, currentPlayer.colLocation);
+            }
+            else if (currentGameBoard[currentPlayer.rowLocation + 1][currentPlayer.colLocation].connected) {
+                for (i = 0; i < currentSurroundingTiles.length; i++) {
+                    currentSurroundingTiles[i].connected = false;
                 }
-                else if (currentGameBoard[currentPlayer.rowLocation + 1][currentPlayer.colLocation].connected) {
-                    for (i = 0; i < currentSurroundingTiles.length; i++) {
-                        currentSurroundingTiles[i].connected = false;
-                    }
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
-                    currentPlayer.rowLocation++;
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
-                    clearClickableSettings();
-                    setOnclickSettings();
-                    document.getElementById("deck").onclick = stageTiles;
+                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                currentPlayer.rowLocation++;
+                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
+                clearClickableSettings();
+                setOnclickSettings();
+                document.getElementById("deck").onclick = stageTiles;
+            }
+            break;
+        // right 'D'
+        case(68):
+        case(39):
+            // right >
+            if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation + 1].staged) {
+                flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation + 1);
+            }
+            else if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation + 1].connected) {
+                for (i = 0; i < currentSurroundingTiles.length; i++) {
+                    currentSurroundingTiles[i].connected = false;
                 }
-                break;
-            // right 'D'
-            case(68):
-            case(39):
-                // right >
-                if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation + 1].staged) {
-                    flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation + 1);
+                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                currentPlayer.colLocation++;
+                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
+                clearClickableSettings();
+                setOnclickSettings();
+                document.getElementById("deck").onclick = stageTiles;
+            }
+            break;
+        // up ^
+        case(38):
+        case(87):
+            // up 'W'
+            if (currentGameBoard[currentPlayer.rowLocation - 1][currentPlayer.colLocation].staged) {
+                flipTile2(currentPlayer.rowLocation - 1, currentPlayer.colLocation);
+            }
+            else if (currentGameBoard[currentPlayer.rowLocation - 1][currentPlayer.colLocation].connected) {
+                for (i = 0; i < currentSurroundingTiles.length; i++) {
+                    currentSurroundingTiles[i].connected = false;
                 }
-                else if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation + 1].connected) {
-                    for (i = 0; i < currentSurroundingTiles.length; i++) {
-                        currentSurroundingTiles[i].connected = false;
-                    }
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
-                    currentPlayer.colLocation++;
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
-                    clearClickableSettings();
-                    setOnclickSettings();
-                    document.getElementById("deck").onclick = stageTiles;
+                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                currentPlayer.rowLocation--;
+                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
+                clearClickableSettings();
+                setOnclickSettings();
+                document.getElementById("deck").onclick = stageTiles;
+            }
+            break;
+        // left <
+        case(37):
+        case(65):
+            // left 'A'
+            if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation - 1].staged) {
+                flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation - 1);
+            }
+            else if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation - 1].connected) {
+                for (i = 0; i < currentSurroundingTiles.length; i++) {
+                    currentSurroundingTiles[i].connected = false;
                 }
-                break;
-            // up ^
-            case(38):
-            case(87):
-                // up 'W'
-                if (currentGameBoard[currentPlayer.rowLocation - 1][currentPlayer.colLocation].staged) {
-                    flipTile2(currentPlayer.rowLocation - 1, currentPlayer.colLocation);
-                }
-                else if (currentGameBoard[currentPlayer.rowLocation - 1][currentPlayer.colLocation].connected) {
-                    for (i = 0; i < currentSurroundingTiles.length; i++) {
-                        currentSurroundingTiles[i].connected = false;
-                    }
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
-                    currentPlayer.rowLocation--;
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
-                    clearClickableSettings();
-                    setOnclickSettings();
-                    document.getElementById("deck").onclick = stageTiles;
-                }
-                break;
-            // left <
-            case(37):
-            case(65):
-                // left 'A'
-                if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation - 1].staged) {
-                    flipTile2(currentPlayer.rowLocation, currentPlayer.colLocation - 1);
-                }
-                else if (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation - 1].connected) {
-                    for (i = 0; i < currentSurroundingTiles.length; i++) {
-                        currentSurroundingTiles[i].connected = false;
-                    }
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
-                    currentPlayer.colLocation--;
-                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
-                    clearClickableSettings();
-                    setOnclickSettings();
-                    document.getElementById("deck").onclick = stageTiles;
-                }
-                break;
-        }
-
-        // update currentConnected[]
-        currentConnectedTiles = [];
-        getSurroundingTiles();
+                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                currentPlayer.colLocation--;
+                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
+                clearClickableSettings();
+                setOnclickSettings();
+                document.getElementById("deck").onclick = stageTiles;
+            }
+            break;
     }
+
+    // update currentConnected[]
+    currentConnectedTiles = [];
+    getSurroundingTiles();
 }
 
 // Updates players stats
@@ -512,7 +527,7 @@ function getSurroundingTiles(){
     if (col-1 >= 0 && currentGameBoard[row][col].t_object.west &&
         (currentGameBoard[row][col-1].available || currentGameBoard[row][col-1].staged || currentGameBoard[row][col-1].t_object.east)) {
         tiles[counter] = currentGameBoard[row][col-1];
-        if(currentGameBoard[row][col-1].t_object.east){
+        if(currentGameBoard[row][col-1].t_object.east) {
             currentGameBoard[row][col-1].connected = true;
             currentConnectedTiles[counter2] = currentGameBoard[row][col-1].location;
         }
@@ -523,7 +538,7 @@ function getSurroundingTiles(){
 
 function setOnclickSettings(){
     var targets = getSurroundingTiles();
-    for (var i =0;i<targets.length;i++){
+    for (var i = 0; i<targets.length; i++){
         if (targets[i].available) {
             document.getElementById("deck").onclick = stageTiles;
         }
