@@ -46,12 +46,23 @@ body{
     height: 50vh;
     background-color: #D4DDF7;
     position: absolute;
-    z-index: 1000;
+    z-index: 1;
     display: none;
     margin-top: 25vh;
     text-align: center;
     font-size: x-large;
     line-height: 50vh;
+    animation-name: newFoeMessage;
+    animation-duration: 4s;
+}
+
+#newFoe {
+    height: 90px;
+    width: 90px;
+    position: absolute;
+    z-index: 2;
+    margin-top: 55vh;
+    display: none;
     animation-name: newFoe;
     animation-duration: 4s;
 }
@@ -309,8 +320,14 @@ td{
     display: inline;
 }
 
+@keyframes newFoeMessage {
+    0%  {background-color:#D4DDF7; left:-50%;}
+    50%  {background-color:teal; left:25%;}
+    100% {background-color:green; left:100%;}
+}
+
 @keyframes newFoe {
-    0%  {background-color:#D4DDF7; left:-50%; top:0px;}
-    50%  {background-color:teal; left:25%; top:0px;}
-    100% {background-color:green; left:100%; top:0px;}
+    0% {left:100%;}
+    50% {left: 48%;}
+    100% {left: 123%}
 }

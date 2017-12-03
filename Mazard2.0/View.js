@@ -189,8 +189,11 @@ function flipTile2(row, col){
         // Show a message that you are about to battle
         document.getElementById("message").innerHTML = "A enemy has spotted you!";
         document.getElementById("message").style.display = "inline";
+        document.getElementById("newFoe").style.backgroundImage = "url(" + foeOptions[randNum].image + ")";
+        document.getElementById("newFoe").style.display = "inline";
         // Waits 2 seconds before proceeding with the battle
         setTimeout(function() {battle(foeOptions[randNum])}, 4000);
+
         return;
         //currentFoe = foeOptions[randNum];
         //currentTile.hasFoe = true;
@@ -313,6 +316,7 @@ function move() {
 }
 function battle(foeObject) {
     document.getElementById("message").style.display = "none";
+    document.getElementById("newFoe").style.display = "none";
     document.getElementById("battle").style.display = "inline";
     document.getElementById("battleEnemy").style.backgroundImage = "url("+foeObject.image+")";
     document.getElementById("battlePlayer").innerHTML = "<img src = "+currentPlayer.image+">";
