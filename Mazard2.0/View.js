@@ -364,6 +364,7 @@ function returnFromBattle() {
         document.getElementById("message").innerHTML = "You ded foo";
         document.getElementById("message").style.display = "inline";
         immobile = true;
+        clearClickableSettings();
         return;
     }
 

@@ -17,8 +17,8 @@
       <file leaf-file-name="Mazard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mazard2.0/Mazard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+            <state relative-caret-position="462">
+              <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
               <folding>
                 <element signature="n#style#0;n#div#7;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -26,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mazard2.0/Style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="324" column="43" lean-forward="true" selection-start-line="324" selection-start-column="43" selection-end-line="324" selection-end-column="43" />
+            <state relative-caret-position="469">
+              <caret line="330" column="20" lean-forward="true" selection-start-line="330" selection-start-column="20" selection-end-line="330" selection-end-column="20" />
               <folding>
                 <marker date="1512345148212" expanded="true" signature="4399:4578" ph="{...}" />
               </folding>
@@ -38,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="View.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="View.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mazard2.0/View.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="317" column="62" lean-forward="false" selection-start-line="317" selection-start-column="62" selection-end-line="317" selection-end-column="62" />
+            <state relative-caret-position="200">
+              <caret line="366" column="33" lean-forward="false" selection-start-line="366" selection-start-column="33" selection-end-line="366" selection-end-column="33" />
               <folding>
                 <element signature="n#!!block;n#populatePlayerOptions#0" expanded="false" />
                 <element signature="n#!!block;n#genStats#0" expanded="false" />
@@ -53,8 +53,8 @@
                 <element signature="n#!!block;n#rotateCW#0" expanded="false" />
                 <element signature="n#!!block;n#updateStats#0" expanded="false" />
                 <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-                <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-                <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+                <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+                <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
               </folding>
             </state>
           </provider>
@@ -118,8 +118,8 @@
         <option value="$PROJECT_DIR$/Mazard2.0/Model.js" />
         <option value="$PROJECT_DIR$/Mazard2.0/TileAnimation.js" />
         <option value="$PROJECT_DIR$/Mazard2.0/Mazard.html" />
-        <option value="$PROJECT_DIR$/Mazard2.0/View.js" />
         <option value="$PROJECT_DIR$/Mazard2.0/Style.css" />
+        <option value="$PROJECT_DIR$/Mazard2.0/View.js" />
       </list>
     </option>
   </component>
@@ -218,12 +218,12 @@
       <workItem from="1511757541650" duration="11213000" />
       <workItem from="1511895919275" duration="650000" />
       <workItem from="1512241738083" duration="14187000" />
-      <workItem from="1512332159342" duration="4168000" />
+      <workItem from="1512332159342" duration="4949000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178590000" />
+    <option name="totallyTimeSpent" value="179371000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -274,8 +274,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -334,8 +334,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -374,8 +374,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -424,8 +424,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -464,8 +464,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -534,8 +534,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -574,8 +574,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -624,8 +624,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -684,8 +684,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -724,8 +724,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -774,8 +774,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -794,24 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
           <caret line="804" column="0" lean-forward="false" selection-start-line="804" selection-start-column="0" selection-end-line="804" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mazard2.0/Links.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="910">
-          <caret line="53" column="33" lean-forward="false" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mazard2.0/Model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="313" column="2" lean-forward="true" selection-start-line="313" selection-start-column="2" selection-end-line="313" selection-end-column="2" />
-          <folding>
-            <marker date="1512263719242" expanded="true" signature="466:483" ph="{&quot;name&quot;: &quot;east&quot;...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -839,10 +821,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Mazard2.0/Links.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="910">
+          <caret line="53" column="33" lean-forward="false" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mazard2.0/Model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="313" column="2" lean-forward="true" selection-start-line="313" selection-start-column="2" selection-end-line="313" selection-end-column="2" />
+          <folding>
+            <marker date="1512263719242" expanded="true" signature="466:483" ph="{&quot;name&quot;: &quot;east&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mazard2.0/Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="330" column="20" lean-forward="true" selection-start-line="330" selection-start-column="20" selection-end-line="330" selection-end-column="20" />
+          <folding>
+            <marker date="1512345148212" expanded="true" signature="4399:4578" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Mazard2.0/Mazard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        <state relative-caret-position="462">
+          <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#div#7;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -851,8 +861,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mazard2.0/View.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="317" column="62" lean-forward="false" selection-start-line="317" selection-start-column="62" selection-end-line="317" selection-end-column="62" />
+        <state relative-caret-position="200">
+          <caret line="366" column="33" lean-forward="false" selection-start-line="366" selection-start-column="33" selection-end-line="366" selection-end-column="33" />
           <folding>
             <element signature="n#!!block;n#populatePlayerOptions#0" expanded="false" />
             <element signature="n#!!block;n#genStats#0" expanded="false" />
@@ -863,18 +873,8 @@
             <element signature="n#!!block;n#rotateCW#0" expanded="false" />
             <element signature="n#!!block;n#updateStats#0" expanded="false" />
             <element signature="n#!!block;n#getSurroundingTiles#0" expanded="false" />
-            <marker date="1512344757902" expanded="true" signature="913:964" ph="..." />
-            <marker date="1512344757902" expanded="true" signature="1398:1449" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mazard2.0/Style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="324" column="43" lean-forward="true" selection-start-line="324" selection-start-column="43" selection-end-line="324" selection-end-column="43" />
-          <folding>
-            <marker date="1512345148212" expanded="true" signature="4399:4578" ph="{...}" />
+            <marker date="1512345886873" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512345886873" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
