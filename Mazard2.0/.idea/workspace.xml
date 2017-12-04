@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9d6592f4-c34e-44fa-a074-5866126bd4c9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/View.js" afterPath="$PROJECT_DIR$/View.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,14 +20,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Mazard.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Mazard.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mazard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-              <folding>
-                <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="1">
+              <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -34,23 +33,23 @@
       <file leaf-file-name="View.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/View.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="482" column="32" lean-forward="true" selection-start-line="482" selection-start-column="32" selection-end-line="482" selection-end-column="32" />
+            <state relative-caret-position="258">
+              <caret line="186" column="45" lean-forward="false" selection-start-line="186" selection-start-column="45" selection-end-line="186" selection-end-column="45" />
               <folding>
-                <element signature="e#28763#29558#0" expanded="false" />
-                <element signature="e#29594#31546#0" expanded="false" />
-                <marker date="1509734189993" expanded="true" signature="1814:1865" ph="..." />
-                <marker date="1509734189993" expanded="true" signature="2299:2350" ph="..." />
+                <element signature="e#23945#24740#0" expanded="false" />
+                <element signature="e#24776#26728#0" expanded="false" />
+                <marker date="1512398150406" expanded="true" signature="913:964" ph="..." />
+                <marker date="1512398150406" expanded="true" signature="1398:1449" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Model.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+            <state relative-caret-position="21">
+              <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding>
                 <element signature="e#466#651#0" expanded="false" />
                 <element signature="e#657#840#0" expanded="false" />
@@ -61,9 +60,7 @@
                 <element signature="e#4177#4579#0" expanded="false" />
                 <element signature="e#4629#4740#0" expanded="false" />
                 <element signature="e#4758#4868#0" expanded="false" />
-                <element signature="e#5124#5342#0" expanded="false" />
                 <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-                <element signature="e#5867#6041#0" expanded="false" />
                 <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
               </folding>
             </state>
@@ -73,15 +70,16 @@
       <file leaf-file-name="Style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="211" column="17" lean-forward="true" selection-start-line="211" selection-start-column="17" selection-end-line="211" selection-end-column="17" />
+            <state relative-caret-position="4221">
+              <caret line="227" column="17" lean-forward="false" selection-start-line="227" selection-start-column="17" selection-end-line="227" selection-end-column="17" />
               <folding>
                 <element signature="e#118#152#0" expanded="false" />
                 <element signature="e#164#191#0" expanded="false" />
                 <element signature="e#201#378#0" expanded="false" />
                 <element signature="e#393#560#0" expanded="false" />
                 <element signature="e#572#660#0" expanded="false" />
-                <element signature="e#671#851#0" expanded="false" />
+                <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+                <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -102,6 +100,7 @@
       <find>Object.keys</find>
       <find>has</find>
       <find>hasFoe</find>
+      <find>battle</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -115,9 +114,9 @@
       <list>
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Mazard.html" />
-        <option value="$PROJECT_DIR$/View.js" />
         <option value="$PROJECT_DIR$/Style.css" />
         <option value="$PROJECT_DIR$/Model.js" />
+        <option value="$PROJECT_DIR$/View.js" />
       </list>
     </option>
   </component>
@@ -225,11 +224,12 @@
       <workItem from="1509573005046" duration="1188000" />
       <workItem from="1509728536969" duration="3673000" />
       <workItem from="1510343513717" duration="4600000" />
+      <workItem from="1512357310800" duration="2083000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115774000" />
+    <option name="totallyTimeSpent" value="117857000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -276,7 +276,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -285,9 +286,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -301,7 +300,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -320,9 +320,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -342,9 +340,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -360,7 +356,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -369,9 +366,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -389,9 +384,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -401,9 +394,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -417,7 +408,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -426,9 +418,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -446,9 +436,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -459,10 +447,10 @@
         <state relative-caret-position="784">
           <caret line="95" column="37" lean-forward="true" selection-start-line="95" selection-start-column="37" selection-end-line="95" selection-end-column="37" />
           <folding>
-            <element signature="e#28763#29558#0" expanded="false" />
-            <element signature="e#29594#31546#0" expanded="false" />
-            <marker date="1509734189993" expanded="true" signature="1814:1865" ph="..." />
-            <marker date="1509734189993" expanded="true" signature="2299:2350" ph="..." />
+            <element signature="e#23945#24740#0" expanded="false" />
+            <element signature="e#24776#26728#0" expanded="false" />
+            <marker date="1512398150406" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512398150406" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -477,7 +465,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -486,9 +475,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -497,10 +484,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#28763#29558#0" expanded="false" />
-            <element signature="e#29594#31546#0" expanded="false" />
-            <marker date="1509734189993" expanded="true" signature="1814:1865" ph="..." />
-            <marker date="1509734189993" expanded="true" signature="2299:2350" ph="..." />
+            <element signature="e#23945#24740#0" expanded="false" />
+            <element signature="e#24776#26728#0" expanded="false" />
+            <marker date="1512398150406" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512398150406" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -515,7 +502,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -534,9 +522,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -546,9 +532,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -566,9 +550,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -584,7 +566,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -593,9 +576,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -609,7 +590,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -628,9 +610,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -650,9 +630,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -668,7 +646,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -677,9 +656,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -697,9 +674,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -709,9 +684,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -725,7 +698,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -740,7 +714,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -749,9 +724,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -760,10 +733,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#28763#29558#0" expanded="false" />
-            <element signature="e#29594#31546#0" expanded="false" />
-            <marker date="1509734189993" expanded="true" signature="1814:1865" ph="..." />
-            <marker date="1509734189993" expanded="true" signature="2299:2350" ph="..." />
+            <element signature="e#23945#24740#0" expanded="false" />
+            <element signature="e#24776#26728#0" expanded="false" />
+            <marker date="1512398150406" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512398150406" expanded="true" signature="1398:1449" ph="..." />
           </folding>
         </state>
       </provider>
@@ -782,9 +755,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -794,9 +765,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -814,9 +783,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -832,7 +799,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -841,9 +809,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -857,7 +823,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -876,9 +843,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -898,9 +863,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -916,7 +879,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -925,9 +889,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -945,9 +907,7 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
         </state>
@@ -957,9 +917,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -973,7 +931,8 @@
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -985,48 +944,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mazard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="211" column="17" lean-forward="true" selection-start-line="211" selection-start-column="17" selection-end-line="211" selection-end-column="17" />
+        <state relative-caret-position="4221">
+          <caret line="227" column="17" lean-forward="false" selection-start-line="227" selection-start-column="17" selection-end-line="227" selection-end-column="17" />
           <folding>
             <element signature="e#118#152#0" expanded="false" />
             <element signature="e#164#191#0" expanded="false" />
             <element signature="e#201#378#0" expanded="false" />
             <element signature="e#393#560#0" expanded="false" />
             <element signature="e#572#660#0" expanded="false" />
-            <element signature="e#671#851#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/View.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="482" column="32" lean-forward="true" selection-start-line="482" selection-start-column="32" selection-end-line="482" selection-end-column="32" />
-          <folding>
-            <element signature="e#28763#29558#0" expanded="false" />
-            <element signature="e#29594#31546#0" expanded="false" />
-            <marker date="1509734189993" expanded="true" signature="1814:1865" ph="..." />
-            <marker date="1509734189993" expanded="true" signature="2299:2350" ph="..." />
+            <marker date="1512357051756" expanded="false" signature="671:684" ph="{...}" />
+            <marker date="1512357051756" expanded="true" signature="6189:6191" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        <state relative-caret-position="21">
+          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           <folding>
             <element signature="e#466#651#0" expanded="false" />
             <element signature="e#657#840#0" expanded="false" />
@@ -1037,11 +974,30 @@
             <element signature="e#4177#4579#0" expanded="false" />
             <element signature="e#4629#4740#0" expanded="false" />
             <element signature="e#4758#4868#0" expanded="false" />
-            <element signature="e#5124#5342#0" expanded="false" />
             <element signature="n#!!block;n#updateGameBoardTileObject#0" expanded="false" />
-            <element signature="e#5867#6041#0" expanded="false" />
             <element signature="n#!!block;n#selectRandomTile#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/View.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="186" column="45" lean-forward="false" selection-start-line="186" selection-start-column="45" selection-end-line="186" selection-end-column="45" />
+          <folding>
+            <element signature="e#23945#24740#0" expanded="false" />
+            <element signature="e#24776#26728#0" expanded="false" />
+            <marker date="1512398150406" expanded="true" signature="913:964" ph="..." />
+            <marker date="1512398150406" expanded="true" signature="1398:1449" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mazard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
