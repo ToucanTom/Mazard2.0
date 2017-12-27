@@ -336,11 +336,11 @@ function battle(foeObject) {
     document.getElementById("rollButton").style.display ="inline";
 }
 function roll() {
-    var enemyDieRoll = Math.floor(Math.random()*6);
-    var playerDieRoll = Math.floor(Math.random()*6);
+    var enemyDieRoll = Math.floor((Math.random()*6) + 1); // Random Number between 1 and 6
+    var playerDieRoll = Math.floor((Math.random()*6) + 1);
 
-    document.getElementById("enemyDice").innerHTML = "<img src = " + diceOptions[enemyDieRoll].image + ">";
-    document.getElementById("playerDice").innerHTML = "<img src = " + diceOptions[playerDieRoll].image + ">";
+    document.getElementById("enemyDice").innerHTML = "<img src = " + diceOptions[enemyDieRoll-1].image + ">";
+    document.getElementById("playerDice").innerHTML = "<img src = " + diceOptions[playerDieRoll-1].image + ">";
     document.getElementById("battleResult").innerHTML ="";
 
     if (playerDieRoll > currentFoe.armor) {
