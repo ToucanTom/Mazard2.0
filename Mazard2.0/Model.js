@@ -239,6 +239,27 @@ var playerObjects = {
         armor: 1
     }
 };
+
+var items = {
+    dropRate: 30, // This is a percentage
+    "bread" : {
+        image: "Media/bread.png",
+        remaining: 2
+    },
+    "chest" : {
+        image: "Media/chest.png",
+        remaining: 2
+    },
+    "key" : {
+        image: "Media/key.png",
+        remaining: 2
+    },
+    "sword" : {
+        image: "Media/pixelSword.gif",
+        remaining: 1
+    }
+};
+
 /* Current Player Object */
 var currentPlayer = {
     image: "",

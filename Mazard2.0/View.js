@@ -281,25 +281,29 @@ function setRotation() {
 
     // Update gameboard
     updateGameBoardTileObject(currentGameBoard[currentTile.location[0]][currentTile.location[2]].t_object,currentTile);
+
+    // Allow movement
     immobile = false;
-    // Place enemy after rotation set
-    //decide if there is a foe or anything else......
-    //var randNum = Math.floor((Math.random()*8));
-    /*if (randNum <= 2) {
-        currentFoe = foeOptions[randNum];
-        currentFoe.rowLocation = currentTile.location[0];
-        currentFoe.colLocation = currentTile.location[2];
-        document.getElementById(currentTile.location).innerHTML = "<img src="+ currentFoe.image+ ">";
-        //add an alert of some kind
-            //maybe use a message div for multiple events?
 
-            // Want to set it up to show enemy right when tile is flipped... then since you are forces
-            // to set tile, you have to battle no matter what, but you get to see it first.
+    // Display item if dropped
+    var rand = Math.floor((Math.random()*100)+1);
+    if (items.dropRate <= rand) {
+        if (rand <= 5) {
+            //drop sword
+        }
+        else if (rand <= 45) {
+            //drop chest or key
+            // if rand is even: key
+            // if rand is odd: chest
+        }
+        else {
+            //drop bread
+        }
 
-        // call up the battle div
-        battle();
-    }*/
-    // Remove tile
+        document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.bread.image+">"
+    }
+
+
     setOnclickSettings();
 }
 
