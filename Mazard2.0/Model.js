@@ -291,6 +291,7 @@ var foeOptions = [
         hasFoe: does it have a foe?
         foe: foe object
         staged: is this element staged
+        item: "(the items name here)"
 
         blocked: is movement to this element by the player blocked?  <-------- Need to modify:
             ** this could be true or false depending on which direction you come to the tile from

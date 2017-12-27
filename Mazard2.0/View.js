@@ -24,13 +24,13 @@ function genGameBoard() {
             // Checks to place starting tile in random location on bottom row
             if (i === gameBoardSize.row-1 && j === randNum) {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[1].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
+                temp_array[j] = {location: i+","+j, item: "", connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
                 currentPlayer.rowLocation = i;
                 currentPlayer.colLocation = j;
             }
             else {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[0].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
+                temp_array[j] = {location: i+","+j, item: "", connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
             }
             // ****** IF YOU CHANGED THE CREATION OF THE GAME BOARD, UPDATE IN Model.js ******
         }
@@ -285,24 +285,41 @@ function setRotation() {
     // Allow movement
     immobile = false;
 
-    // Display item if dropped
+    // Display item if dropped//////////////////////////
     var rand = Math.floor((Math.random()*100)+1);
     if (items.dropRate <= rand) {
+        var targetElement = currentGameBoard[currentTile.location[0]][currentTile.location[2]];
         if (rand <= 5) {
             //drop sword
+            document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.sword.image+">";
+            //update gameboard
+            targetElement.item = "sword";
         }
         else if (rand <= 45) {
             //drop chest or key
             // if rand is even: key
+            if(rand%2 === 0){
+                document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.key.image+">";
+                //update gameboard
+                targetElement.item = "key";
+            }
+            else{
+                document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.chest.image+">";
+                //update gameboard
+                targetElement.item = "chest";
+            }
             // if rand is odd: chest
         }
         else {
             //drop bread
+            document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.bread.image+">";
+            //update gameboard
+            targetElement.item = "bread";
         }
 
-        document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.bread.image+">"
-    }
 
+    }
+///////////////////////////////////////////////////
 
     setOnclickSettings();
 }

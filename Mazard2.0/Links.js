@@ -35,7 +35,6 @@
  *
  *      GAMEPLAY FUNCTIONS
  *
- * {@link flipTile}
  * {@link flipTile2}
  * {@link genRotateDivs}
  * {@link rotateCCW}
