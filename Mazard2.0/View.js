@@ -333,6 +333,7 @@ function battle(foeObject) {
     document.getElementById("battleEnemy").style.backgroundImage = "url("+foeObject.image+")";
     document.getElementById("battlePlayer").innerHTML = "<img src = "+currentPlayer.image+">";
     document.getElementById("rollButton").onclick = roll;
+    document.getElementById("rollButton").style.display ="inline";
 }
 function roll() {
     var enemyDieRoll = Math.floor(Math.random()*6);
@@ -340,26 +341,36 @@ function roll() {
 
     document.getElementById("enemyDice").innerHTML = "<img src = " + diceOptions[enemyDieRoll].image + ">";
     document.getElementById("playerDice").innerHTML = "<img src = " + diceOptions[playerDieRoll].image + ">";
+    document.getElementById("battleResult").innerHTML ="";
 
     if (playerDieRoll > currentFoe.armor) {
         // Hit!
         document.getElementById("battleResult").innerHTML = "Player Hit!";
-        currentFoe.hp--;
+        currentFoe.hp -= currentPlayer.attack;
         document.getElementById("foeBattleStats").innerHTML ="Hp: " + currentFoe.hp +"\nArmor: "+ currentFoe.armor +"\nAttack: "+ currentFoe.attack;
     }
-    if (enemyDieRoll> currentPlayer.armor) {
+    if(currentFoe.hp <1){
+        // Display Exit Battle Button
+        document.getElementById("returnButton").style.display = "inline";
+        document.getElementById("returnButton").onclick = returnFromBattle;
+
+        // Turn off Roll Button
+        //document.getElementById("rollButton").onclick = "";
+        document.getElementById("rollButton").style.display ="none";
+        document.getElementById("battleResult").innerHTML += "\n\n\nYou beat the " + currentFoe.name + "!";
+
+    }
+    else if (enemyDieRoll > currentPlayer.armor) {
         // enemy hit!
-        document.getElementById("battleResult").innerHTML = + "Enemy Hit...";
-        currentPlayer.hp--;
+        document.getElementById("battleResult").innerHTML += "\n\n\nEnemy Hit...";
+        currentPlayer.hp-= currentFoe.attack;
         document.getElementById("playerBattleStats").innerHTML ="Hp: " + currentPlayer.hp +"\nArmor: "+ currentPlayer.armor +"\nAttack: "+ currentPlayer.attack;
+        if(currentPlayer.hp < 1){
+            returnFromBattle();
+        }
     }
 
-    // Display Exit Battle Button
-    document.getElementById("returnButton").style.display = "inline";
-    document.getElementById("returnButton").onclick = returnFromBattle;
 
-    // Turn off Roll Button
-    document.getElementById("rollButton").onclick = "";
 
 }
 function returnFromBattle() {
@@ -375,7 +386,7 @@ function returnFromBattle() {
     updateStats();
 
     // check if battle lowered hp to 0
-    if (currentPlayer.hp === 0) {
+    if (currentPlayer.hp < 1) {
         document.getElementById("message").innerHTML = "You ded foo";
         document.getElementById("message").style.display = "inline";
         immobile = true;

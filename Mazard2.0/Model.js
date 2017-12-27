@@ -222,21 +222,21 @@ var playerObjects = {
         race : "Human",
         attack: 1,
         hp: 15,
-        armor: 1
+        armor: 2
     },
     "Dwarf" : {
         image: "Media/Dwarf.png",
         race: "Dwarf",
         attack: 1,
         hp: 18,
-        armor: 0
+        armor: 1
     },
     "Elf" : {
         image: "Media/elfmage.png",
         race:"Elf",
         attack: 2,
         hp: 15,
-        armor: 0
+        armor: 1
     }
 };
 /* Current Player Object */
@@ -259,9 +259,9 @@ var currentFoe ={
     colLocation: 0
 };
 var foeOptions = [
-    {name: "Skeleton", hp: 1, armor: 0, attack: 1, image: "Media/pixelSkeleton.gif"},
-    {name: "Lion", hp:2, armor:0, attack: 2, image: "Media/lion.png"},
-    {name: "Knight", hp:3, armor: 1, attack: 1, image: "Media/knight.png"}
+    {name: "Skeleton", hp: 1, armor: 1, attack: 1, image: "Media/pixelSkeleton.gif"},
+    {name: "Lion", hp:2, armor:2, attack: 2, image: "Media/lion.png"},
+    {name: "Knight", hp:3, armor: 3, attack: 1, image: "Media/knight.png"}
 ];
 /* This is our global game board
     Grid Element Data Members:
