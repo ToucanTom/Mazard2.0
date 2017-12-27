@@ -1,4 +1,8 @@
-
+//lose conditions
+    //check for no more path options
+        //-use a counter that tracks the number of open paths, maybe uses the check that stage tiles uses
+        //-if counter is 0 you lose.
+    //player hp = 0 you lose
 
 function genGameBoard() {
     document.getElementById("newLevel").style.display = "none";
@@ -315,9 +319,17 @@ function move() {
     document.getElementById("deck").onclick = stageTiles;
 }
 function battle(foeObject) {
+    currentFoe.name = foeObject.name;
+    currentFoe.hp = foeObject.hp;
+    currentFoe.armor = foeObject.armor;
+    currentFoe.attack = foeObject.attack;
+    currentFoe.image = foeObject.image;
+    document.getElementById("foeBattleStats").innerHTML ="Hp: " + currentFoe.hp +"\nArmor: "+ currentFoe.armor +"\nAttack: "+ currentFoe.attack;//either abstract these two lines to their own functions or create a seperate div display for each stat
+    document.getElementById("playerBattleStats").innerHTML ="Hp: " + currentPlayer.hp +"\nArmor: "+ currentPlayer.armor +"\nAttack: "+ currentPlayer.attack;
     document.getElementById("message").style.display = "none";
     document.getElementById("newFoe").style.display = "none";
     document.getElementById("battle").style.display = "inline";
+
     document.getElementById("battleEnemy").style.backgroundImage = "url("+foeObject.image+")";
     document.getElementById("battlePlayer").innerHTML = "<img src = "+currentPlayer.image+">";
     document.getElementById("rollButton").onclick = roll;
@@ -329,14 +341,17 @@ function roll() {
     document.getElementById("enemyDice").innerHTML = "<img src = " + diceOptions[enemyDieRoll].image + ">";
     document.getElementById("playerDice").innerHTML = "<img src = " + diceOptions[playerDieRoll].image + ">";
 
-    if (playerDieRoll > enemyDieRoll) {
-        // You Win!
-        document.getElementById("battleResult").innerHTML = "You Win!";
+    if (playerDieRoll > currentFoe.armor) {
+        // Hit!
+        document.getElementById("battleResult").innerHTML = "Player Hit!";
+        currentFoe.hp--;
+        document.getElementById("foeBattleStats").innerHTML ="Hp: " + currentFoe.hp +"\nArmor: "+ currentFoe.armor +"\nAttack: "+ currentFoe.attack;
     }
-    else {
-        // You Lose!
-        document.getElementById("battleResult").innerHTML = "You Lose!";
+    if (enemyDieRoll> currentPlayer.armor) {
+        // enemy hit!
+        document.getElementById("battleResult").innerHTML = + "Enemy Hit...";
         currentPlayer.hp--;
+        document.getElementById("playerBattleStats").innerHTML ="Hp: " + currentPlayer.hp +"\nArmor: "+ currentPlayer.armor +"\nAttack: "+ currentPlayer.attack;
     }
 
     // Display Exit Battle Button
