@@ -89,7 +89,22 @@ function choosePlayer(playerChoice) {
     // Visually display characters stats
     updateStats();
 }
+// Updates players stats
+function updateStats() {
+    var option = document.getElementsByClassName("playerStats");
+    option[0].innerHTML = "<img src = " + currentPlayer.image + ">";
+    option[1].innerHTML = "Health: " + currentPlayer.hp;
+    option[2].innerHTML = "Attack: " + currentPlayer.attack;
+    option[3].innerHTML = "Armor: " + currentPlayer.armor;
+    option[4].style.backgroundImage = "url('Media/key.png')";
+    option[4].style.marginTop= "15px";
+    option[4].style.paddingTop = "35px";
+    option[4].style.paddingLeft = "5px";
+    option[4].innerHTML = currentPlayer.keys;
+    document.getElementById("gold").innerHTML = currentPlayer.gold;
+    if(currentPlayer.hasSword) document.getElementById("sword").style.display = "inline";
 
+}
 // places unflipped cards from the deck onto spots surrounding current player
 function stageTiles() {
 
@@ -187,9 +202,10 @@ function flipTile2(row, col){
     immobile = true;
     console.log("flipTile2 was called");
 
-    // 33% chance to generate a foe to fight and return to stage tile state if foe generated
-    var randNum = Math.floor(Math.random()*11);
-    if (randNum <= 2) {
+    // 20% chance to generate a foe to fight and return to stage tile state if foe generated
+    var randNum = Math.floor(Math.random()*100)+1 ;
+    if (randNum <= 20) {
+        randNum = Math.floor(Math.random()*3) ;//reset randNum to be used as the enemy options index
         // Show a message that you are about to battle
         document.getElementById("message").innerHTML = "A enemy has spotted you!";
         document.getElementById("message").style.display = "inline";
@@ -287,15 +303,16 @@ function setRotation() {
 
     // Display item if dropped//////////////////////////
     var rand = Math.floor((Math.random()*100)+1);
-    if (items.dropRate <= rand) {
+    if (items.dropRate >= rand) {
+        rand = Math.floor((Math.random()*100)+1);//now that we know we will have an item we reset the number to anything between 1-100 so that the item chances are more clear
         var targetElement = currentGameBoard[currentTile.location[0]][currentTile.location[2]];
-        if (rand <= 5) {
+        if (rand <= 10) {//between 1-10 (10% chance)
             //drop sword
             document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.sword.image+">";
             //update gameboard
             targetElement.item = "sword";
         }
-        else if (rand <= 45) {
+        else if (rand <= 50) {//between 11-50 (40% chance)
             //drop chest or key
             // if rand is even: key
             if(rand%2 === 0){
@@ -310,7 +327,7 @@ function setRotation() {
             }
             // if rand is odd: chest
         }
-        else {
+        else {//between 51-100 (50% chance)
             //drop bread
             document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.bread.image+">";
             //update gameboard
@@ -331,6 +348,7 @@ function battle(foeObject) {
     currentFoe.hp = foeObject.hp;
     currentFoe.armor = foeObject.armor;
     currentFoe.attack = foeObject.attack;
+    currentFoe.gold = foeObject.gold;
     currentFoe.image = foeObject.image;
     document.getElementById("foeBattleStats").innerHTML ="Hp: " + currentFoe.hp +"\nArmor: "+ currentFoe.armor +"\nAttack: "+ currentFoe.attack;//either abstract these two lines to their own functions or create a seperate div display for each stat
     document.getElementById("playerBattleStats").innerHTML ="Hp: " + currentPlayer.hp +"\nArmor: "+ currentPlayer.armor +"\nAttack: "+ currentPlayer.attack;
@@ -366,7 +384,8 @@ function roll() {
         // Turn off Roll Button
         //document.getElementById("rollButton").onclick = "";
         document.getElementById("rollButton").style.display ="none";
-        document.getElementById("battleResult").innerHTML += "\n\n\nYou beat the " + currentFoe.name + "!";
+        document.getElementById("battleResult").innerHTML += "\n\n\nYou beat the " + currentFoe.name + " and claimed " + currentFoe.gold + " gold!";
+        currentPlayer.gold += currentFoe.gold;
 
     }
     else if (enemyDieRoll > currentPlayer.armor) {
@@ -430,9 +449,13 @@ function move() {
             break;
         case("chest"):
             //if player has a key, open chest, if not.... dont
+            if(currentPlayer.keys > 0) currentPlayer.keys -= 1;
             break;
         case("sword"):
             //add sword to player inventory and add 1 to attack
+            currentPlayer.attack += 1;
+            currentPlayer.hasSword = true;
+            //update player display
             break;
         default:
             //there is no item, so do nothing
@@ -552,9 +575,18 @@ function move2(){
             break;
         case("chest"):
             //if player has a key, open chest, if not.... dont
+            if(currentPlayer.keys > 0)
+            {
+                currentPlayer.keys -= 1;
+                currentPlayer.gold += 5;
+            }
+
             break;
         case("sword"):
             //add sword to player inventory and add 1 to attack
+            currentPlayer.attack += 1;
+            currentPlayer.hasSword = true;
+            //
             break;
         default:
             //there is no item, so do nothing
@@ -567,16 +599,7 @@ function move2(){
     getSurroundingTiles();
 }
 
-// Updates players stats
-function updateStats() {
-    var option = document.getElementsByClassName("playerStats");
-    option[0].innerHTML = "<img src = " + currentPlayer.image + ">";
-    option[1].innerHTML = "Health: " + currentPlayer.hp;
-    option[2].innerHTML = "Attack: " + currentPlayer.attack;
-    option[3].innerHTML = "Armor: " + currentPlayer.armor;
-    option[4].style.backgroundImage = "url('Media/key.png')";
 
-}
 
 function clearClickableSettings() {
     var cells = document.getElementsByTagName("td");

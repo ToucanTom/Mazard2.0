@@ -241,7 +241,7 @@ var playerObjects = {
 };
 
 var items = {
-    dropRate: 30, // This is a percentage
+    dropRate: 45, // This is a percentage
     "bread" : {
         image: "Media/bread.png",
         remaining: 2
@@ -268,6 +268,8 @@ var currentPlayer = {
     attack: 0,
     armor: 0,
     keys: 0,
+    gold: 0,
+    hasSword: false,
     rowLocation: 0,
     colLocation: 0
 
@@ -278,13 +280,14 @@ var currentFoe ={
     hp: 0,
     armor: 0,
     attack: 0,
+    gold: 0,
     rowLocation: 0,
     colLocation: 0
 };
 var foeOptions = [
-    {name: "Skeleton", hp: 1, armor: 1, attack: 1, image: "Media/pixelSkeleton.gif"},
-    {name: "Lion", hp:2, armor:2, attack: 2, image: "Media/lion.png"},
-    {name: "Knight", hp:3, armor: 3, attack: 1, image: "Media/knight.png"}
+    {name: "Skeleton", hp: 1, armor: 1, attack: 1, gold:1, image: "Media/pixelSkeleton.gif"},
+    {name: "Lion", hp:2, armor:2, attack: 2, gold:2,  image: "Media/lion.png"},
+    {name: "Knight", hp:3, armor: 3, attack: 1, gold:3, image: "Media/knight.png"}
 ];
 /* This is our global game board
     Grid Element Data Members:
