@@ -49,6 +49,7 @@ function genGameBoard() {
 
 }
 
+
 function populatePlayerOptions(){
     console.log("select race was called");
     var playerOptions = Object.keys(playerObjects);
