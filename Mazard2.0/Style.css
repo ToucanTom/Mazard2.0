@@ -271,6 +271,18 @@ td{
     display: none;
 }
 
+#resetButton {
+    border: solid black thick;
+    position: absolute;
+    top: 75px;
+    left: 725px;
+    width: 103px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    display: inline;
+}
+
 #playerSelect {
     position: absolute;
     top: 25px;
@@ -284,12 +296,13 @@ td{
 
 #currentLevel {
     position: absolute;
-    top: 50px;
+    top: 40px;
     left: 725px;
     width: 103px;
     height: 75px;
     text-align: center;
     line-height: 37.5px;
+    font-size: x-large;
 }
 
 .playerOptions{
