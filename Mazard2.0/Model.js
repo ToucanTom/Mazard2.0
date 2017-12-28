@@ -313,6 +313,9 @@ var foeOptions = [
 */
 var currentGameBoard = [];
 
+var startingTileRow = 0;
+var startingTileCol = 0;
+
 function updateGameBoardTileObject(target , template){
     console.log("updateGameBoardTileObject was called");
 

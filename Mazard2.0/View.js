@@ -27,6 +27,8 @@ function genGameBoard() {
                 temp_array[j] = {location: i+","+j, droppedItem: "", connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
                 currentPlayer.rowLocation = i;
                 currentPlayer.colLocation = j;
+                startingTileRow = i;
+                startingTileCol = j;
             }
             else {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[0].image + ")' ></td>";
@@ -439,6 +441,14 @@ function move() {
     }
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
+
+    //win condition
+    if (row === startingTileRow && col === startingTileCol && currentPlayer.gold >= 25) {
+        document.getElementById("win").play();
+        document.getElementById("message").innerHTML = "You win!";
+        document.getElementById("message").style.display = "inline";
+    }
+
 //check to see if their is a chest at current location, if not then remove player image only:
    if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem === "") document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
    else{
@@ -518,6 +528,12 @@ function move2(){
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src ="+items.chest.image +">";
                 }
                 currentPlayer.rowLocation++;
+                //win condition
+                if (currentPlayer.rowLocation === startingTileRow && currentPlayer.colLocation === startingTileCol && currentPlayer.gold >= 25) {
+                    document.getElementById("win").play();
+                    document.getElementById("message").innerHTML = "You win!";
+                    document.getElementById("message").style.display = "inline";
+                }
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
                 clearClickableSettings();
                 setOnclickSettings();
@@ -541,6 +557,12 @@ function move2(){
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src ="+items.chest.image +">";
                 }
                 currentPlayer.colLocation++;
+                //win condition
+                if (currentPlayer.rowLocation === startingTileRow && currentPlayer.colLocation === startingTileCol && currentPlayer.gold >= 25) {
+                    document.getElementById("win").play();
+                    document.getElementById("message").innerHTML = "You win!";
+                    document.getElementById("message").style.display = "inline";
+                }
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
                 clearClickableSettings();
                 setOnclickSettings();
@@ -564,6 +586,12 @@ function move2(){
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src ="+items.chest.image +">";
                 }
                 currentPlayer.rowLocation--;
+                //win condition
+                if (currentPlayer.rowLocation === startingTileRow && currentPlayer.colLocation === startingTileCol && currentPlayer.gold >= 25) {
+                    document.getElementById("win").play();
+                    document.getElementById("message").innerHTML = "You win!";
+                    document.getElementById("message").style.display = "inline";
+                }
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
                 clearClickableSettings();
                 setOnclickSettings();
@@ -587,6 +615,12 @@ function move2(){
                     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src ="+items.chest.image +">";
                 }
                 currentPlayer.colLocation--;
+                //win condition
+                if (currentPlayer.rowLocation === startingTileRow && currentPlayer.colLocation === startingTileCol && currentPlayer.gold >= 25) {
+                    document.getElementById("win").play();
+                    document.getElementById("message").innerHTML = "You win!";
+                    document.getElementById("message").style.display = "inline";
+                }
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
                 clearClickableSettings();
                 setOnclickSettings();
