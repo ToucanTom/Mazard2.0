@@ -331,10 +331,19 @@ function move() {
     }
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
+
+    // checks if game board element you are moving to has an item to pick up
+    if (currentGameBoard[row][col].item != ) {
+
+    }
+
+    // moves player image to new location
+
     document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
     document.getElementById(row + "," + col).innerHTML = "<img src = "+currentPlayer.image+">";
+
     clearClickableSettings();
     setOnclickSettings();
     document.getElementById("deck").onclick = stageTiles;
