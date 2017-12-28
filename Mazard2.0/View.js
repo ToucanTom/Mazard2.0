@@ -324,21 +324,8 @@ function setRotation() {
     setOnclickSettings();
 }
 
-// move used as the onclick attribute
-function move() {
-    if (immobile) {
-        return;
-    }
-    var row = this.parentNode.rowIndex;
-    var col = this.cellIndex;
-    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
-    currentPlayer.rowLocation = row;
-    currentPlayer.colLocation = col;
-    document.getElementById(row + "," + col).innerHTML = "<img src = "+currentPlayer.image+">";
-    clearClickableSettings();
-    setOnclickSettings();
-    document.getElementById("deck").onclick = stageTiles;
-}
+
+
 function battle(foeObject) {
     currentFoe.name = foeObject.name;
     currentFoe.hp = foeObject.hp;
@@ -419,6 +406,43 @@ function returnFromBattle() {
     stageTiles();
     immobile = false;
 }
+
+// move used as the onclick attribute
+function move() {
+    if (immobile) {
+        return;
+    }
+    var row = this.parentNode.rowIndex;
+    var col = this.cellIndex;
+//check to see if their is a chest at current location, if not then remove player image only:
+    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+
+    currentPlayer.rowLocation = row;
+    currentPlayer.colLocation = col;
+    switch (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item) {
+        case("bread"):
+            currentPlayer.hp += 1;
+            updateStats();
+            break;
+        case("key"):
+            //add a key to player inventory
+            break;
+        case("chest"):
+            //if player has a key, open chest, if not.... dont
+            break;
+        case("sword"):
+            //add sword to player inventory and add 1 to attack
+            break;
+        default:
+            //there is no item, so do nothing
+            break;
+    }
+    currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item = "";
+    document.getElementById(row + "," + col).innerHTML = "<img src = " + currentPlayer.image + ">";
+    clearClickableSettings();
+    setOnclickSettings();
+    document.getElementById("deck").onclick = stageTiles;
+}
 //move function used as the keydown event listener
 function move2(){
     // only run if there isnt a tile being placed
@@ -442,9 +466,12 @@ function move2(){
                 flipTile2(currentPlayer.rowLocation + 1, currentPlayer.colLocation);
             }
             else if (currentGameBoard[currentPlayer.rowLocation + 1][currentPlayer.colLocation].connected) {
+
+                //resets move options now that the player has moved
                 for (i = 0; i < currentSurroundingTiles.length; i++) {
                     currentSurroundingTiles[i].connected = false;
                 }
+
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
                 currentPlayer.rowLocation++;
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
@@ -512,6 +539,26 @@ function move2(){
             break;
     }
 
+    switch (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item) {
+        case("bread"):
+
+            currentPlayer.hp += 1;
+            updateStats();
+            break;
+        case("key"):
+            //add a key to player inventory
+            break;
+        case("chest"):
+            //if player has a key, open chest, if not.... dont
+            break;
+        case("sword"):
+            //add sword to player inventory and add 1 to attack
+            break;
+        default:
+            //there is no item, so do nothing
+            break;
+    }
+    currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item = "";
     // update currentConnected[]
     currentConnectedTiles = [];
     getSurroundingTiles();
@@ -524,6 +571,8 @@ function updateStats() {
     option[1].innerHTML = "Health: " + currentPlayer.hp;
     option[2].innerHTML = "Attack: " + currentPlayer.attack;
     option[3].innerHTML = "Armor: " + currentPlayer.armor;
+    option[4].innerHTML = "Keys: " + currentPlayer.keys;
+    
 }
 
 function clearClickableSettings() {
