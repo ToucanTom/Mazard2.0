@@ -17,7 +17,7 @@
 //  HIT AND MISS SHOULD BE BASED ON ARMOR
 //  REWARDS FOR BEATING FOES
 
-/* should we create foe locations when we generate grid? should we generate item drops when we generate grid?
+/* should we create foe locations when we generate grid? should we generate droppedItem drops when we generate grid?
     tiers for items and put higher tier items with more difficult foes.
  */
 

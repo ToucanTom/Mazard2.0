@@ -24,13 +24,13 @@ function genGameBoard() {
             // Checks to place starting tile in random location on bottom row
             if (i === gameBoardSize.row-1 && j === randNum) {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[1].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, item: "", connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
+                temp_array[j] = {location: i+","+j, droppedItem: "", connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: false, t_object: {image: tileObjects[1].image, north: true, east: true, south: false, west: true}};
                 currentPlayer.rowLocation = i;
                 currentPlayer.colLocation = j;
             }
             else {
                 html += "<td id =" + i + "," + j + " style='background-image: url(" + tileObjects[0].image + ")' ></td>";
-                temp_array[j] = {location: i+","+j, item: "", connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
+                temp_array[j] = {location: i+","+j, droppedItem: "", connected: false, hasFoe: false, foe: {}, staged: false, blocked: false, available: true, t_object: {image: tileObjects[0].image, north: false, east: false, south: false, west: false}};
             }
             // ****** IF YOU CHANGED THE CREATION OF THE GAME BOARD, UPDATE IN Model.js ******
         }
@@ -205,14 +205,18 @@ function flipTile2(row, col){
     // 20% chance to generate a foe to fight and return to stage tile state if foe generated
     var randNum = Math.floor(Math.random()*100)+1 ;
     if (randNum <= 20) {
-        randNum = Math.floor(Math.random()*3) ;//reset randNum to be used as the enemy options index
+        randNum = Math.floor(Math.random()*3);//reset randNum to be used as the enemy options index
+        var index =0;
+        if(randNum <= 40) index = 0;
+        else if (randNum <= 80) index = 1;
+        else index = 2;
         // Show a message that you are about to battle
         document.getElementById("message").innerHTML = "A enemy has spotted you!";
         document.getElementById("message").style.display = "inline";
-        document.getElementById("newFoe").style.backgroundImage = "url(" + foeOptions[randNum].image + ")";
+        document.getElementById("newFoe").style.backgroundImage = "url(" + foeOptions[index].image + ")";
         document.getElementById("newFoe").style.display = "inline";
         // Waits 2 seconds before proceeding with the battle
-        setTimeout(function() {battle(foeOptions[randNum])}, 4000);
+        setTimeout(function() {battle(foeOptions[index])}, 4000);
 
         return;
         //currentFoe = foeOptions[randNum];
@@ -301,16 +305,16 @@ function setRotation() {
     // Allow movement
     immobile = false;
 
-    // Display item if dropped//////////////////////////
+    // Display droppedItem if dropped//////////////////////////
     var rand = Math.floor((Math.random()*100)+1);
     if (items.dropRate >= rand) {
-        rand = Math.floor((Math.random()*100)+1);//now that we know we will have an item we reset the number to anything between 1-100 so that the item chances are more clear
+        rand = Math.floor((Math.random()*100)+1);//now that we know we will have an droppedItem we reset the number to anything between 1-100 so that the droppedItem chances are more clear
         var targetElement = currentGameBoard[currentTile.location[0]][currentTile.location[2]];
-        if (rand <= 10) {//between 1-10 (10% chance)
+        if (rand <= 10 && !currentPlayer.hasSword) {//between 1-10 (10% chance)
             //drop sword
             document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.sword.image+">";
             //update gameboard
-            targetElement.item = "sword";
+            targetElement.droppedItem = "sword";
         }
         else if (rand <= 50) {//between 11-50 (40% chance)
             //drop chest or key
@@ -318,12 +322,12 @@ function setRotation() {
             if(rand%2 === 0){
                 document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.key.image+">";
                 //update gameboard
-                targetElement.item = "key";
+                targetElement.droppedItem = "key";
             }
             else{
                 document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.chest.image+">";
                 //update gameboard
-                targetElement.item = "chest";
+                targetElement.droppedItem = "chest";
             }
             // if rand is odd: chest
         }
@@ -331,7 +335,7 @@ function setRotation() {
             //drop bread
             document.getElementById(currentTile.location[0] + "," + currentTile.location[2]).innerHTML = "<img src = "+items.bread.image+">";
             //update gameboard
-            targetElement.item = "bread";
+            targetElement.droppedItem = "bread";
         }
 
 
@@ -435,11 +439,15 @@ function move() {
     var row = this.parentNode.rowIndex;
     var col = this.cellIndex;
 //check to see if their is a chest at current location, if not then remove player image only:
-    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
-
+   if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem === "") document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+   else{
+       document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src ="+items.chest.image +">";
+   }
+    //update player location to new spot
     currentPlayer.rowLocation = row;
     currentPlayer.colLocation = col;
-    switch (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item) {
+    var chest = false;
+    switch (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem) {
         case("bread"):
             currentPlayer.hp += 1;
             break;
@@ -449,7 +457,14 @@ function move() {
             break;
         case("chest"):
             //if player has a key, open chest, if not.... dont
-            if(currentPlayer.keys > 0) currentPlayer.keys -= 1;
+            if(currentPlayer.keys > 0){
+                currentPlayer.keys -= 1;
+                currentPlayer.gold += 5;
+            }
+            else{
+                chest = true;
+            }
+
             break;
         case("sword"):
             //add sword to player inventory and add 1 to attack
@@ -458,11 +473,11 @@ function move() {
             //update player display
             break;
         default:
-            //there is no item, so do nothing
+            //there is no droppedItem, so do nothing
             break;
     }
     updateStats();
-    currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item = "";
+    if(!chest) currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem = "";
     document.getElementById(row + "," + col).innerHTML = "<img src = " + currentPlayer.image + ">";
     clearClickableSettings();
     setOnclickSettings();
@@ -496,8 +511,11 @@ function move2(){
                 for (i = 0; i < currentSurroundingTiles.length; i++) {
                     currentSurroundingTiles[i].connected = false;
                 }
-
-                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                //if there isnt a chest then just move player, otherwise draw the chest again once the player leaves the square
+                if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem === "") document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                else{
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src ="+items.chest.image +">";
+                }
                 currentPlayer.rowLocation++;
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
                 clearClickableSettings();
@@ -516,7 +534,11 @@ function move2(){
                 for (i = 0; i < currentSurroundingTiles.length; i++) {
                     currentSurroundingTiles[i].connected = false;
                 }
-                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                //if there isnt a chest then just move player, otherwise draw the chest again once the player leaves the square
+                if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem === "") document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                else{
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src ="+items.chest.image +">";
+                }
                 currentPlayer.colLocation++;
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
                 clearClickableSettings();
@@ -535,7 +557,11 @@ function move2(){
                 for (i = 0; i < currentSurroundingTiles.length; i++) {
                     currentSurroundingTiles[i].connected = false;
                 }
-                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                //if there isnt a chest then just move player, otherwise draw the chest again once the player leaves the square
+                if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem === "") document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                else{
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src ="+items.chest.image +">";
+                }
                 currentPlayer.rowLocation--;
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
                 clearClickableSettings();
@@ -554,7 +580,11 @@ function move2(){
                 for (i = 0; i < currentSurroundingTiles.length; i++) {
                     currentSurroundingTiles[i].connected = false;
                 }
-                document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                //if there isnt a chest then just move player, otherwise draw the chest again once the player leaves the square
+                if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem === "") document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "";
+                else if(currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem === "chest"){
+                    document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src ="+items.chest.image +">";
+                }
                 currentPlayer.colLocation--;
                 document.getElementById(currentPlayer.rowLocation + "," + currentPlayer.colLocation).innerHTML = "<img src=" + currentPlayer.image + ">";
                 clearClickableSettings();
@@ -563,8 +593,8 @@ function move2(){
             }
             break;
     }
-
-    switch (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item) {
+    var chest = false;
+    switch (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem) {
         case("bread"):
             //recover health
             currentPlayer.hp += 1;
@@ -575,10 +605,11 @@ function move2(){
             break;
         case("chest"):
             //if player has a key, open chest, if not.... dont
-            if(currentPlayer.keys > 0)
-            {
+            if(currentPlayer.keys > 0){
                 currentPlayer.keys -= 1;
                 currentPlayer.gold += 5;
+            }else{
+                chest = true;
             }
 
             break;
@@ -589,11 +620,11 @@ function move2(){
             //
             break;
         default:
-            //there is no item, so do nothing
+            //there is no droppedItem, so do nothing
             break;
     }
     updateStats();
-    currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item = "";
+    if(!chest) currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].droppedItem = "";
     // update currentConnected[]
     currentConnectedTiles = [];
     getSurroundingTiles();
