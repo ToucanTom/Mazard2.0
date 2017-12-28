@@ -228,14 +228,14 @@ var playerObjects = {
         image: "Media/Dwarf.png",
         race: "Dwarf",
         attack: 1,
-        hp: 18,
+        hp: 20,
         armor: 1
     },
     "Elf" : {
         image: "Media/elfmage.png",
         race:"Elf",
         attack: 2,
-        hp: 15,
+        hp: 12,
         armor: 1
     }
 };
@@ -267,8 +267,10 @@ var currentPlayer = {
     hp: 0,
     attack: 0,
     armor: 0,
+    keys: 0,
     rowLocation: 0,
     colLocation: 0
+
 };
 var currentFoe ={
     name: "",

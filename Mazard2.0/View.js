@@ -355,6 +355,7 @@ function roll() {
         // Hit!
         document.getElementById("battleResult").innerHTML = "Player Hit!";
         currentFoe.hp -= currentPlayer.attack;
+        if(currentFoe.hp<1) currentFoe.hp = 0;
         document.getElementById("foeBattleStats").innerHTML ="Hp: " + currentFoe.hp +"\nArmor: "+ currentFoe.armor +"\nAttack: "+ currentFoe.attack;
     }
     if(currentFoe.hp <1){
@@ -422,10 +423,10 @@ function move() {
     switch (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item) {
         case("bread"):
             currentPlayer.hp += 1;
-            updateStats();
             break;
         case("key"):
             //add a key to player inventory
+            currentPlayer.keys += 1;
             break;
         case("chest"):
             //if player has a key, open chest, if not.... dont
@@ -437,6 +438,7 @@ function move() {
             //there is no item, so do nothing
             break;
     }
+    updateStats();
     currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item = "";
     document.getElementById(row + "," + col).innerHTML = "<img src = " + currentPlayer.image + ">";
     clearClickableSettings();
@@ -541,12 +543,12 @@ function move2(){
 
     switch (currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item) {
         case("bread"):
-
+            //recover health
             currentPlayer.hp += 1;
-            updateStats();
             break;
         case("key"):
             //add a key to player inventory
+            currentPlayer.keys += 1;
             break;
         case("chest"):
             //if player has a key, open chest, if not.... dont
@@ -558,6 +560,7 @@ function move2(){
             //there is no item, so do nothing
             break;
     }
+    updateStats();
     currentGameBoard[currentPlayer.rowLocation][currentPlayer.colLocation].item = "";
     // update currentConnected[]
     currentConnectedTiles = [];
@@ -571,8 +574,8 @@ function updateStats() {
     option[1].innerHTML = "Health: " + currentPlayer.hp;
     option[2].innerHTML = "Attack: " + currentPlayer.attack;
     option[3].innerHTML = "Armor: " + currentPlayer.armor;
-    option[4].innerHTML = "Keys: " + currentPlayer.keys;
-    
+    option[4].style.backgroundImage = "url('Media/key.png')";
+
 }
 
 function clearClickableSettings() {
