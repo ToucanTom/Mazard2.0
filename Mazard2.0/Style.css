@@ -6,6 +6,9 @@ color scheme for mazard
 #FEFE33 (yellow)
 #340D09 (brown?)
 */
+body {
+    background-color:#D4DDF7;
+}
 body{
     align-content: flex-start;
 }
@@ -23,9 +26,10 @@ body{
     height: 90px;
     text-align: center;
     display: inline-flex;
+    background-color: #340D09;
 }
-#gold{
 
+#gold{
     height: 90px;
     width: 90px;
     position: absolute;

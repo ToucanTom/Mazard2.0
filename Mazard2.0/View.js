@@ -203,12 +203,12 @@ function flipTile2(row, col){
     console.log("flipTile2 was called");
 
     // 20% chance to generate a foe to fight and return to stage tile state if foe generated
-    var randNum = Math.floor(Math.random()*100)+1 ;
-    if (randNum <= 20) {
-        randNum = Math.floor(Math.random()*3);//reset randNum to be used as the enemy options index
+    var randNum = Math.floor(Math.random()*100)+1;
+    if (randNum <= 33) {
+        randNum = Math.floor(Math.random()*100)+1;//reset randNum to be used as the enemy options index
         var index =0;
         if(randNum <= 40) index = 0;
-        else if (randNum <= 80) index = 1;
+        else if (randNum <= 75) index = 1;
         else index = 2;
         // Show a message that you are about to battle
         document.getElementById("message").innerHTML = "A enemy has spotted you!";
@@ -344,8 +344,6 @@ function setRotation() {
 
     setOnclickSettings();
 }
-
-
 
 function battle(foeObject) {
     currentFoe.name = foeObject.name;
@@ -630,8 +628,6 @@ function move2(){
     getSurroundingTiles();
 }
 
-
-
 function clearClickableSettings() {
     var cells = document.getElementsByTagName("td");
     for (var i = 0; i < cells.length; i++) {
@@ -709,7 +705,6 @@ function setOnclickSettings(){
         }
     }
 }
-
 
 /*/////////Elephant bone yard/////////*/
 /* function placeTile() */
