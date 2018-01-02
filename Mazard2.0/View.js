@@ -1,9 +1,4 @@
-//lose conditions
-    //check for no more path options
-        //-use a counter that tracks the number of open paths, maybe uses the check that stage tiles uses
-        //-if counter is 0 you lose.
-    //player hp = 0 you lose
-
+/////////GameBoard generation/////////////////
 function genGameBoard() {
     document.getElementById("newLevel").style.display = "none";
     document.getElementById("rotateCCW").style.display = "none";
@@ -50,8 +45,9 @@ function genGameBoard() {
     }
 
 }
+//////////////////////////////////////
 
-
+//Player select//////////////////////
 function populatePlayerOptions(){
     console.log("select race was called");
     var playerOptions = Object.keys(playerObjects);
@@ -62,7 +58,6 @@ function populatePlayerOptions(){
     }
     genStats();
 }
-//these variable names suck
 function genStats(){  //this puts the character information into the overlay to show the stats of the player option
     var playerOptions = Object.keys(playerObjects);
     var statsLocations = [document.getElementById("playerOption1Stats"),document.getElementById("playerOption2Stats"),document.getElementById("playerOption3Stats")];
@@ -77,7 +72,6 @@ function genStats(){  //this puts the character information into the overlay to 
 
 
 }
-
 function choosePlayer(playerChoice) {
     console.log("choosePlayer was called");
     currentPlayer.race = playerChoice.race;
@@ -92,107 +86,9 @@ function choosePlayer(playerChoice) {
     // Visually display characters stats
     updateStats();
 }
-// Updates players stats
-function updateStats() {
-    var option = document.getElementsByClassName("playerStats");
-    option[0].innerHTML = "<img src = " + currentPlayer.image + ">";
-    option[1].innerHTML = "Health: " + currentPlayer.hp;
-    option[2].innerHTML = "Attack: " + currentPlayer.attack;
-    option[3].innerHTML = "Armor: " + currentPlayer.armor;
-    option[4].style.backgroundImage = "url('Media/key.png')";
-    option[4].style.marginTop= "15px";
-    option[4].style.paddingTop = "35px";
-    option[4].style.paddingLeft = "5px";
-    option[4].innerHTML = currentPlayer.keys;
-    document.getElementById("gold").innerHTML = currentPlayer.gold;
-    if(currentPlayer.hasSword) document.getElementById("sword").style.display = "inline";
+/////////////////////////////
 
-}
-// places unflipped cards from the deck onto spots surrounding current player
-function stageTiles() {
-
-    var setClickableTiles = getSurroundingTiles();
-    for (var i = 0; i < setClickableTiles.length; i++) {
-        if (setClickableTiles[i].available) { // if not already occupied
-            document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/gameDeck.png)";       // Set background as deck
-            currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].staged = true;             // update model
-            currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].available = false;
-        }
-    }
-    // Turn off deck while player chooses a staged tile to be flipped
-    document.getElementById("deck").onclick = "";
-    document.getElementById("deck").innerHTML = "";
-    setOnclickSettings();
-}
-
-function genNewLevel() {
-    currentLevel++;
-    document.getElementById("win").play();
-    document.getElementById("newLevel").style.display = "inline";
-    document.getElementById("newLevel").innerHTML = "Go to Level " + currentLevel;
-    document.getElementById("newLevel").onclick = genGameBoard;
-    gameBoardSize.row++;
-    totalTiles+=6;
-}
-
-/*function flipTile(){
-    // updateGameBoardTileObject(currentTile, selectRandomTile());
-    var col = this.cellIndex;
-    var row = this.parentNode.rowIndex;
-
-    tileCountDown--;
-    if (tileCountDown === 0) {
-        currentLevel++;
-        document.getElementById("win").play();
-        document.getElementById("newLevel").style.display = "inline";
-        document.getElementById("newLevel").innerHTML = "Go to Level " + currentLevel;
-        document.getElementById("newLevel").onclick = genGameBoard;
-        document.getElementById("deck").onclick = stageTiles;
-        gameBoardSize.row++;
-        totalTiles+=6;
-    }
-
-    // sets clicked tile location to unavailable
-    currentGameBoard[row][col].available = false;
-    currentGameBoard[row][col].staged = false;
-
-    // Generates appropriate tile for location clicked and sets it to currentTile
-    if (row === currentPlayer.rowLocation-1) {
-        updateGameBoardTileObject(currentTile, selectRandomTile("north"));
-    }
-    if (col === currentPlayer.colLocation+1) {
-        updateGameBoardTileObject(currentTile, selectRandomTile("east"));
-    }
-    if (row === currentPlayer.rowLocation+1) {
-        updateGameBoardTileObject(currentTile, selectRandomTile("south"));
-    }
-    if (col === currentPlayer.colLocation-1) {
-        updateGameBoardTileObject(currentTile, selectRandomTile("west"));
-    }
-    //decide if there is a foe
-    var randNum = Math.floor((Math.random()*8));
-    if (randNum <= 2) {
-        currentTile.hasFoe = true;
-        currentFoe = foeOptions[randNum];
-    }
-    // set location of current tile
-    currentTile.location = row + "," + col;
-
-    // sets tile background to randomly chosen tile - aka "flips the tile at that location"
-    // something weird is going on here with the true false setting on has foe. im not sure i get it....
-    document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
-
-    if (currentTile.hasFoe) document.getElementById(row + "," + col).innerHTML = "<img src = " + currentFoe.image + ">";
-
-    currentTile.hasFoe = false;
-    /////////////////////////////////////////////////////////////////////////////////
-    // Generates rotation buttons to be able to rotate randomly selected tile
-    genRotateDivs();
-
-    // Sets all other surrounding tiles to unclickable until you finish rotating the current tile
-    clearClickableSettings();
-
-}*/
+///////tile generation and placement//////////////////////
 // used for buttons
 function flipTile2(row, col){
     // Checks for clicking vs key presses
@@ -263,6 +159,22 @@ function flipTile2(row, col){
     clearClickableSettings();
 
 }
+// places unflipped cards from the deck onto spots surrounding current player
+function stageTiles() {
+
+    var setClickableTiles = getSurroundingTiles();
+    for (var i = 0; i < setClickableTiles.length; i++) {
+        if (setClickableTiles[i].available) { // if not already occupied
+            document.getElementById(setClickableTiles[i].location).style.backgroundImage = "url(Media/gameDeck.png)";       // Set background as deck
+            currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].staged = true;             // update model
+            currentGameBoard[setClickableTiles[i].location[0]][setClickableTiles[i].location[2]].available = false;
+        }
+    }
+    // Turn off deck while player chooses a staged tile to be flipped
+    document.getElementById("deck").onclick = "";
+    document.getElementById("deck").innerHTML = "";
+    setOnclickSettings();
+}
 function genRotateDivs() {
     var rotateCCWDiv = document.getElementById("rotateCCW");
     var rotateCWDiv = document.getElementById("rotateCW");
@@ -291,6 +203,7 @@ function rotateCW() {
     updateGameBoardTileObject(currentTile, tileObjects[currentTile.rotCW]);
     document.getElementById(currentTile.location).style.backgroundImage = "url(" + currentTile.image + ")";
 }
+///find a way to abstract item drop logic
 function setRotation() {
 
     // Turn off all rotate options and hide boxes
@@ -347,7 +260,9 @@ function setRotation() {
 
     setOnclickSettings();
 }
+///////////////////////////////
 
+//////////battle functions///////////////////
 function battle(foeObject) {
     currentFoe.name = foeObject.name;
     currentFoe.hp = foeObject.hp;
@@ -431,7 +346,9 @@ function returnFromBattle() {
     stageTiles();
     immobile = false;
 }
+//////////////////////////
 
+//////movement functions////////////////
 // move used as the onclick attribute
 function move() {
     if (immobile) {
@@ -662,14 +579,9 @@ function move2(){
     currentConnectedTiles = [];
     getSurroundingTiles();
 }
+////////////////////////////////
 
-function clearClickableSettings() {
-    var cells = document.getElementsByTagName("td");
-    for (var i = 0; i < cells.length; i++) {
-        cells[i].onclick = "";
-    }
-}
-
+/////////information getters////////////
 // returns an array of the surrounding tile objects from currentGameBoard
 function getSurroundingTiles(){
     var tiles = [];
@@ -725,7 +637,6 @@ function getSurroundingTiles(){
 
     return tiles;
 }
-
 function setOnclickSettings(){
     var targets = getSurroundingTiles();
     for (var i = 0; i<targets.length; i++){
@@ -740,6 +651,45 @@ function setOnclickSettings(){
         }
     }
 }
+//////////////////////////////
+
+//////////End Game Functions///////////////////////
+function genNewLevel() {
+    currentLevel++;
+    document.getElementById("win").play();
+    document.getElementById("newLevel").style.display = "inline";
+    document.getElementById("newLevel").innerHTML = "Go to Level " + currentLevel;
+    document.getElementById("newLevel").onclick = genGameBoard;
+    gameBoardSize.row++;
+    totalTiles+=6;
+}
+//////////////////////////////
+
+//////////???????????????
+function clearClickableSettings() {
+    var cells = document.getElementsByTagName("td");
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].onclick = "";
+    }
+}
+// Updates players stats
+function updateStats() {
+    var option = document.getElementsByClassName("playerStats");
+    option[0].innerHTML = "<img src = " + currentPlayer.image + ">";
+    option[1].innerHTML = "Health: " + currentPlayer.hp;
+    option[2].innerHTML = "Attack: " + currentPlayer.attack;
+    option[3].innerHTML = "Armor: " + currentPlayer.armor;
+    option[4].style.backgroundImage = "url('Media/key.png')";
+    option[4].style.marginTop= "15px";
+    option[4].style.paddingTop = "35px";
+    option[4].style.paddingLeft = "5px";
+    option[4].innerHTML = currentPlayer.keys;
+    document.getElementById("gold").innerHTML = currentPlayer.gold;
+    if(currentPlayer.hasSword) document.getElementById("sword").style.display = "inline";
+
+}
+//////////////////////////////
+
 
 /*/////////Elephant bone yard/////////*/
 /* function placeTile() */
@@ -790,4 +740,63 @@ function setOnclickSettings(){
             document.getElementById(setClickableTiles[j].x + "," + setClickableTiles[j].y).onclick = flipTile;
         }
     }
+}*/
+/*function  fliptTile()*/
+/*function flipTile(){
+    // updateGameBoardTileObject(currentTile, selectRandomTile());
+    var col = this.cellIndex;
+    var row = this.parentNode.rowIndex;
+
+    tileCountDown--;
+    if (tileCountDown === 0) {
+        currentLevel++;
+        document.getElementById("win").play();
+        document.getElementById("newLevel").style.display = "inline";
+        document.getElementById("newLevel").innerHTML = "Go to Level " + currentLevel;
+        document.getElementById("newLevel").onclick = genGameBoard;
+        document.getElementById("deck").onclick = stageTiles;
+        gameBoardSize.row++;
+        totalTiles+=6;
+    }
+
+    // sets clicked tile location to unavailable
+    currentGameBoard[row][col].available = false;
+    currentGameBoard[row][col].staged = false;
+
+    // Generates appropriate tile for location clicked and sets it to currentTile
+    if (row === currentPlayer.rowLocation-1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("north"));
+    }
+    if (col === currentPlayer.colLocation+1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("east"));
+    }
+    if (row === currentPlayer.rowLocation+1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("south"));
+    }
+    if (col === currentPlayer.colLocation-1) {
+        updateGameBoardTileObject(currentTile, selectRandomTile("west"));
+    }
+    //decide if there is a foe
+    var randNum = Math.floor((Math.random()*8));
+    if (randNum <= 2) {
+        currentTile.hasFoe = true;
+        currentFoe = foeOptions[randNum];
+    }
+    // set location of current tile
+    currentTile.location = row + "," + col;
+
+    // sets tile background to randomly chosen tile - aka "flips the tile at that location"
+    // something weird is going on here with the true false setting on has foe. im not sure i get it....
+    document.getElementById(row + "," + col).style.backgroundImage = "url(" + currentTile.image + ")";
+
+    if (currentTile.hasFoe) document.getElementById(row + "," + col).innerHTML = "<img src = " + currentFoe.image + ">";
+
+    currentTile.hasFoe = false;
+    /////////////////////////////////////////////////////////////////////////////////
+    // Generates rotation buttons to be able to rotate randomly selected tile
+    genRotateDivs();
+
+    // Sets all other surrounding tiles to unclickable until you finish rotating the current tile
+    clearClickableSettings();
+
 }*/
