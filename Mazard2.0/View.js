@@ -119,7 +119,7 @@ function setOnclickSettings(){
 }
 //////////////////////////////
 
-//////////End Game Functions///////////////////////
+//////////End Game Functions///////////////////////this function is not currently used
 function genNewLevel() {
     currentLevel++;
     document.getElementById("win").play();
@@ -265,3 +265,5 @@ function updateStats() {
     clearClickableSettings();
 
 }*/
+
+//todo create a limit on how long you can go without fighting a monster, and how many you can fight at once

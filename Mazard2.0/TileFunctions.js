@@ -11,9 +11,9 @@ function flipTile2(row, col){
     immobile = true;
     console.log("flipTile2 was called");
 
-    // 20% chance to generate a foe to fight and return to stage tile state if foe generated
+    // 25% chance to generate a foe to fight and return to stage tile state if foe generated
     var randNum = Math.floor(Math.random()*100)+1;
-    if (randNum <= 33) {
+    if (randNum <= 25) {
         randNum = Math.floor(Math.random()*100)+1;//reset randNum to be used as the enemy options index
         var index =0;
         if(randNum <= 40) index = 0;
@@ -33,11 +33,6 @@ function flipTile2(row, col){
     }
 
     tileCountDown--;
-
-    // FOR NOW - can start new level once last tile is flipped over
-    if (tileCountDown === 0) {
-        genNewLevel();
-    }
 
     // Now that the tile is flipped, it is no longer staged
     currentGameBoard[row][col].staged = false;
@@ -113,7 +108,7 @@ function rotateCW() {
     updateGameBoardTileObject(currentTile, tileObjects[currentTile.rotCW]);
     document.getElementById(currentTile.location).style.backgroundImage = "url(" + currentTile.image + ")";
 }
-///find a way to abstract item drop logic
+///TODO find a way to abstract item drop logic
 function setRotation() {
 
     // Turn off all rotate options and hide boxes
